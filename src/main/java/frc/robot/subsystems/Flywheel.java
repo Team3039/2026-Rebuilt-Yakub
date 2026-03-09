@@ -89,13 +89,12 @@ public class Flywheel extends SubsystemBase {
 
 
 
-    private final InterpolatingDoubleTreeMap dissierdshooterspeed = new InterpolatingDoubleTreeMap();
-
+    private final InterpolatingDoubleTreeMap dissierdShooterSpeed = new InterpolatingDoubleTreeMap();
     {
-        dissierdshooterspeed.put(3., 4.7); 
-        dissierdshooterspeed.put(1.5, 4.5);
-        dissierdshooterspeed.put(1.4, 4.0);
-        dissierdshooterspeed.put(4.1, 4.7); 
+        dissierdShooterSpeed.put(3., 4.7); 
+        dissierdShooterSpeed.put(1.5, 4.5);
+        dissierdShooterSpeed.put(1.4, 4.0);
+        dissierdShooterSpeed.put(4.1, 4.7); 
     }
 
 
@@ -127,15 +126,17 @@ public class Flywheel extends SubsystemBase {
                 setShooterVelocity(4);
                 break;
 
+
                 case TRACKING:
 
                 double Distance = getDistanceFromHub();
 
-                double result = dissierdshooterspeed.get(Distance); 
-
+                double result = dissierdShooterSpeed.get(Distance); 
 
                 setShooterVelocity( result);
                 break;
+
+
 
 			case MANUAL:
                 setShooterVelocity(RobotContainer.driverPad.getLeftY() );

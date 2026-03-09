@@ -83,8 +83,7 @@ public class IntakeRoller extends SubsystemBase {
     claw.set(speed);
   }
 
-  ///fdgdgfdxgfdhgfdggrdf
-  /// gfgggg
+
 
   /** 
    * Check to see whether the intake has either gamepiece
