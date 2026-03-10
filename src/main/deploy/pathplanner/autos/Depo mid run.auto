@@ -13,12 +13,6 @@
         {
           "type": "path",
           "data": {
-            "pathName": "DMR 2"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
             "pathName": "DMR 3"
           }
         },
