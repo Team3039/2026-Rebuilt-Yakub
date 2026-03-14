@@ -128,22 +128,22 @@ public class RobotContainer {
 
 
 
-                driverPad.y().onTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(Swerve.getPose().getX(), Swerve.getPose().getY(), Rotation2d.fromDegrees(0)))));
+                driverPad.y().whileTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(Swerve.getPose().getX(), Swerve.getPose().getY(), Rotation2d.fromDegrees(0)))));
 
                 // driverPad.a().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setTurretIdle());
 
-                driverPad.x().onTrue(new IntakeZero());
-                driverPad.b().onTrue(new IntakeIntakeing());
+                // driverPad.b().onTrue(new IntakeIdle());
+                driverPad.a().whileTrue(new setTurretTracking());
   
                 // driverPad.x().onFalse(new setIntakeStop());
 
-                driverPad.a().whileTrue(new TestShoot());
+                driverPad.x().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setIntakeStop());
 
-                guitar.a().onTrue(new setIntakerollersIntake());
-                guitar.b().onTrue(new setIntakerollersStop());
-                guitar.y().whileTrue(new setTurretTracking());
+                guitar.a().onTrue(new IntakeIntakeing());
+                guitar.b().onTrue(new IntakeIdle());
+                // guitar.y().whileTrue(new setTurretTracking());
 
 
 

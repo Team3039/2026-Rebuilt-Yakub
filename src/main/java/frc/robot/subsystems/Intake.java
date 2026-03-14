@@ -67,7 +67,7 @@ public class Intake extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 5.5;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
     config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
 
     // Inverted and Neutral Modes
@@ -117,7 +117,7 @@ public class Intake extends SubsystemBase {
     output += Math.copySign(Constants.Intake.Intake_KS, pidOutput);
   }
 
-  output = MathUtil.clamp(output, -1, 0.2);
+  output = MathUtil.clamp(output, -.8, 0.2);
 
   Intake.set(output);
 }

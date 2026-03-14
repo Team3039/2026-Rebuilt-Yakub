@@ -6,6 +6,7 @@ package frc.robot.commands.movementCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ActuateIntakeToSetpoint;
+import frc.robot.commands.setIntakerollersStop;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -15,7 +16,8 @@ public class IntakeIdle extends SequentialCommandGroup {
   public IntakeIdle() {
     
     addCommands(
-    new ActuateIntakeToSetpoint(1, .1)          
+    new ActuateIntakeToSetpoint(.3, .1),
+    new setIntakerollersStop()
     );
   }
 }

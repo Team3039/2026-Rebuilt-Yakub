@@ -123,7 +123,7 @@ public class Turret extends SubsystemBase {
         output += Math.copySign(Constants.Turret.Turret_KS, pidOutput);
     }
 
-    output = MathUtil.clamp(output, -0.1, 0.1);
+    output = MathUtil.clamp(output, -0.05, 0.05);
 
     Turret.set(output);
 }

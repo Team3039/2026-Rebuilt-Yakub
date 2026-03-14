@@ -89,13 +89,27 @@ public class Flywheel extends SubsystemBase {
 
 
 
-    private final InterpolatingDoubleTreeMap dissierdShooterSpeed = new InterpolatingDoubleTreeMap();
+    // private final InterpolatingDoubleTreeMap dissierdShooterSpeed = new InterpolatingDoubleTreeMap();
+    // {
+    //     dissierdShooterSpeed.put(3., 4.7); 
+    //     dissierdShooterSpeed.put(1.5, 4.5);
+    //     dissierdShooterSpeed.put(1.4, 4.0);
+    //     dissierdShooterSpeed.put(4.1, 4.7); 
+    // }
+
+     private final InterpolatingDoubleTreeMap dissierdShooterSpeedv2 = new InterpolatingDoubleTreeMap();
     {
-        dissierdShooterSpeed.put(3., 4.7); 
-        dissierdShooterSpeed.put(1.5, 4.5);
-        dissierdShooterSpeed.put(1.4, 4.0);
-        dissierdShooterSpeed.put(4.1, 4.7); 
+        dissierdShooterSpeedv2.put(1.80, 4.48); 
+        dissierdShooterSpeedv2.put(1.70, 4.46); 
+        dissierdShooterSpeedv2.put(1.60, 4.32); 
+        
+        dissierdShooterSpeedv2.put(2.9, 4.5); 
+        dissierdShooterSpeedv2.put(3.1, 5.0); 
+        dissierdShooterSpeedv2.put(4.0, 5.3); 
+
+         
     }
+
 
 
 
@@ -104,11 +118,15 @@ public class Flywheel extends SubsystemBase {
     @Override
     public void periodic() {
 
+                         
+                double Distance = getDistanceFromHub();
+
+                double result = dissierdShooterSpeedv2.get(Distance);
+
         double currentVelocity = shooterLeft.getRotorVelocity().getValueAsDouble();
 
         SmartDashboard.putNumber("Shooter RPS", currentVelocity);
-        // SmartDashboard.putNumber("result RPS", result);
-
+        SmartDashboard.putNumber("dissierdShooterSpeed RPS", dissierdShooterSpeedv2.get(Distance));
         SmartDashboard.putBoolean("Shooter At Setpoint", isAtVelocitySetpoint());
         SmartDashboard.putString("Flywheel State", flywheelState.name());
 		
@@ -129,11 +147,12 @@ public class Flywheel extends SubsystemBase {
 
                 case TRACKING:
 
-                double Distance = getDistanceFromHub();
+              
+                // double Distance = getDistanceFromHub();
 
-                double result = dissierdShooterSpeed.get(Distance); 
+                // double result = dissierdShooterSpeed.get(Distance); 
 
-                setShooterVelocity( result);
+                setShooterVelocity(result);
                 break;
 
 

@@ -129,7 +129,7 @@ public class IntakeRoller extends SubsystemBase {
     
       case Intake:
        
-          setWheelSpeed(-0.9);
+          setWheelSpeed(-0.8);
        
 
     
