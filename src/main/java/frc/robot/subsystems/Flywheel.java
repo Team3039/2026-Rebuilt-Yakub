@@ -123,7 +123,7 @@ public class Flywheel extends SubsystemBase {
                 break;
 
             case SHOOTING:
-                setShooterVelocity(4);
+                setShooterVelocity(5);
                 break;
 
 

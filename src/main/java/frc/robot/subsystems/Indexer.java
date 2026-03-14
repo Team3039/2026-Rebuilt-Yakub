@@ -27,8 +27,8 @@ public class Indexer extends SubsystemBase {
   public enum IndexerState {
     IDLE,
     PASSIVE,
-    HAWCK,
-    TUHUA,
+    Intakeing,
+    Shooting,
   }
 
   // Create a variable to store the current state of the indexer
@@ -88,9 +88,7 @@ public class Indexer extends SubsystemBase {
    * 
    * @param speed the speed to set the indexer to (-1 to 1)
    */
-  public void setindexerSpeed(double speed) {
-    indexer.set(speed);
-  }
+  
 
   public void setkickerSpeed(double speed) {
     kicker.set(speed);
@@ -148,20 +146,17 @@ public class Indexer extends SubsystemBase {
 
 
 
-      case HAWCK:
+      case Intakeing:
         if (isFuelIn() ) {
-          Timer.delay(.20);
           setkickerSpeed(0);
-          hasFuel = true;
         }
         else if (!hasGamepiece()) {
           setkickerSpeed(0.3);
-          setindexerSpeed(.3);
         }
         break;
 
       
-      case TUHUA:
+      case Shooting:
         setkickerSpeed(0.3);
         break;
 

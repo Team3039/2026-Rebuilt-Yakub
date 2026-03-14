@@ -20,10 +20,10 @@ public class Hopper extends SubsystemBase {
 
     // Possible states of the hopper / indexer
     public enum HopperState {
-        IDLE,      // Waiting / idle state
-        PASSIVE,   // Passive / holding state
-        HAWCK,     // (Unclear name – maybe "intake" or a specific action)
-        TUHUA,     // (Unclear name – maybe "release" or a specific action)
+        IDLE,      
+        PASSIVE,  
+        Intakeing,     
+        Shooting,     
     }
 
     // Variable that stores the current hopper state
@@ -110,31 +110,27 @@ public class Hopper extends SubsystemBase {
                 setHopperSpeed(0);
                 break;
 
-            case HAWCK:
-                // if (isFuelIn()) {
-                //     Timer.delay(0.20);
-                //     setkickerSpeed(0);
-                //     hasFuel = true;
-                // } else if (!hasGamepiece()) {
-                //     setkickerSpeed(0.3);
-                //     setindexerSpeed(0.3);
-                // }
+            case Intakeing:
+               
+                if (hopper.getSupplyCurrent().getValueAsDouble() > 39) {
+                    setHopperSpeed(0.5);  
+                } else {
+                    setHopperSpeed(-0.5);  
+                }
                 break;
 
-            case TUHUA:
-                // if (hopper.getSupplyCurrent().getValueAsDouble() > 20) {
-                //     setHopperSpeed(-1.0);
-                // } else {
-                //     setHopperSpeed(0.3);
-                // }
+            case Shooting:
+
+              setHopperSpeed(-0.5);  
+
                 break;
 
             case PASSIVE:
-                // Passive state – gentle holding or adjustment
-                if (hopper.getSupplyCurrent().getValueAsDouble() > 39) {
-                    setHopperSpeed(0.5);   // small push against load
+
+                if (hopper.getSupplyCurrent().getValueAsDouble() > 40) {
+                    setHopperSpeed(0.5);  
                 } else {
-                    setHopperSpeed(-0.5);  // gentle pull to hold
+                    setHopperSpeed(-0.5);  
                 }
                 break;
         }

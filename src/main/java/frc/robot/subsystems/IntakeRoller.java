@@ -34,7 +34,7 @@ public class IntakeRoller extends SubsystemBase {
  
 
   // Create a talonfx for the claw
-  TalonFX claw = new TalonFX(Constants.Ports.INTAKE_ROLLER);
+  TalonFX claw = new TalonFX(Constants.Ports.INTAKEROLLER);
 
   
 
@@ -129,12 +129,12 @@ public class IntakeRoller extends SubsystemBase {
     
       case Intake:
        
-          setWheelSpeed(0.5);
+          setWheelSpeed(-0.9);
        
 
     
         case OutTake:
-        setWheelSpeed(-0.5);
+        // setWheelSpeed(-0.5);
        
 
       // In the passive state, the claw will not intake, and will deactivate the intake. 

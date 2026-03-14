@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
   public IntakeState intakeState = IntakeState.IDLE;
 
   // Create a talonfx for the intake
-  public TalonFX Intake = new TalonFX(Constants.Ports.TURRET);
+  public TalonFX Intake = new TalonFX(Constants.Ports.INTAKE);
 
   // Create a PID Controller for the intake
   private PIDController controller = new PIDController(
@@ -67,8 +67,8 @@ public class Intake extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 2;
-    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 5.5;
+    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -117,7 +117,7 @@ public class Intake extends SubsystemBase {
     output += Math.copySign(Constants.Intake.Intake_KS, pidOutput);
   }
 
-  output = MathUtil.clamp(output, -0.1, 0.1);
+  output = MathUtil.clamp(output, -1, 0.2);
 
   Intake.set(output);
 }
@@ -129,8 +129,11 @@ public class Intake extends SubsystemBase {
    * @param percent The percentage to set the intake to
    */
   public void setIntakePercent(double percent) {
-    Intake.set(percent + Constants.Intake.Intake_KS);
+  if (Math.abs(percent) > 0.001) {
+    percent += Math.copySign(Constants.Intake.Intake_KS, percent);
   }
+  Intake.set(percent);
+}
 
   public void stop() {
     Intake.set(0);
@@ -187,7 +190,7 @@ public class Intake extends SubsystemBase {
     // SmartDashboard.putNumber("Intake Output Current",
     // Intake.getSupplyCurrent().getValueAsDouble());
     SmartDashboard.putString("Intake State", String.valueOf(getState()));
-  SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
+  // SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
   
 
     // Intake State Machine
@@ -200,7 +203,7 @@ public class Intake extends SubsystemBase {
 
       // In the Manual state, the Intake is controlled directly by the operator
       case MANUAL:
-        setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.3);
+        setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.1);
         break;
 
       // In the Position state, the Intake is controlled by the setpoint

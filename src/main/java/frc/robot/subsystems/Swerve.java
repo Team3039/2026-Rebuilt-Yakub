@@ -314,7 +314,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         public static double getDistanceToHub() {
             return Math.hypot(
                 HubPose.getX() - getPose().getX(),
-                            HubPose.getY() - getPose().getY()
+                HubPose.getY() - getPose().getY()
                         );
                     }
                 
@@ -333,9 +333,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                             // SmartDashboard.putNumberArray("CameraPose", new double[] { cameraPoses[bestCamera].pose.getTranslation().getX(), cameraPoses[bestCamera].pose.getTranslation().getY(),
                             //     cameraPoses[bestCamera].pose.getRotation().getRadians() });
                             SmartDashboard.putNumberArray("bot Pose", new double[] {getPose().getX(), getPose().getY(), getPose().getRotation().getRadians()});
-
                             SmartDashboard.putNumber("yaw", gyro.getRotation2d().getDegrees());
-
                         // SmartDashboard.putNumber("getRotationToHub", getRotationToHub());
                 
                 

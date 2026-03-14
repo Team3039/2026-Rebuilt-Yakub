@@ -29,20 +29,28 @@ import frc.robot.subsystems.Turret;
 import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.setFlyWheels;
 import frc.robot.commands.setHoodManual;
+import frc.robot.commands.setIntakeManual;
+import frc.robot.commands.setIntakeStop;
+import frc.robot.commands.setIntakerollersIntake;
+import frc.robot.commands.setIntakerollersStop;
 import frc.robot.commands.setKickerPassive;
 import frc.robot.commands.setTurretIdle;
 import frc.robot.commands.setTurretTracking;
-import frc.robot.commands.movementCommands.turretToPoint;
+import frc.robot.commands.movementCommands.IntakeIdle;
+import frc.robot.commands.movementCommands.IntakeIntakeing;
+import frc.robot.commands.movementCommands.IntakeZero;
 import frc.robot.commands.movementCommands.turretToZero;
 import frc.robot.commands.movementCommands.TestShoot;
 import frc.robot.commands.movementCommands.hoodToPoint;
 import frc.robot.commands.movementCommands.hoodToZero;
-import frc.robot.commands.movementCommands.setTurretPosition;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeRoller;
+
 
 public class RobotContainer {
 
@@ -69,6 +77,10 @@ public class RobotContainer {
         public static final Flywheel flywheel = new Flywheel();
         public static final Indexer indexer = new Indexer();
         public static final Hopper hopper = new Hopper();
+        public static final Intake intake = new Intake();
+        public static final IntakeRoller IntakeRoller = new IntakeRoller();
+
+
 
         
 
@@ -110,17 +122,30 @@ public class RobotContainer {
 
                 // driver controls
                 driverPad.start().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+                
 
-                // driverPad.y().onTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
+//                            SmartDashboard.putNumberArray("bot Pose", new double[] {getPose().getX(), getPose().getY(), getPose().getRotation().getRadians()});
 
-                driverPad.a().whileTrue(new setFlyWheels());
+
+
+                driverPad.y().onTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(Swerve.getPose().getX(), Swerve.getPose().getY(), Rotation2d.fromDegrees(0)))));
+
+                // driverPad.a().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setTurretIdle());
 
-                driverPad.x().whileTrue(new setTurretTracking());
-                driverPad.x().onFalse(new setTurretIdle());
+                driverPad.x().onTrue(new IntakeZero());
+                driverPad.b().onTrue(new IntakeIntakeing());
+  
+                // driverPad.x().onFalse(new setIntakeStop());
 
-                // driverPad.y().whileTrue(new setTurretZero());
-                // driverPad.y().onFalse(new setTurretTracking());
+                driverPad.a().whileTrue(new TestShoot());
+                // driverPad.a().onFalse(new setIntakeStop());
+
+                guitar.a().onTrue(new setIntakerollersIntake());
+                guitar.b().onTrue(new setIntakerollersStop());
+                guitar.y().whileTrue(new setTurretTracking());
+
+
 
                 //  driverPad.b().whileTrue(drivetrain.pointAtHubCommand(() -> -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));
                 // driverPad.b().onFalse(new setTurretIdle());
