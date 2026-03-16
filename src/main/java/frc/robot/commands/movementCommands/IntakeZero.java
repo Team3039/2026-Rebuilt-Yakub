@@ -5,19 +5,18 @@
 package frc.robot.commands.movementCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.ActuateTurretToSetpoint;
-import frc.robot.subsystems.Turret;
+import frc.robot.commands.ActuateIntakeToSetpoint;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class turretToHub extends SequentialCommandGroup {
+public class IntakeZero extends SequentialCommandGroup {
   /** Creates a new ScoreCoralL2. */
-  public turretToHub() {
+  public IntakeZero() {
     
     addCommands(
-
-//    new ActuateTurretToSetpoint(Turret.getTargetRotToHub(), 1)          
+    new ActuateIntakeToSetpoint(.0, .1)                 
+ 
     );
   }
 }

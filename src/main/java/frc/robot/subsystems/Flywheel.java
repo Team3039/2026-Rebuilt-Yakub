@@ -89,21 +89,29 @@ public class Flywheel extends SubsystemBase {
 
 
 
-    private final InterpolatingDoubleTreeMap dissierdshooterspeed = new InterpolatingDoubleTreeMap();
+    // private final InterpolatingDoubleTreeMap dissierdShooterSpeed = new InterpolatingDoubleTreeMap();
+    // {
+    //     dissierdShooterSpeed.put(3., 4.7); 
+    //     dissierdShooterSpeed.put(1.5, 4.5);
+    //     dissierdShooterSpeed.put(1.4, 4.0);
+    //     dissierdShooterSpeed.put(4.1, 4.7); 
+    // }
 
+     private final InterpolatingDoubleTreeMap dissierdShooterSpeedv2 = new InterpolatingDoubleTreeMap();
     {
-        dissierdshooterspeed.put(3., 4.7); 
-        dissierdshooterspeed.put(1.5, 4.5);
-        dissierdshooterspeed.put(1.4, 4.0);
-        dissierdshooterspeed.put(4.1, 4.7); 
+        dissierdShooterSpeedv2.put(1.80, 4.44); 
+        dissierdShooterSpeedv2.put(1.70, 4.43); 
+        dissierdShooterSpeedv2.put(1.60, 4.31); 
+        
+        dissierdShooterSpeedv2.put(2.9, 4.4); 
+        dissierdShooterSpeedv2.put(3.1, 5.0); 
+        dissierdShooterSpeedv2.put(4.0, 5.2); 
+        dissierdShooterSpeedv2.put(5.6, 5.7); 
+
+
+         
     }
 
-  
-  
-    double Distance = getDistanceFromHub();
-
-    double result = dissierdshooterspeed.get(Distance); 
-    
 
 
 
@@ -112,11 +120,15 @@ public class Flywheel extends SubsystemBase {
     @Override
     public void periodic() {
 
+                         
+                double Distance = getDistanceFromHub();
+
+                double result = dissierdShooterSpeedv2.get(Distance);
+
         double currentVelocity = shooterLeft.getRotorVelocity().getValueAsDouble();
 
         SmartDashboard.putNumber("Shooter RPS", currentVelocity);
-        SmartDashboard.putNumber("result RPS", result);
-
+        SmartDashboard.putNumber("dissierdShooterSpeed RPS", dissierdShooterSpeedv2.get(Distance));
         SmartDashboard.putBoolean("Shooter At Setpoint", isAtVelocitySetpoint());
         SmartDashboard.putString("Flywheel State", flywheelState.name());
 		
@@ -127,16 +139,27 @@ public class Flywheel extends SubsystemBase {
 
 
             case IDLE:
-                stop();
+
+                setShooterVelocity(.5);
+
                 break;
 
             case SHOOTING:
-                setShooterVelocity(4);
+                setShooterVelocity(5);
                 break;
 
+
                 case TRACKING:
-                setShooterVelocity( result);
+
+              
+                // double Distance = getDistanceFromHub();
+
+                // double result = dissierdShooterSpeed.get(Distance); 
+
+                setShooterVelocity(result);
                 break;
+
+
 
 			case MANUAL:
                 setShooterVelocity(RobotContainer.driverPad.getLeftY() );

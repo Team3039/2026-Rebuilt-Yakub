@@ -60,7 +60,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
   
 
-    public static final Pose2d HubPose = new Pose2d(4.633, 4.040, Rotation2d.fromDegrees(0));
+    public static final Pose2d HubPose = new Pose2d(4.515, 4.040, Rotation2d.fromDegrees(0));
      static double targetYaw;
 
     public SwerveDrivePoseEstimator m_poseEstimator;
@@ -275,10 +275,26 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             }
             
             ;
+
+
+
+
             if (gyro.getAngularVelocityZWorld().getValueAsDouble() > 360) // if our angular velocity is greater
             {
                 doRejectUpdate = true;
             }
+
+
+            double maxTagDistance = 2; 
+
+                if (!doRejectUpdate) {
+                    double dist = cameraPoses[bestCamera].rawFiducials[0].distToCamera;
+
+                if (dist > maxTagDistance) {
+               doRejectUpdate = true;
+                     }
+
+
             SmartDashboard.putBoolean("RejectUpdate", doRejectUpdate);
             if (!doRejectUpdate) {
                 SmartDashboard.putNumber("bestcamera",bestCamera);
@@ -291,6 +307,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                 
                         
             }
+        }
     
         }
     
@@ -314,7 +331,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         public static double getDistanceToHub() {
             return Math.hypot(
                 HubPose.getX() - getPose().getX(),
-                            HubPose.getY() - getPose().getY()
+                HubPose.getY() - getPose().getY()
                         );
                     }
                 
@@ -333,10 +350,8 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                             // SmartDashboard.putNumberArray("CameraPose", new double[] { cameraPoses[bestCamera].pose.getTranslation().getX(), cameraPoses[bestCamera].pose.getTranslation().getY(),
                             //     cameraPoses[bestCamera].pose.getRotation().getRadians() });
                             SmartDashboard.putNumberArray("bot Pose", new double[] {getPose().getX(), getPose().getY(), getPose().getRotation().getRadians()});
-
                             SmartDashboard.putNumber("yaw", gyro.getRotation2d().getDegrees());
-
-                        // SmartDashboard.putNumber("getRotationToHub", getRotationToHub());
+                        SmartDashboard.putNumber("getDistanceToHub", getDistanceToHub());
                 
                 
                 
@@ -437,9 +452,9 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
     }
 
     public PoseEstimate grabPose(String camera) {
-        LimelightHelpers.SetRobotOrientation( "limelight-front", gyro.getYaw().getValueAsDouble(), 0, 0, 0, 0,  0);
+        // LimelightHelpers.SetRobotOrientation( "limelight-front", gyro.getYaw().getValueAsDouble(), 0, 0, 0, 0,  0);
 
-        mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-front");
+        mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-front");
         return mt2;
 
     }

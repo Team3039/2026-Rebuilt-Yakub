@@ -5,26 +5,20 @@
 package frc.robot.commands.movementCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.ActuateHoodToSetpoint;
-import frc.robot.commands.setFlyWheels;
-import frc.robot.commands.setHopperPassive;
+import frc.robot.commands.ActuateIntakeToSetpoint;
 import frc.robot.commands.setIntakerollersIntake;
-import frc.robot.commands.setKickerPassive;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class TestShoot extends SequentialCommandGroup {
-
-  public TestShoot() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+public class IntakeIntakeing extends SequentialCommandGroup {
+  /** Creates a new ScoreCoralL2. */
+  public IntakeIntakeing() {
+    
     addCommands(
-
-    new setFlyWheels(),    
-    new setKickerPassive(),
-    new setHopperPassive(),
-    new setIntakerollersIntake() 
+    new ActuateIntakeToSetpoint(5, .3),
+        new setIntakerollersIntake()
+          
     );
   }
 }

@@ -123,7 +123,7 @@ public class Hood extends SubsystemBase {
 
 
   /**
-   * Set the output of the hood with feedforward
+   * Set the output of the hood with feedForward
    * 
    * @param percent The percentage to set the hood to
    */

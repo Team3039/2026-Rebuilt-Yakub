@@ -29,21 +29,28 @@ import frc.robot.subsystems.Turret;
 import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.setFlyWheels;
 import frc.robot.commands.setHoodManual;
+import frc.robot.commands.setIntakeManual;
+import frc.robot.commands.setIntakeStop;
+import frc.robot.commands.setIntakerollersIntake;
+import frc.robot.commands.setIntakerollersStop;
 import frc.robot.commands.setKickerPassive;
 import frc.robot.commands.setTurretIdle;
 import frc.robot.commands.setTurretTracking;
-import frc.robot.commands.movementCommands.turretToPoint;
+import frc.robot.commands.movementCommands.IntakeIdle;
+import frc.robot.commands.movementCommands.IntakeIntakeing;
+import frc.robot.commands.movementCommands.IntakeZero;
 import frc.robot.commands.movementCommands.turretToZero;
 import frc.robot.commands.movementCommands.TestShoot;
 import frc.robot.commands.movementCommands.hoodToPoint;
 import frc.robot.commands.movementCommands.hoodToZero;
-import frc.robot.commands.movementCommands.setTurretPosition;
-import frc.robot.commands.movementCommands.turretToHub;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeRoller;
+
 
 public class RobotContainer {
 
@@ -52,7 +59,7 @@ public class RobotContainer {
         public RobotContainer() {
 
                 NamedCommands.registerCommand("Depo side mid run start", drivetrain.runOnce(
-                                () -> drivetrain.resetPose(new Pose2d(4.440, 7.582, Rotation2d.fromDegrees(180.000)))));
+                          () -> drivetrain.resetPose(new Pose2d(4.440, 7.582, Rotation2d.fromDegrees(180.000)))));
 
                 autoChooser = AutoBuilder.buildAutoChooser(); // Auto chooser
                 SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -70,6 +77,10 @@ public class RobotContainer {
         public static final Flywheel flywheel = new Flywheel();
         public static final Indexer indexer = new Indexer();
         public static final Hopper hopper = new Hopper();
+        public static final Intake intake = new Intake();
+        public static final IntakeRoller IntakeRoller = new IntakeRoller();
+
+
 
         
 
@@ -88,7 +99,7 @@ public class RobotContainer {
         private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
                         .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
 
-        /* Path follower */
+        /* Path follower */   
         // private final SendableChooser<Command> autoChooser;
 
         private void configureBindings() {
@@ -111,17 +122,31 @@ public class RobotContainer {
 
                 // driver controls
                 driverPad.start().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+                
 
-                // driverPad.y().onTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
+//                            SmartDashboard.putNumberArray("bot Pose", new double[] {getPose().getX(), getPose().getY(), getPose().getRotation().getRadians()});
 
-                driverPad.a().whileTrue(new setFlyWheels());
+
+
+        driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
+
+                // driverPad.a().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setTurretIdle());
 
-                driverPad.x().whileTrue(new setTurretTracking());
-                driverPad.x().onFalse(new setTurretIdle());
+                // driverPad.b().onTrue(new IntakeIdle());
+                // driverPad.a().whileTrue(new setTurretTracking());
+  
+                // driverPad.x().whileTrue(new setIntakeManual());
 
-                // driverPad.y().whileTrue(new setTurretZero());
-                // driverPad.y().onFalse(new setTurretTracking());
+                // guitar.povDown().whileTrue(new setFlyWheels());
+                // driverPad.a().onFalse(new setIntakeStop());
+
+                guitar.a().onTrue(new IntakeIntakeing());
+                guitar.b().onTrue(new IntakeIdle());
+                guitar.povDown().whileTrue(new setFlyWheels());
+                guitar.y().whileTrue(new setTurretTracking());
+
+
 
                 //  driverPad.b().whileTrue(drivetrain.pointAtHubCommand(() -> -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));
                 // driverPad.b().onFalse(new setTurretIdle());
@@ -132,8 +157,7 @@ public class RobotContainer {
                 // driverPad.a().whileTrue(new TestShoot());
 
                 // co driver controls, and yes it is a guitar hero controller
-                guitar.y().onTrue(drivetrain.runOnce(
-                                () -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
+                // guitar.y().onTrue(drivetrain.runOnce(() -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
 
                 // driverPad.b().whileTrue(drivetrain.pointAtHubComm5and(() ->
                 // -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));
