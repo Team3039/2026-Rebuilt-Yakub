@@ -60,7 +60,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
   
 
-    public static final Pose2d HubPose = new Pose2d(4.633, 4.040, Rotation2d.fromDegrees(0));
+    public static final Pose2d HubPose = new Pose2d(4.515, 4.040, Rotation2d.fromDegrees(0));
      static double targetYaw;
 
     public SwerveDrivePoseEstimator m_poseEstimator;
@@ -275,10 +275,26 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             }
             
             ;
+
+
+
+
             if (gyro.getAngularVelocityZWorld().getValueAsDouble() > 360) // if our angular velocity is greater
             {
                 doRejectUpdate = true;
             }
+
+
+            double maxTagDistance = 2; 
+
+                if (!doRejectUpdate) {
+                    double dist = cameraPoses[bestCamera].rawFiducials[0].distToCamera;
+
+                if (dist > maxTagDistance) {
+               doRejectUpdate = true;
+                     }
+
+
             SmartDashboard.putBoolean("RejectUpdate", doRejectUpdate);
             if (!doRejectUpdate) {
                 SmartDashboard.putNumber("bestcamera",bestCamera);
@@ -291,6 +307,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                 
                         
             }
+        }
     
         }
     

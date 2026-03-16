@@ -128,22 +128,23 @@ public class RobotContainer {
 
 
 
-                driverPad.y().whileTrue(drivetrain.runOnce(  () -> drivetrain.resetPose(new Pose2d(Swerve.getPose().getX(), Swerve.getPose().getY(), Rotation2d.fromDegrees(0)))));
+        driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
 
                 // driverPad.a().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setTurretIdle());
 
                 // driverPad.b().onTrue(new IntakeIdle());
-                driverPad.a().whileTrue(new setTurretTracking());
+                // driverPad.a().whileTrue(new setTurretTracking());
   
-                // driverPad.x().onFalse(new setIntakeStop());
+                // driverPad.x().whileTrue(new setIntakeManual());
 
-                driverPad.x().whileTrue(new setFlyWheels());
+                // guitar.povDown().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setIntakeStop());
 
                 guitar.a().onTrue(new IntakeIntakeing());
                 guitar.b().onTrue(new IntakeIdle());
-                // guitar.y().whileTrue(new setTurretTracking());
+                guitar.povDown().whileTrue(new setFlyWheels());
+                guitar.y().whileTrue(new setTurretTracking());
 
 
 
@@ -156,8 +157,7 @@ public class RobotContainer {
                 // driverPad.a().whileTrue(new TestShoot());
 
                 // co driver controls, and yes it is a guitar hero controller
-                guitar.y().onTrue(drivetrain.runOnce(
-                                () -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
+                // guitar.y().onTrue(drivetrain.runOnce(() -> drivetrain.resetPose(new Pose2d(1.567, 3.761, Rotation2d.fromDegrees(0)))));
 
                 // driverPad.b().whileTrue(drivetrain.pointAtHubComm5and(() ->
                 // -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));

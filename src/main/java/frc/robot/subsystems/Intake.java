@@ -70,8 +70,12 @@ public class Intake extends SubsystemBase {
     config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
     config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
 
+
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+
+    config.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+
     config.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
     // Apply the configurator to the Intake motor
