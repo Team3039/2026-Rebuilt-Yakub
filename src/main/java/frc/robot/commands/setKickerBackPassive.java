@@ -6,21 +6,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.IntakeRoller;
-import frc.robot.subsystems.IntakeRoller.RollerState;
-// import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Hopper.HopperState;
+import frc.robot.subsystems.Indexer.IndexerState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class setIntakerollersIntake extends Command {
+public class setKickerBackPassive extends Command {
   /** Creates a new SetTurretManualOverride. */
-  public setIntakerollersIntake() {
-    addRequirements(RobotContainer.intake);
+  public setKickerBackPassive() {
+    addRequirements(RobotContainer.flywheel);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.IntakeRoller.setState(RollerState.Intake);
+    RobotContainer.indexer.setState(IndexerState.BackPASSIVE);
+    RobotContainer.hopper.setState(HopperState.BackPASSIVE);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,7 +31,9 @@ public class setIntakerollersIntake extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // RobotContainer.IntakeRoller.setState(RollerState.IDLE);
+    RobotContainer.indexer.setState(IndexerState.IDLE);
+    RobotContainer.hopper.setState(HopperState.IDLE);
+
   }
 
   // Returns true when the command should end.

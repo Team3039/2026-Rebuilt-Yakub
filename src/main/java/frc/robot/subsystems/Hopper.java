@@ -23,7 +23,8 @@ public class Hopper extends SubsystemBase {
         IDLE,      
         PASSIVE,  
         Intakeing,     
-        Shooting,     
+        Shooting,    
+        BackPASSIVE 
     }
 
     // Variable that stores the current hopper state
@@ -132,6 +133,13 @@ public class Hopper extends SubsystemBase {
                 } else {
                     setHopperSpeed(-0.5);  
                 }
+                break;
+
+
+                case BackPASSIVE:
+
+                    setHopperSpeed(-0.5);  
+                
                 break;
         }
     }

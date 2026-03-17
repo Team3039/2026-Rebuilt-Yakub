@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.695566666666668,
-        "y": 1.193066666666666
+        "x": 3.535954922894425,
+        "y": 4.2017674970344006
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.695566666666668,
-        "y": 1.7488083698141665
+        "x": 2.0942230130486363,
+        "y": 4.696690391459074
       },
       "isLocked": false,
-      "linkedName": "hmr1"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.695566666666668,
-        "y": 2.614033333333333
+        "x": 0.8676749703440101,
+        "y": 5.363760379596679
       },
       "prevControl": {
-        "x": 7.695566666666668,
-        "y": 1.614033333333333
+        "x": 1.5562633451957302,
+        "y": 5.040984578884934
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "hmr2"
+      "linkedName": "hsdr 1"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 1.5,
+    "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -35.753887254436826
   },
   "reversed": false,
-  "folder": "Human side mid run",
+  "folder": "Hub start depo rush",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 0.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

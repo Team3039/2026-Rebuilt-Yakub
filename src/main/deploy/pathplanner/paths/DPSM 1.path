@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.866888888888889,
-        "y": 5.274566666666667
+        "x": 4.4606,
+        "y": 7.5723
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.897122222222222,
-        "y": 7.814166666666669
+        "x": 5.921877777777778,
+        "y": 7.602533333333334
       },
       "isLocked": false,
-      "linkedName": "dmr1"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.91252669039146,
-        "y": 7.2896559905100835
+        "x": 6.294755555555555,
+        "y": 4.528811111111112
       },
       "prevControl": {
-        "x": 4.708671134835904,
-        "y": 7.350122657176751
+        "x": 6.133511111111112,
+        "y": 7.9451777777777775
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "dmr3"
+      "linkedName": "dpsm 1"
     }
   ],
   "rotationTargets": [],
@@ -41,14 +41,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 3.0,
-    "rotation": -178.45184230102208
+    "velocity": 0,
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Depo side mid run",
+  "folder": "Depo side poke mid",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 92.43664824681002
+    "velocity": 0,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

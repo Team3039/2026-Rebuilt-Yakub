@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.866888888888889,
-        "y": 5.274566666666667
+        "x": 0.8676749703440101,
+        "y": 5.363760379596679
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.897122222222222,
-        "y": 7.814166666666669
+        "x": 1.5670225385527887,
+        "y": 5.299205219454329
       },
       "isLocked": false,
-      "linkedName": "dmr1"
+      "linkedName": "hsdr 1"
     },
     {
       "anchor": {
-        "x": 3.91252669039146,
-        "y": 7.2896559905100835
+        "x": 1.965112692763939,
+        "y": 4.49226571767497
       },
       "prevControl": {
-        "x": 4.708671134835904,
-        "y": 7.350122657176751
+        "x": 1.5670225385527883,
+        "y": 5.105539739027282
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "dmr3"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -41,14 +41,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 3.0,
-    "rotation": -178.45184230102208
+    "velocity": 0,
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Depo side mid run",
+  "folder": "Hub start depo rush",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 92.43664824681002
+    "velocity": 0,
+    "rotation": -35.753887254436826
   },
   "useDefaultConstraints": true
 }

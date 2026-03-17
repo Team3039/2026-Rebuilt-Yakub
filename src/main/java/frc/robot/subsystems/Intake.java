@@ -25,7 +25,8 @@ public class Intake extends SubsystemBase {
     IDLE,
     MANUAL,
     POSITION,
-    TRACKING
+    TRACKING,
+    PASSIVE_UP
 
   }
 
@@ -208,6 +209,11 @@ public class Intake extends SubsystemBase {
       // In the Manual state, the Intake is controlled directly by the operator
       case MANUAL:
         setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.1);
+        break;
+
+
+        case PASSIVE_UP:
+        setIntakePercent(-.3);
         break;
 
       // In the Position state, the Intake is controlled by the setpoint

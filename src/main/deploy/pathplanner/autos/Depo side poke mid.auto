@@ -7,19 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "HMR 1"
+            "pathName": "DPSM 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Start Intake"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "HMR 3"
+            "pathName": "DPSM 2"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "HMR 4"
+            "pathName": "DPSM 3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "DPSM 4"
           }
         }
       ]

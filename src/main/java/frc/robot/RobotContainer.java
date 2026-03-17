@@ -30,9 +30,11 @@ import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.setFlyWheels;
 import frc.robot.commands.setHoodManual;
 import frc.robot.commands.setIntakeManual;
+import frc.robot.commands.setIntakePassiveUp;
 import frc.robot.commands.setIntakeStop;
 import frc.robot.commands.setIntakerollersIntake;
 import frc.robot.commands.setIntakerollersStop;
+import frc.robot.commands.setKickerBackPassive;
 import frc.robot.commands.setKickerPassive;
 import frc.robot.commands.setTurretIdle;
 import frc.robot.commands.setTurretTracking;
@@ -60,6 +62,20 @@ public class RobotContainer {
 
                 NamedCommands.registerCommand("Depo side mid run start", drivetrain.runOnce(
                           () -> drivetrain.resetPose(new Pose2d(4.440, 7.582, Rotation2d.fromDegrees(180.000)))));
+
+//                 guitar.a().onTrue(new IntakeIntakeing());
+//                 guitar.b().onTrue(new IntakeIdle());
+//                 guitar.povDown().whileTrue(new setFlyWheels());
+//                 guitar.y().whileTrue(new setTurretTracking());
+
+
+
+                NamedCommands.registerCommand("Start Intake", new IntakeIntakeing());
+                NamedCommands.registerCommand("Intake back in", new IntakeIdle());
+                NamedCommands.registerCommand("AIM", new setTurretTracking());
+                NamedCommands.registerCommand("FIRE!!!!", new setFlyWheels());
+
+
 
                 autoChooser = AutoBuilder.buildAutoChooser(); // Auto chooser
                 SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -141,11 +157,14 @@ public class RobotContainer {
                 // guitar.povDown().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setIntakeStop());
 
-                guitar.a().onTrue(new IntakeIntakeing());
-                guitar.b().onTrue(new IntakeIdle());
-                guitar.povDown().whileTrue(new setFlyWheels());
-                guitar.y().whileTrue(new setTurretTracking());
-
+                
+                guitar.a().onTrue(new IntakeIntakeing()); // the green button
+                guitar.b().onTrue(new IntakeIdle()); // the red button
+                guitar.y().onTrue(new setIntakePassiveUp()); // the yellow button
+                guitar.x().whileTrue(new setTurretTracking()); // the blue button
+               
+                guitar.povDown().whileTrue(new setFlyWheels()); // down on the strum bar
+                guitar.povUp().whileTrue(new setKickerBackPassive()); // up on the strum bar
 
 
                 //  driverPad.b().whileTrue(drivetrain.pointAtHubCommand(() -> -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));

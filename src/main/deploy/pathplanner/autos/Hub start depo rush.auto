@@ -7,19 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "HMR 1"
+            "pathName": "HSDR 1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "HMR 3"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "HMR 4"
+            "pathName": "HSDR 2"
           }
         }
       ]

@@ -29,6 +29,7 @@ public class Indexer extends SubsystemBase {
     PASSIVE,
     Intakeing,
     Shooting,
+    BackPASSIVE,
   }
 
   // Create a variable to store the current state of the indexer
@@ -164,13 +165,20 @@ public class Indexer extends SubsystemBase {
       //  This will be used when the indexer has a gamepiece
       case PASSIVE:
 
-      
 
       if(Flywheel.isAtVelocitySetpoint() == true){
         setkickerSpeed(1);
       }
       else {setkickerSpeed (.0);}
-        
+
+        break;
+
+
+        case BackPASSIVE:
+
+        setkickerSpeed(-1);
+      
+      
 
         break;
     }
