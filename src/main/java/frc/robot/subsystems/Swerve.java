@@ -60,7 +60,15 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
   
 
-    public static final Pose2d HubPose = new Pose2d(4.515, 4.040, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueHubPose = new Pose2d(4.633, 4.030, Rotation2d.fromDegrees(0));
+
+
+    public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
+
+
+
+
+
      static double targetYaw;
 
     public SwerveDrivePoseEstimator m_poseEstimator;
@@ -285,7 +293,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             }
 
 
-            double maxTagDistance = 2; 
+            double maxTagDistance = 4; 
 
                 if (!doRejectUpdate) {
                     double dist = cameraPoses[bestCamera].rawFiducials[0].distToCamera;
@@ -316,25 +324,32 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         
     
     
-    
-    public static double getRotationToHub() {
+    private static Pose2d getHubPoseForAlliance() {
+        var allianceOpt = DriverStation.getAlliance();
+        if (allianceOpt.isPresent()) {
+            return allianceOpt.get() == Alliance.Red ? RedHubPose : BlueHubPose;
+        }
 
-        targetYaw = Math.atan2(
-         
-            HubPose.getY() - getPose().getY(),
-            HubPose.getX() - getPose().getX()
-        );
-        return Math.toDegrees(targetYaw);  
+        return BlueHubPose;
     }
 
-    
-        public static double getDistanceToHub() {
-            return Math.hypot(
-                HubPose.getX() - getPose().getX(),
-                HubPose.getY() - getPose().getY()
-                        );
-                    }
-                
+    public static double getRotationToHub() {
+        Pose2d hub = getHubPoseForAlliance();
+
+        targetYaw = Math.atan2(
+            hub.getY() - getPose().getY(),
+            hub.getX() - getPose().getX()
+        );
+        return Math.toDegrees(targetYaw);
+    }
+
+    public static double getDistanceToHub() {
+        Pose2d hub = getHubPoseForAlliance();
+        return Math.hypot(
+            hub.getX() - getPose().getX(),
+            hub.getY() - getPose().getY()
+        );
+    }
                     @Override
                     public void periodic() {
                         

@@ -5,21 +5,72 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "HMR 1"
+            "commands": [
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "HMR 1"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "HMR 2"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "HMR 3"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Start Intake"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "path",
+          "type": "wait",
           "data": {
-            "pathName": "HMR 3"
+            "waitTime": 0.5
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "HMR 4"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AIM"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "FIRE!!!!"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake slow in"
+                }
+              }
+            ]
           }
         }
       ]

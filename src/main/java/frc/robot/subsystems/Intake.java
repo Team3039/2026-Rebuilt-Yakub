@@ -213,7 +213,7 @@ public class Intake extends SubsystemBase {
 
 
         case PASSIVE_UP:
-        setIntakePercent(-.3);
+        setIntakePercent(-.1);
         break;
 
       // In the Position state, the Intake is controlled by the setpoint

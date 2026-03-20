@@ -67,8 +67,8 @@ public class Turret extends SubsystemBase {
 		// Soft Limits
 		config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1.3;
-		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2.35;
+		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1;
+		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2;
  
 		// Inverted and Neutral Modes
 		// config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;

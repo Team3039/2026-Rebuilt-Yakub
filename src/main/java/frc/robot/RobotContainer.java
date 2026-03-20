@@ -18,6 +18,8 @@ import com.therekrab.autopilot.APTarget;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.PS4Controller;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -58,6 +60,8 @@ public class RobotContainer {
 
         private final SendableChooser<Command> autoChooser;
 
+
+
         public RobotContainer() {
 
                 NamedCommands.registerCommand("Depo side mid run start", drivetrain.runOnce(
@@ -72,9 +76,12 @@ public class RobotContainer {
 
                 NamedCommands.registerCommand("Start Intake", new IntakeIntakeing());
                 NamedCommands.registerCommand("Intake back in", new IntakeIdle());
+                NamedCommands.registerCommand("Intake slow in", new setIntakePassiveUp());
                 NamedCommands.registerCommand("AIM", new setTurretTracking());
                 NamedCommands.registerCommand("FIRE!!!!", new setFlyWheels());
 
+
+                // new setIntakePassiveUp()
 
 
                 autoChooser = AutoBuilder.buildAutoChooser(); // Auto chooser
@@ -99,7 +106,6 @@ public class RobotContainer {
 
 
         
-
         private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top
                                                                                       // speed
         private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per
@@ -144,7 +150,38 @@ public class RobotContainer {
 
 
 
-        driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
+        // driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
+
+                driverPad.y().onTrue(
+                        drivetrain.runOnce(() -> {
+                                if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
+                                        drivetrain.resetOdometry(new Pose2d(2.405, 4.030, Rotation2d.fromDegrees(0))); // blue pose
+                                } else {
+                                        drivetrain.resetOdometry(new Pose2d(13.934, 4.030, Rotation2d.fromDegrees(180))); // red pose
+                                }
+                        })
+                );
+
+                driverPad.x().onTrue(
+                        drivetrain.runOnce(() -> {
+                                if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
+                                        drivetrain.resetOdometry(new Pose2d(2.173, 6.040, Rotation2d.fromDegrees(0))); // blue pose
+                                } else {
+                                        drivetrain.resetOdometry(new Pose2d(14.327, 2.241, Rotation2d.fromDegrees(180))); // red pose
+                                }
+                        })
+                );
+
+                driverPad.b().onTrue(
+                        drivetrain.runOnce(() -> {
+                                if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
+                                        drivetrain.resetOdometry(new Pose2d(2.173, 2.019, Rotation2d.fromDegrees(0))); // blue pose
+                                } else {
+                                        drivetrain.resetOdometry(new Pose2d(14.327, 6.413, Rotation2d.fromDegrees(180))); // red pose
+                                }
+                        })
+                );
+
 
                 // driverPad.a().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setTurretIdle());

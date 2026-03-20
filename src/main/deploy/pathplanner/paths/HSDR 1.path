@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0942230130486363,
-        "y": 4.696690391459074
+        "x": 2.888466666666667,
+        "y": 4.6094333333333335
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.8676749703440101,
-        "y": 5.363760379596679
+        "x": 2.3140333333333336,
+        "y": 4.6699
       },
       "prevControl": {
-        "x": 1.5562633451957302,
-        "y": 5.040984578884934
+        "x": 2.8783888888888884,
+        "y": 4.629588888888889
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.5,
+    "maxVelocity": 2.0,
     "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -35.753887254436826
+    "rotation": 3.366460663429801
   },
   "reversed": false,
   "folder": "Hub start depo rush",

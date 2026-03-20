@@ -5,33 +5,66 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "DPSM 1"
+            "commands": [
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "DPSM 1"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "DPSM 2"
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "DPSM 4"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Start Intake"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "Start Intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DPSM 2"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DPSM 3"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DPSM 4"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "FIRE!!!!"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "AIM"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake slow in"
+                }
+              }
+            ]
           }
         }
       ]

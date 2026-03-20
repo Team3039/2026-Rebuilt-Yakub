@@ -3,37 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.078522222222222,
-        "y": 4.528811111111112
+        "x": 7.866888888888889,
+        "y": 2.382244444444443
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.794044444444443,
-        "y": 6.907166666666667
+        "x": 7.7258,
+        "y": 1.1829888888888886
       },
       "isLocked": false,
-      "linkedName": "dpsm 2"
+      "linkedName": "hmr1"
     },
     {
       "anchor": {
-        "x": 4.611766666666667,
-        "y": 7.491677777777777
+        "x": 4.440444444444445,
+        "y": 0.5984777777777766
       },
       "prevControl": {
-        "x": 8.431244444444443,
-        "y": 7.431211111111111
+        "x": 6.1939777777777785,
+        "y": 0.5178555555555555
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "dpsm 3"
+      "linkedName": "hmr 2"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": -158.02549200852803
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -46,14 +41,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 2.0,
-    "rotation": -179.5277927285946
+    "velocity": 1.0,
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Depo side poke mid",
+  "folder": "Human side mid run",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -104.47029410006606
   },
   "useDefaultConstraints": true
 }
