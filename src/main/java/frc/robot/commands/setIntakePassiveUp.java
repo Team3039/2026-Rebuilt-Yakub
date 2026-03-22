@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Intake.IntakeState;
+import frc.robot.subsystems.IntakeRoller.RollerState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class setIntakePassiveUp extends Command {
@@ -19,6 +20,8 @@ public class setIntakePassiveUp extends Command {
   @Override
   public void initialize() {
     RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+    RobotContainer.IntakeRoller.setState(RollerState.IDLE);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,6 +31,8 @@ public class setIntakePassiveUp extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+        RobotContainer.intake.setState(IntakeState.IDLE);
+
   }
 
   // Returns true when the command should end.

@@ -79,10 +79,12 @@ public class RobotContainer {
                 NamedCommands.registerCommand("Intake slow in", new setIntakePassiveUp());
                 NamedCommands.registerCommand("AIM", new setTurretTracking());
                 NamedCommands.registerCommand("FIRE!!!!", new setFlyWheels());
+                NamedCommands.registerCommand("fix auto for red stuff",  (drivetrain.runOnce(() -> drivetrain.seedFieldCentric())));
+
 
 
                 // new setIntakePassiveUp()
-
+// (drivetrain.runOnce(() -> drivetrain.seedFieldCentric()))
 
                 autoChooser = AutoBuilder.buildAutoChooser(); // Auto chooser
                 SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -152,6 +154,10 @@ public class RobotContainer {
 
         // driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
 
+            driverPad.a().whileTrue(new setIntakePassiveUp()); 
+
+
+
                 driverPad.y().onTrue(
                         drivetrain.runOnce(() -> {
                                 if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
@@ -197,9 +203,11 @@ public class RobotContainer {
                 
                 guitar.a().onTrue(new IntakeIntakeing()); // the green button
                 guitar.b().onTrue(new IntakeIdle()); // the red button
-                guitar.y().onTrue(new setIntakePassiveUp()); // the yellow button
+                guitar.y().whileTrue(new setIntakePassiveUp()); // the yellow button
                 guitar.x().whileTrue(new setTurretTracking()); // the blue button
-               
+                guitar.leftBumper().onTrue(new setIntakerollersIntake());
+
+
                 guitar.povDown().whileTrue(new setFlyWheels()); // down on the strum bar
                 guitar.povUp().whileTrue(new setKickerBackPassive()); // up on the strum bar
 

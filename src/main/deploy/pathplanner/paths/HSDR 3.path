@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.45972222222222214,
-        "y": 5.9699333333333335
+        "x": 0.6612777777777776,
+        "y": 5.758299999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6186666666666667,
-        "y": 5.818766666666667
+        "x": 1.8202222222222224,
+        "y": 5.607133333333333
       },
       "isLocked": false,
       "linkedName": "hsdr 2"
@@ -48,7 +48,7 @@
   "folder": "Hub start depo rush",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -28.495638618245025
   },
   "useDefaultConstraints": false
 }

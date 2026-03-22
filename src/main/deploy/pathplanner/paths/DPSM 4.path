@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5884333333333331,
-        "y": 6.6854555555555555
+        "x": 2.223333333333333,
+        "y": 6.79631111111111
       },
       "isLocked": false,
       "linkedName": "dpsm 3"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -3.0664855011258956
+    "rotation": -0.7345210342547727
   },
   "reversed": false,
   "folder": "Depo side poke mid",

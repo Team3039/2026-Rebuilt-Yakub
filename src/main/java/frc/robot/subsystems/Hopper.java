@@ -129,7 +129,7 @@ public class Hopper extends SubsystemBase {
             case PASSIVE:
 
                 if (hopper.getSupplyCurrent().getValueAsDouble() > 40) {
-                    setHopperSpeed(1);  
+                    setHopperSpeed(.5);  
                 } else {
                     setHopperSpeed(-.5);  
                 }

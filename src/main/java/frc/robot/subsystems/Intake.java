@@ -68,7 +68,7 @@ public class Intake extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 5.8;
     config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
 
 
@@ -192,8 +192,7 @@ public class Intake extends SubsystemBase {
     
     SmartDashboard.putNumber("Intake Setpoint", (getSetpoint() ));
 
-    // SmartDashboard.putNumber("Intake Output Current",
-    // Intake.getSupplyCurrent().getValueAsDouble());
+    SmartDashboard.putNumber("Intake Output Current", Intake.getSupplyCurrent().getValueAsDouble());
     SmartDashboard.putString("Intake State", String.valueOf(getState()));
   // SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
   

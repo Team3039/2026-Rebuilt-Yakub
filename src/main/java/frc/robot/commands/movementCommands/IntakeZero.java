@@ -16,7 +16,6 @@ public class IntakeZero extends SequentialCommandGroup {
   public IntakeZero() {
     
     addCommands(
-    new ActuateIntakeToSetpoint(.0, .1),              
      new setIntakerollersStop()
 
     );

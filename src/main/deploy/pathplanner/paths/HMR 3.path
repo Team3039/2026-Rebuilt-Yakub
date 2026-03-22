@@ -3,32 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.440444444444445,
+        "x": 4.037333333333334,
         "y": 0.5984777777777766
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.515588888888889,
-        "y": 0.8504222222222225
+        "x": 1.084544444444444,
+        "y": 1.0620555555555566
       },
       "isLocked": false,
       "linkedName": "hmr 2"
     },
     {
       "anchor": {
-        "x": 2.354344444444444,
-        "y": 1.8884333333333334
+        "x": 2.515588888888889,
+        "y": 2.089988888888889
       },
       "prevControl": {
-        "x": 2.344266666666667,
-        "y": 1.5861
+        "x": 1.7396000000000003,
+        "y": 2.0194444444444457
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.16750418760469155,
+      "rotationDegrees": -179.53335272353144
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -42,7 +47,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 23.198590513648146
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Human side mid run",

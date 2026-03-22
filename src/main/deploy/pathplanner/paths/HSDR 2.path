@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5458222222222227,
-        "y": 5.838922222222223
+        "x": 1.719444444444444,
+        "y": 5.274566666666667
       },
       "isLocked": false,
       "linkedName": "hsdr 1"
     },
     {
       "anchor": {
-        "x": 0.45972222222222214,
-        "y": 5.9699333333333335
+        "x": 0.6612777777777776,
+        "y": 5.758299999999999
       },
       "prevControl": {
-        "x": 1.5380444444444448,
-        "y": 5.990088888888891
+        "x": 1.7396000000000003,
+        "y": 5.778455555555556
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -28.495638618245025
   },
   "reversed": false,
   "folder": "Hub start depo rush",
