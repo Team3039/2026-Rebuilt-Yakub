@@ -25,7 +25,8 @@ public class Intake extends SubsystemBase {
     IDLE,
     MANUAL,
     POSITION,
-    TRACKING
+    TRACKING,
+    PASSIVE_UP
 
   }
 
@@ -67,7 +68,7 @@ public class Intake extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 5.8;
     config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
 
 
@@ -191,8 +192,7 @@ public class Intake extends SubsystemBase {
     
     SmartDashboard.putNumber("Intake Setpoint", (getSetpoint() ));
 
-    // SmartDashboard.putNumber("Intake Output Current",
-    // Intake.getSupplyCurrent().getValueAsDouble());
+    SmartDashboard.putNumber("Intake Output Current", Intake.getSupplyCurrent().getValueAsDouble());
     SmartDashboard.putString("Intake State", String.valueOf(getState()));
   // SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
   
@@ -208,6 +208,11 @@ public class Intake extends SubsystemBase {
       // In the Manual state, the Intake is controlled directly by the operator
       case MANUAL:
         setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.1);
+        break;
+
+
+        case PASSIVE_UP:
+        setIntakePercent(-.1);
         break;
 
       // In the Position state, the Intake is controlled by the setpoint

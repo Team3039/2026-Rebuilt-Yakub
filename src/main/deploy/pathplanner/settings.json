@@ -4,7 +4,9 @@
   "holonomicMode": true,
   "pathFolders": [
     "Depo side mid run",
+    "Hub start depo rush",
     "Human side mid run",
+    "Depo side poke mid",
     "testing "
   ],
   "autoFolders": [],

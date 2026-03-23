@@ -16,7 +16,7 @@ public class IntakeIntakeing extends SequentialCommandGroup {
   public IntakeIntakeing() {
     
     addCommands(
-    new ActuateIntakeToSetpoint(5, .3),
+        new ActuateIntakeToSetpoint(6, .3),
         new setIntakerollersIntake()
           
     );

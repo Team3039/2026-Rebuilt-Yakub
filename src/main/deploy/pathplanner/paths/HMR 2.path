@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.695566666666668,
-        "y": 1.193066666666666
+        "x": 7.967666666666666,
+        "y": 2.7651999999999997
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.695566666666668,
-        "y": 1.7488083698141665
+        "x": 7.9979,
+        "y": 0.36668888888888995
       },
       "isLocked": false,
       "linkedName": "hmr1"
     },
     {
       "anchor": {
-        "x": 7.695566666666668,
-        "y": 2.614033333333333
+        "x": 4.037333333333334,
+        "y": 0.5984777777777766
       },
       "prevControl": {
-        "x": 7.695566666666668,
-        "y": 1.614033333333333
+        "x": 4.521066666666667,
+        "y": 0.8604999999999996
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "hmr2"
+      "linkedName": "hmr 2"
     }
   ],
   "rotationTargets": [],
@@ -41,14 +41,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -90.0
+    "velocity": 1.0,
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Human side mid run",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -104.47029410006606
   },
   "useDefaultConstraints": true
 }

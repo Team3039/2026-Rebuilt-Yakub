@@ -16,8 +16,10 @@ public class IntakeIdle extends SequentialCommandGroup {
   public IntakeIdle() {
     
     addCommands(
-    new ActuateIntakeToSetpoint(.3, .1),
-    new setIntakerollersStop()
+    new ActuateIntakeToSetpoint(2.3, .3)
+    // new setIntakerollersStop()
+
+
     );
   }
 }
