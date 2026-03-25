@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.084544444444444,
-        "y": 1.0620555555555566
+        "x": 1.4271888888888888,
+        "y": 1.3643888888888889
       },
       "isLocked": false,
       "linkedName": "hmr 2"
@@ -20,20 +20,15 @@
         "y": 2.089988888888889
       },
       "prevControl": {
-        "x": 1.7396000000000003,
-        "y": 2.0194444444444457
+        "x": 2.424888888888889,
+        "y": 1.7574222222222229
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "HMR 3"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.16750418760469155,
-      "rotationDegrees": -179.53335272353144
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],

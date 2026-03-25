@@ -155,7 +155,8 @@ public class RobotContainer {
         // driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
 
             driverPad.a().whileTrue(new setIntakePassiveUp()); 
-
+            driverPad.leftBumper().onTrue(new setIntakerollersIntake());
+        
 
 
                 driverPad.y().onTrue(
@@ -204,7 +205,7 @@ public class RobotContainer {
                 guitar.a().onTrue(new IntakeIntakeing()); // the green button
                 guitar.b().onTrue(new IntakeIdle()); // the red button
                 guitar.y().whileTrue(new setIntakePassiveUp()); // the yellow button
-                guitar.x().whileTrue(new setTurretTracking()); // the blue button
+                guitar.x().onTrue(new setTurretTracking()); // the blue button
                 guitar.leftBumper().onTrue(new setIntakerollersIntake());
 
 

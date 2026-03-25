@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8202222222222224,
-        "y": 5.607133333333333
+        "x": 0.7217444444444443,
+        "y": 7.80408888888889
       },
       "isLocked": false,
       "linkedName": "hsdr 2"
@@ -20,12 +20,12 @@
         "y": 4.9722333333333335
       },
       "prevControl": {
-        "x": 1.8706111111111112,
-        "y": 5.365266666666667
+        "x": 3.1001,
+        "y": 5.959855555555555
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "hsdr 3"
     }
   ],
   "rotationTargets": [],

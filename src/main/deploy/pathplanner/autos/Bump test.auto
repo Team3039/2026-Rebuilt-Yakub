@@ -7,25 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "DMR 1"
+            "pathName": "BT 1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "DMR 3"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DMR 4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DMR 5"
+            "pathName": "BT 2"
           }
         }
       ]

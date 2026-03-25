@@ -338,8 +338,8 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
         targetYaw = Math.atan2(
             hub.getY() - getPose().getY(),
-            hub.getX() - getPose().getX()
-        );
+            hub.getX() - getPose().getX() 
+            );
         return Math.toDegrees(targetYaw);
     }
 

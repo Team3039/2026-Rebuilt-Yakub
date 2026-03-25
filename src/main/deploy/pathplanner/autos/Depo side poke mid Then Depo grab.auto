@@ -15,19 +15,19 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HMR 1"
+                        "pathName": "DPSM 1"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HMR 2"
+                        "pathName": "DPSM 2"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "HMR 3"
+                        "pathName": "DPSM 4"
                       }
                     }
                   ]
@@ -51,7 +51,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.25
           }
         },
         {
@@ -75,24 +75,56 @@
                 "data": {
                   "name": "FIRE!!!!"
                 }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
               {
                 "type": "sequential",
                 "data": {
                   "commands": [
                     {
-                      "type": "wait",
+                      "type": "path",
                       "data": {
-                        "waitTime": 1.5
+                        "pathName": "DPSMTDG 1"
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "path",
                       "data": {
-                        "name": "Intake slow in"
+                        "pathName": "DPSMTDG 2"
                       }
                     }
                   ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Start Intake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AIM"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "FIRE!!!!"
                 }
               }
             ]

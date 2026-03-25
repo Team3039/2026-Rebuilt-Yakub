@@ -68,7 +68,7 @@ public class Turret extends SubsystemBase {
 		config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1;
-		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2;
+		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1.8;
  
 		// Inverted and Neutral Modes
 		// config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -107,7 +107,7 @@ public class Turret extends SubsystemBase {
 
 	public double getTurretPosition() {
 
-	double position = Turret.getPosition().getValueAsDouble() + 0.27001953125 ;
+	double position = Turret.getPosition().getValueAsDouble() + 0.27001953125 ;   // I looooooove magic numbers, what does this number mean? I dont know, but it makes everything work, so im not gonna change it.
 
 		return position * Constants.turretGearRatio;
 	}
@@ -201,8 +201,10 @@ public class Turret extends SubsystemBase {
 
 			// In the Idle state, the Turret rests at the bottom of the robot
 			case IDLE:
-				stop();
-				break;
+			setSetpoint(getTargetRotToHub() + Swerve.getPose().getRotation().getDegrees());
+				setTurretPosition();
+				
+			break;
 
 			// In the Manual state, the Turret is controlled directly by the operator
 			case MANUAL:

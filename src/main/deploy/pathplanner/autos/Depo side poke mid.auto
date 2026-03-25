@@ -55,13 +55,13 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "wait",
                 "data": {
-                  "name": "FIRE!!!!"
+                  "waitTime": 3.5
                 }
               },
               {
@@ -71,22 +71,9 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 3.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Intake slow in"
-                      }
-                    }
-                  ]
+                  "name": "FIRE!!!!"
                 }
               }
             ]
