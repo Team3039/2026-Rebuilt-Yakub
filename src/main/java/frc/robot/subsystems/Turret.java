@@ -180,6 +180,8 @@ public class Turret extends SubsystemBase {
 		return Math.abs((setpointTurret - getTurretPosition())) <= tolerance;
 	}
 
+	
+
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Turret Encoder", getTurretPosition());
@@ -225,7 +227,7 @@ public class Turret extends SubsystemBase {
 
 			  case PASSING:
 
-       		 setSetpoint(0);
+			setSetpoint(0);
 			setTurretPosition();
 
 

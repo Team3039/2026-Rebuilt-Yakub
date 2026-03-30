@@ -20,7 +20,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.PS4Controller;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,26 +27,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Turret;
-import frc.robot.commands.ActuateHoodToSetpoint;
+// import frc.robot.commands.ActuateHoodToSetpoint;
+import frc.robot.commands.AimToPass;
 import frc.robot.commands.StartPassing;
 import frc.robot.commands.setFlyWheels;
-import frc.robot.commands.setHoodManual;
-import frc.robot.commands.setIntakeManual;
+// import frc.robot.commands.setHoodManual;
+// import frc.robot.commands.setIntakeManual;
 import frc.robot.commands.setIntakePassiveUp;
-import frc.robot.commands.setIntakeStop;
+// import frc.robot.commands.setIntakeStop;
 import frc.robot.commands.setIntakerollersIntake;
-import frc.robot.commands.setIntakerollersStop;
+// import frc.robot.commands.setIntakerollersStop;
 import frc.robot.commands.setKickerBackPassive;
-import frc.robot.commands.setKickerPassive;
-import frc.robot.commands.setTurretIdle;
+// import frc.robot.commands.setKickerPassive;
+// import frc.robot.commands.setTurretIdle;
 import frc.robot.commands.setTurretTracking;
 import frc.robot.commands.movementCommands.IntakeIdle;
 import frc.robot.commands.movementCommands.IntakeIntakeing;
-import frc.robot.commands.movementCommands.IntakeZero;
-import frc.robot.commands.movementCommands.turretToZero;
-import frc.robot.commands.movementCommands.TestShoot;
-import frc.robot.commands.movementCommands.hoodToPoint;
-import frc.robot.commands.movementCommands.hoodToZero;
+// import frc.robot.commands.movementCommands.IntakeZero;
+// import frc.robot.commands.movementCommands.turretToZero;
+// import frc.robot.commands.movementCommands.TestShoot;
+// import frc.robot.commands.movementCommands.hoodToPoint;
+// import frc.robot.commands.movementCommands.hoodToZero;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Hopper;
@@ -156,12 +156,13 @@ public class RobotContainer {
 
         // driverPad.y().onTrue (drivetrain.runOnce(  () -> drivetrain.resetOdometry(new Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
 
-            driverPad.a().whileTrue(new setIntakePassiveUp()); 
+            driverPad.a().whileTrue(drivetrain.applyRequest(() -> brake));
             driverPad.leftBumper().onTrue(new setIntakerollersIntake());
             driverPad.rightTrigger().whileTrue(new StartPassing());
+            driverPad.leftTrigger().whileTrue(new AimToPass());
 
         
-
+// AimToPass
 
                 driverPad.y().onTrue(
                         drivetrain.runOnce(() -> {

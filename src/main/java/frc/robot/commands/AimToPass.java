@@ -14,10 +14,9 @@ import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Turret.TurretState;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class StartPassing extends Command {
+public class AimToPass extends Command {
   /** Creates a new SetTurretManualOverride. */
-  public StartPassing() {
-    addRequirements(RobotContainer.flywheel);
+  public AimToPass() {
     addRequirements(RobotContainer.turret);
 
   }
@@ -25,10 +24,8 @@ public class StartPassing extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.flywheel.setState(FlywheelState.PASSING);
-    RobotContainer.indexer.setState(IndexerState.PASSIVE);
-    RobotContainer.hopper.setState(HopperState.PASSIVE);
-    RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+       RobotContainer.turret.setState(TurretState.PASSING);
+
 
   }
 
