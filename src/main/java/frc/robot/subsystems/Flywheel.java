@@ -20,7 +20,8 @@ public class Flywheel extends SubsystemBase {
         IDLE,
         SHOOTING,
         MANUAL,
-        TRACKING
+        TRACKING,
+        PASSING
     }
 
     private final static TalonFX shooterLeft =  new TalonFX(Constants.Ports.FLYWHEEL_LEFT);
@@ -107,8 +108,7 @@ public class Flywheel extends SubsystemBase {
         dissierdShooterSpeedv2.put(3.1, 5.0); 
         dissierdShooterSpeedv2.put(4.0, 5.2); 
         dissierdShooterSpeedv2.put(5.6, 5.7); 
-
-
+        dissierdShooterSpeedv2.put(5.9, 6.3); 
          
     }
 
@@ -152,11 +152,17 @@ public class Flywheel extends SubsystemBase {
                 case TRACKING:
 
               
-                // double Distance = getDistanceFromHub();
-
-                // double result = dissierdShooterSpeed.get(Distance); 
-
+                
                 setShooterVelocity(result);
+                break;
+
+
+                
+                case PASSING:
+
+              
+                
+                setShooterVelocity(result + 1.60);
                 break;
 
 

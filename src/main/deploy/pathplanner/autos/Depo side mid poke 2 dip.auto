@@ -21,12 +21,6 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "DPSM 2"
-                      }
-                    },
-                    {
-                      "type": "path",
-                      "data": {
                         "pathName": "DPSM 4"
                       }
                     }
@@ -61,7 +55,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 5.0
                 }
               },
               {
@@ -96,13 +90,13 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "DPSMTDG 1"
+                        "pathName": "DPSM 5"
                       }
                     },
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "DPSMTDG 2"
+                        "pathName": "DPSM 6"
                       }
                     }
                   ]

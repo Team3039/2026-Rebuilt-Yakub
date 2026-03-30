@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Turret;
 import frc.robot.commands.ActuateHoodToSetpoint;
+import frc.robot.commands.StartPassing;
 import frc.robot.commands.setFlyWheels;
 import frc.robot.commands.setHoodManual;
 import frc.robot.commands.setIntakeManual;
@@ -72,7 +73,7 @@ public class RobotContainer {
 //                 guitar.povDown().whileTrue(new setFlyWheels());
 //                 guitar.y().whileTrue(new setTurretTracking());
 
-
+//(new setIntakerollersIntake()
 
                 NamedCommands.registerCommand("Start Intake", new IntakeIntakeing());
                 NamedCommands.registerCommand("Intake back in", new IntakeIdle());
@@ -80,6 +81,7 @@ public class RobotContainer {
                 NamedCommands.registerCommand("AIM", new setTurretTracking());
                 NamedCommands.registerCommand("FIRE!!!!", new setFlyWheels());
                 NamedCommands.registerCommand("fix auto for red stuff",  (drivetrain.runOnce(() -> drivetrain.seedFieldCentric())));
+                NamedCommands.registerCommand("Force intake start", new setIntakerollersIntake());
 
 
 
@@ -156,6 +158,8 @@ public class RobotContainer {
 
             driverPad.a().whileTrue(new setIntakePassiveUp()); 
             driverPad.leftBumper().onTrue(new setIntakerollersIntake());
+            driverPad.rightTrigger().whileTrue(new StartPassing());
+
         
 
 
@@ -203,10 +207,10 @@ public class RobotContainer {
 
                 
                 guitar.a().onTrue(new IntakeIntakeing()); // the green button
-                guitar.b().onTrue(new IntakeIdle()); // the red button
-                guitar.y().whileTrue(new setIntakePassiveUp()); // the yellow button
-                guitar.x().onTrue(new setTurretTracking()); // the blue button
-                guitar.leftBumper().onTrue(new setIntakerollersIntake());
+                guitar.y().onTrue(new IntakeIdle()); // the yellow button
+                guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
+                guitar.x().onTrue(new setIntakerollersIntake()); // the blue button
+                guitar.leftBumper().onTrue(new setTurretTracking());
 
 
                 guitar.povDown().whileTrue(new setFlyWheels()); // down on the strum bar

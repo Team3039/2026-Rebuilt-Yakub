@@ -35,7 +35,7 @@ public class Hopper extends SubsystemBase {
 
     // Hopper TalonFX motor
     TalonFX hopper = new TalonFX(Constants.Ports.HOPPER);
-
+    TalonFX hopper2 = new TalonFX(Constants.Ports.HOPPER2);
     // CANrange sensor for detecting coral in the hopper (currently disabled)
     // CANrange INDEXERCANRANGE = new CANrange(Constants.Ports.INDEXERCANRANGE);
 
@@ -48,10 +48,12 @@ public class Hopper extends SubsystemBase {
 
         // Set motor direction and neutral behavior
         config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-        config.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+        config.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 
         // Apply configuration to the motor
         hopper.getConfigurator().apply(config);
+        hopper2.getConfigurator().apply(config);
+
     }
 
     /**
@@ -82,6 +84,8 @@ public class Hopper extends SubsystemBase {
      */
     public void setHopperSpeed(double speed) {
         hopper.set(speed);
+        hopper2.set(-speed);
+
     }
 
     /**
@@ -101,7 +105,10 @@ public class Hopper extends SubsystemBase {
     @Override
     public void periodic() {
         // Update SmartDashboard
-        SmartDashboard.putNumber("Hopper Current (Amps)", hopper.getSupplyCurrent().getValueAsDouble());
+        SmartDashboard.putNumber("Hopper Current (x44)", hopper.getSupplyCurrent().getValueAsDouble());
+        
+        SmartDashboard.putNumber("Hopper Current (x60)", hopper2.getSupplyCurrent().getValueAsDouble());
+
         SmartDashboard.putString("Hopper State", hopperState.toString());
         // SmartDashboard.putBoolean("Fuel Present", isFuelIn());
 

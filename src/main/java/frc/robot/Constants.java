@@ -49,13 +49,15 @@ public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKine
     public static final int INDEXER = 14;
     public static final int INDEXERCANRANGE = 20;
     public static final int TURRET = 17;
-    public static final int FLYWHEEL_LEFT = 15;
-    public static final int FLYWHEEL_RIGHT = 18;
+    public static final int FLYWHEEL_LEFT = 18;
+    public static final int FLYWHEEL_RIGHT = 15;
     public static final int CANdleID = 13;
     // public static final int INTAKE_ROLLER = 7;
     public static final int HOOD = 16;
     public static final int KICKER = 14;
     public static final int HOPPER = 19;
+    public static final int HOPPER2 = 23;
+
 
 
 

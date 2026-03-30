@@ -3,25 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.881566666666666,
-        "y": 5.405577777777778
+        "x": 7.846733333333335,
+        "y": 3.863677777777778
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.710244444444445,
-        "y": 4.629588888888889
+        "x": 8.481633333333333,
+        "y": 7.280044444444444
       },
       "isLocked": false,
-      "linkedName": "dpsm 5"
+      "linkedName": "dpsnm 5"
     },
     {
       "anchor": {
-        "x": 8.13898888888889,
-        "y": 4.599355555555555
+        "x": 4.410211111111112,
+        "y": 7.421133333333334
       },
       "prevControl": {
-        "x": 6.718022222222223,
-        "y": 4.569122222222222
+        "x": 5.554874340298808,
+        "y": 7.441098389656375
+      },
+      "nextControl": {
+        "x": 2.6768333333333336,
+        "y": 7.3909
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.4652,
+        "y": 5.3048
+      },
+      "prevControl": {
+        "x": 2.4954333333333336,
+        "y": 6.584677777777777
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,30 +46,16 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 179.9707882841649
+      "waypointRelativePos": 0.964824120603012,
+      "rotationDegrees": -178.40827072221302
     }
   ],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5642633228840137,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 1.5,
-        "maxAcceleration": 1.0,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -61,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 178.47247455778717
+    "rotation": -30.92399541457493
   },
   "reversed": false,
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 43.492564241224926
+    "rotation": 93.31094151461143
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

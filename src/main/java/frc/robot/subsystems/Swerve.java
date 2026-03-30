@@ -1,27 +1,14 @@
 package frc.robot.subsystems;
 
-import static edu.wpi.first.units.Units.*;
-
-import java.util.Optional;
 import java.util.function.Supplier;
 
 //import com.ctre.phoenix6.SignalLogger;
 // import frc.robot.Utilitys;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.hardware.Pigeon2;
-//import com.ctre.phoenix6.hardware.Pigeon2;
-import com.ctre.phoenix6.hardware.core.CorePigeon2;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
-
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import frc.robot.TunerConstants;
-import com.ctre.phoenix6.swerve.SwerveModule;
-
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
@@ -33,22 +20,18 @@ import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 import frc.robot.LimelightHelpers.PoseEstimate;
-import frc.robot.Robot;
-import frc.robot.Constants;
-import frc.robot.TunerConstants;
 import frc.robot.TunerConstants.TunerSwerveDrivetrain;
 // import frc.robot.Utilitys;
 
@@ -62,10 +45,15 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
     public static final Pose2d BlueHubPose = new Pose2d(4.633, 4.030, Rotation2d.fromDegrees(0));
 
-
     public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
 
+    public static final Pose2d BlueDownPassingPose = new Pose2d(2.717, 1.586, Rotation2d.fromDegrees(0));
 
+    public static final Pose2d RedUpPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
+
+    public static final Pose2d BlueUpPassingPose = new Pose2d(2.999, 6.655, Rotation2d.fromDegrees(0));
+
+    public static final Pose2d RedDownPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
 
 
 
@@ -125,13 +113,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             getModule(2).getDriveMotor().setPosition(0);
             getModule(3).getDriveMotor().setPosition(0);
     
-           // botPose2d = new Pose2d();
-    
-            // swerveOdometry = new SwerveDriveOdometry(getKinematics(),
-            // kBlueAlliancePerspectiveRotation, getModulePositions());
-            // if (Utils.isSimulation()) {
-            // startSimThread();
-            // }
+          
     
             m_poseEstimator = new SwerveDrivePoseEstimator(Constants.swerveKinematics, getGyroRotation2D(),
                     getModulePositions(), getPose(), VecBuilder.fill(0.1, 0.1, Units.degreesToRadians(0.5)),
@@ -316,8 +298,8 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                         
             }
         }
-    
         }
+        
     
         
     
@@ -332,6 +314,53 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
         return BlueHubPose;
     }
+
+    private static Pose2d getUpPassingPoseForAlliance() {
+        var allianceOpt = DriverStation.getAlliance();
+        if (allianceOpt.isPresent()) {
+            return allianceOpt.get() == Alliance.Red ? RedUpPassingPose : BlueUpPassingPose;
+        }
+
+        return BlueUpPassingPose;
+    }
+
+    private static Pose2d getDownPassingPoseForAlliance() {
+        var allianceOpt = DriverStation.getAlliance();
+        if (allianceOpt.isPresent()) {
+            return allianceOpt.get() == Alliance.Red ? RedDownPassingPose : BlueDownPassingPose;
+        }
+
+        return BlueDownPassingPose;
+    }
+
+
+    public static double getRotUpPassingArea() {
+        Pose2d BlueUpPassingPose = getUpPassingPoseForAlliance();
+
+        targetYaw = Math.atan2(
+            BlueUpPassingPose.getY() - getPose().getY(),
+            BlueUpPassingPose.getX() - getPose().getX() 
+            );
+        return Math.toDegrees(targetYaw);
+    }
+
+
+    public static double getRotDownPassingArea() {
+        Pose2d BlueDownPassingPose = getDownPassingPoseForAlliance();
+
+        targetYaw = Math.atan2(
+            BlueDownPassingPose.getY() - getPose().getY(),
+            BlueDownPassingPose.getX() - getPose().getX() 
+            );
+        return Math.toDegrees(targetYaw);
+    }
+
+
+
+
+
+
+
 
     public static double getRotationToHub() {
         Pose2d hub = getHubPoseForAlliance();
@@ -415,22 +444,6 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                 new Pose2d(getPose().getTranslation(), heading));
     }
 
-    /*
-     * public void zeroHeading() {
-     * if (Robot.isRedAlliance()) {
-     * gyro.setYaw(180);
-     * 
-     * } else {
-     * gyro.setYaw(0);
-     * 
-     * }
-     * 
-     * // gyro.setYaw(0);
-     * swerveOdometry.resetPosition(getGyroYaw(), getModulePositions(),
-     * new Pose2d(getPose().getTranslation(), new Rotation2d()));
-     * 
-     * }
-     */
 
     public double getCompassHeading() {
         SmartDashboard.putNumber("CompassHeading", Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360));

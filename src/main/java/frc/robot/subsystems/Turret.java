@@ -25,7 +25,8 @@ public class Turret extends SubsystemBase {
 		IDLE,
 		MANUAL,
 		POSITION,
-		TRACKING
+		TRACKING,
+		PASSING
 
 	}
 
@@ -123,7 +124,7 @@ public class Turret extends SubsystemBase {
         output += Math.copySign(Constants.Turret.Turret_KS, pidOutput);
     }
 
-    output = MathUtil.clamp(output, -0.05, 0.05);
+    output = MathUtil.clamp(output, -0.07, 0.07);
 
     Turret.set(output);
 }
@@ -201,8 +202,7 @@ public class Turret extends SubsystemBase {
 
 			// In the Idle state, the Turret rests at the bottom of the robot
 			case IDLE:
-			setSetpoint(getTargetRotToHub() + Swerve.getPose().getRotation().getDegrees());
-				setTurretPosition();
+			stop();
 				
 			break;
 
@@ -222,6 +222,14 @@ public class Turret extends SubsystemBase {
 				setTurretPosition();
 
       		  break;
-		}
+
+			  case PASSING:
+
+       		 setSetpoint(0);
+			setTurretPosition();
+
+
+			break;
+			}
 	}
 }

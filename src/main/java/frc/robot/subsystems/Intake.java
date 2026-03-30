@@ -68,8 +68,8 @@ public class Intake extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 5.8;
-    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = .20;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
+    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -.2;
 
 
     // Inverted and Neutral Modes
@@ -212,7 +212,7 @@ public class Intake extends SubsystemBase {
 
 
         case PASSIVE_UP:
-        setIntakePercent(-.1);
+        setIntakePercent(-.085);
         break;
 
       // In the Position state, the Intake is controlled by the setpoint

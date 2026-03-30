@@ -6,19 +6,30 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Turret.TurretState;
+import frc.robot.subsystems.Flywheel.FlywheelState;
+import frc.robot.subsystems.Hopper.HopperState;
+import frc.robot.subsystems.Indexer.IndexerState;
+import frc.robot.subsystems.Intake.IntakeState;
+import frc.robot.subsystems.Turret.TurretState;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class setTurretTracking extends Command {
+public class StartPassing extends Command {
   /** Creates a new SetTurretManualOverride. */
-  public setTurretTracking() {
+  public StartPassing() {
+    addRequirements(RobotContainer.flywheel);
     addRequirements(RobotContainer.turret);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.flywheel.setState(FlywheelState.PASSING);
+    RobotContainer.turret.setState(TurretState.PASSING);
+    RobotContainer.indexer.setState(IndexerState.PASSIVE);
+    RobotContainer.hopper.setState(HopperState.PASSIVE);
+    RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,7 +39,15 @@ public class setTurretTracking extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.flywheel.setState(FlywheelState.IDLE);
     RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.indexer.setState(IndexerState.IDLE);
+    RobotContainer.hopper.setState(HopperState.IDLE);
+    RobotContainer.intake.setState(IntakeState.IDLE);
+
+
+
+
   }
 
   // Returns true when the command should end.

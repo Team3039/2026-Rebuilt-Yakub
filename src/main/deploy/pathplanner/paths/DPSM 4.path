@@ -3,32 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.228811111111111,
-        "y": 7.471522222222222
+        "x": 8.409869513641757,
+        "y": 5.643499406880189
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5055111111111112,
-        "y": 7.3203555555555555
+        "x": 8.532022222222222,
+        "y": 7.652922222222223
       },
       "isLocked": false,
-      "linkedName": "dpsm 3"
+      "linkedName": "dpsm 1"
     },
     {
       "anchor": {
-        "x": 2.5458222222222218,
-        "y": 5.133477777777777
+        "x": 4.631922222222222,
+        "y": 7.501755555555555
       },
       "prevControl": {
-        "x": 2.5256666666666665,
-        "y": 4.770677777777778
+        "x": 6.083122222222222,
+        "y": 7.521911111111109
+      },
+      "nextControl": {
+        "x": 3.5637807957098797,
+        "y": 7.486920257965107
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.5962111111111112,
+        "y": 5.643499406880189
+      },
+      "prevControl": {
+        "x": 2.193084593188587,
+        "y": 7.259990981416742
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "dpsm 4"
+      "linkedName": "new dpsm 4"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.9882747068676676,
+      "rotationDegrees": -178.3972101905355
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -42,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.1233027140755114
+    "rotation": -13.166065145595292
   },
   "reversed": false,
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 3.0,
-    "rotation": 179.56263613269968
+    "rotation": 118.81079374297309
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
