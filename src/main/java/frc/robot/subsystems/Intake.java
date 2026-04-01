@@ -30,8 +30,6 @@ public class Intake extends SubsystemBase {
 
   }
 
-
-
   // Create a variable to store the current state of the intake
   public IntakeState intakeState = IntakeState.IDLE;
 
@@ -48,10 +46,9 @@ public class Intake extends SubsystemBase {
 
   }
 
-
   // Create a variable to store the setpoint of the Intake in kraken encoder
   // ticks
-  public static double setpointIntake  = 0;
+  public static double setpointIntake = 0;
 
   // Intake Constructor
   public Intake() {
@@ -70,7 +67,6 @@ public class Intake extends SubsystemBase {
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 4.9;
     config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -.2;
-
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -100,33 +96,28 @@ public class Intake extends SubsystemBase {
   public void setState(IntakeState state) {
     intakeState = state;
   }
-  
-
-  
 
   public double getIntakePosition() {
 
-  double position = Intake.getPosition().getValueAsDouble();
+    double position = Intake.getPosition().getValueAsDouble();
 
     return position;
   }
   // Constants.intakeGearRatio
 
-
   public void setIntakePosition() {
-  double pidOutput = controller.calculate(getIntakePosition(), setpointIntake);
+    double pidOutput = controller.calculate(getIntakePosition(), setpointIntake);
 
-  double output = pidOutput;
+    double output = pidOutput;
 
-  if (Math.abs(pidOutput) > 0.001) {
-    output += Math.copySign(Constants.Intake.Intake_KS, pidOutput);
+    if (Math.abs(pidOutput) > 0.001) {
+      output += Math.copySign(Constants.Intake.Intake_KS, pidOutput);
+    }
+
+    output = MathUtil.clamp(output, -.8, 0.2);
+
+    Intake.set(output);
   }
-
-  output = MathUtil.clamp(output, -.8, 0.2);
-
-  Intake.set(output);
-}
-
 
   /**
    * Set the output of the Intake with feedforward
@@ -134,11 +125,11 @@ public class Intake extends SubsystemBase {
    * @param percent The percentage to set the intake to
    */
   public void setIntakePercent(double percent) {
-  if (Math.abs(percent) > 0.001) {
-    percent += Math.copySign(Constants.Intake.Intake_KS, percent);
+    if (Math.abs(percent) > 0.001) {
+      percent += Math.copySign(Constants.Intake.Intake_KS, percent);
+    }
+    Intake.set(percent);
   }
-  Intake.set(percent);
-}
 
   public void stop() {
     Intake.set(0);
@@ -149,7 +140,6 @@ public class Intake extends SubsystemBase {
    * 
    * @return the current angle of the intake in kraken ticks
    */
-  
 
   /**
    * Get the current setpoint of the Intake
@@ -169,7 +159,6 @@ public class Intake extends SubsystemBase {
     setpointIntake = setpoint;
   }
 
-  
   /**
    * Check if the Intake is at the setpoint within a given tolerance
    * 
@@ -184,18 +173,17 @@ public class Intake extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Intake Encoder", getIntakePosition());
-    
+
     // SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
 
     SmartDashboard.putNumber("Intake Output", Intake.get());
-    SmartDashboard.putNumber("Intake error", Math.abs((setpointIntake - getIntakePosition() )));
-    
-    SmartDashboard.putNumber("Intake Setpoint", (getSetpoint() ));
+    SmartDashboard.putNumber("Intake error", Math.abs((setpointIntake - getIntakePosition())));
+
+    SmartDashboard.putNumber("Intake Setpoint", (getSetpoint()));
 
     SmartDashboard.putNumber("Intake Output Current", Intake.getSupplyCurrent().getValueAsDouble());
     SmartDashboard.putString("Intake State", String.valueOf(getState()));
-  // SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
-  
+    // SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
 
     // Intake State Machine
     switch (intakeState) {
@@ -210,8 +198,7 @@ public class Intake extends SubsystemBase {
         setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.1);
         break;
 
-
-        case PASSIVE_UP:
+      case PASSIVE_UP:
         setIntakePercent(-.085);
         break;
 
@@ -220,7 +207,6 @@ public class Intake extends SubsystemBase {
         setIntakePosition();
         break;
 
-      
     }
   }
 }

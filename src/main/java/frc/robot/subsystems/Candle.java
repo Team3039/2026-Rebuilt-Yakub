@@ -15,94 +15,88 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Intake.IntakeState;
 import com.ctre.phoenix.led.RainbowAnimation;
 
-
 public class Candle extends SubsystemBase {
     @SuppressWarnings("removal")
 
-
     /** Creates a new Orchestra. */
     static CANdle light = new CANdle(Constants.Ports.CANdleID);
-    
-    
-        public enum LightShowState {
-            SILENT
-        }
-    
-        LightShowState lightShowState = LightShowState.SILENT;
-    
-        public Candle() {    @SuppressWarnings("removal")
 
-            CANdleConfiguration config = new CANdleConfiguration();
-            config.stripType = LEDStripType.RGB; // set the strip type to RGB
-            config.brightnessScalar = .8; // dim the LEDs to 8/10 brightness
-            light.configAllSettings(config);
-    
-            
-            
-        }
-    
-        public void setState(LightShowState state) {
-            lightShowState = state;
-        }
-    
-        public LightShowState getState() {
-            return lightShowState;
-        }
-    
-        // has Note
-        public void lightOrange() {
-            // set brightness
-            light.configBrightnessScalar(5);
-            // set color
-            light.setLEDs(255, 85, 0);
-        }
-    
-        public void lightBlue() {
-            // set brightness
-            light.configBrightnessScalar(5);
-            // set color
-            light.setLEDs(0, 0, 255);
-        }
-    
-        // Intaking
-        public void lightGreen() {
-            // set brightness
-            light.configBrightnessScalar(5);
-            // set color
-            light.setLEDs(0, 255, 0);
-        }
-    
-        public void lightRed() {
-            // set brightness
-            light.configBrightnessScalar(5);
+    public enum LightShowState {
+        SILENT
+    }
+
+    LightShowState lightShowState = LightShowState.SILENT;
+
+    public Candle() {
+        @SuppressWarnings("removal")
+
+        CANdleConfiguration config = new CANdleConfiguration();
+        config.stripType = LEDStripType.RGB; // set the strip type to RGB
+        config.brightnessScalar = .8; // dim the LEDs to 8/10 brightness
+        light.configAllSettings(config);
+
+    }
+
+    public void setState(LightShowState state) {
+        lightShowState = state;
+    }
+
+    public LightShowState getState() {
+        return lightShowState;
+    }
+
+    // has Note
+    public void lightOrange() {
+        // set brightness
+        light.configBrightnessScalar(5);
+        // set color
+        light.setLEDs(255, 85, 0);
+    }
+
+    public void lightBlue() {
+        // set brightness
+        light.configBrightnessScalar(5);
+        // set color
+        light.setLEDs(0, 0, 255);
+    }
+
+    // Intaking
+    public void lightGreen() {
+        // set brightness
+        light.configBrightnessScalar(5);
+        // set color
+        light.setLEDs(0, 255, 0);
+    }
+
+    public void lightRed() {
+        // set brightness
+        light.configBrightnessScalar(5);
         // set colo
         light.setLEDs(255, 0, 0);
     }
 
     @SuppressWarnings("removal")
     public static void startRainbow() {
-    // RainbowAnimation(brightness, speed, numLed)
-    RainbowAnimation rainbowAnim = new RainbowAnimation(5, 1, 100);
-    light.animate(rainbowAnim);
-}
+        // RainbowAnimation(brightness, speed, numLed)
+        RainbowAnimation rainbowAnim = new RainbowAnimation(5, 1, 100);
+        light.animate(rainbowAnim);
+    }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
 
-      
         // lightGreen();
 
-
-            //    if (Ro) {
-            // lightRed();}
-            //     } else if (RobotContainer.indexer.beamBreak.get()) {
-            //         lightOrange();
-            //     } else if (RobotContainer.intake.intakeState == IntakeState.INTAKING) {
-            //         lightGreen();
-            //     } else{
-            //         light.setLEDs(0, 0, 0);
-            //     }
-            //     break;
-        }
+        // if (Ro) {
+        // lightRed();}
+        // } else if (RobotContainer.indexer.beamBreak.get()) {
+        // lightOrange();
+        // } else if (RobotContainer.intake.intakeState == IntakeState.INTAKING) {
+        // lightGreen();
+        // } else{
+        // light.setLEDs(0, 0, 0);
+        // }
+        // break;
     }
+}

@@ -20,11 +20,11 @@ public class Hopper extends SubsystemBase {
 
     // Possible states of the hopper / indexer
     public enum HopperState {
-        IDLE,      
-        PASSIVE,  
-        Intakeing,     
-        Shooting,    
-        BackPASSIVE 
+        IDLE,
+        PASSIVE,
+        Intakeing,
+        Shooting,
+        BackPASSIVE
     }
 
     // Variable that stores the current hopper state
@@ -99,14 +99,14 @@ public class Hopper extends SubsystemBase {
 
     // Example future sensor logic (currently disabled)
     // public boolean isFuelIn() {
-    //     return INDEXERCANRANGE.getDistance().getValueAsDouble() < 0.15;
+    // return INDEXERCANRANGE.getDistance().getValueAsDouble() < 0.15;
     // }
 
     @Override
     public void periodic() {
         // Update SmartDashboard
         SmartDashboard.putNumber("Hopper Current (x44)", hopper.getSupplyCurrent().getValueAsDouble());
-        
+
         SmartDashboard.putNumber("Hopper Current (x60)", hopper2.getSupplyCurrent().getValueAsDouble());
 
         SmartDashboard.putString("Hopper State", hopperState.toString());
@@ -119,34 +119,33 @@ public class Hopper extends SubsystemBase {
                 break;
 
             case Intakeing:
-               
+
                 if (hopper.getSupplyCurrent().getValueAsDouble() > 39) {
-                    setHopperSpeed(0.5);  
+                    setHopperSpeed(0.5);
                 } else {
-                    setHopperSpeed(-0.5);  
+                    setHopperSpeed(-0.5);
                 }
                 break;
 
             case Shooting:
 
-              setHopperSpeed(-0.5);  
+                setHopperSpeed(-0.5);
 
                 break;
 
             case PASSIVE:
 
                 if (hopper.getSupplyCurrent().getValueAsDouble() > 40) {
-                    setHopperSpeed(.5);  
+                    setHopperSpeed(.5);
                 } else {
-                    setHopperSpeed(-.5);  
+                    setHopperSpeed(-.5);
                 }
                 break;
 
+            case BackPASSIVE:
 
-                case BackPASSIVE:
+                setHopperSpeed(-0.5);
 
-                    setHopperSpeed(-0.5);  
-                
                 break;
         }
     }

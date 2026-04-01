@@ -19,9 +19,7 @@ import frc.robot.RobotContainer;
 import frc.robot.TunerConstants;
 import frc.robot.Constants;
 
-
 public class Indexer extends SubsystemBase {
-
 
   // Create the possible states of the indexer
   public enum IndexerState {
@@ -38,15 +36,12 @@ public class Indexer extends SubsystemBase {
   // Keep track of whether or not the intake has a coral
   public boolean hasFuel = false;
 
-
   // Create a talonfx for the indexer
   TalonFX indexer = new TalonFX(Constants.Ports.INDEXER);
   TalonFX kicker = new TalonFX(Constants.Ports.KICKER);
 
-
   // This CANrange is used to detect coral in the intake
   CANrange INDEXERCANRANGE = new CANrange(Constants.Ports.INDEXERCANRANGE);
-
 
   // Indexer Constructor
   public Indexer() {
@@ -62,7 +57,7 @@ public class Indexer extends SubsystemBase {
     indexer.getConfigurator().apply(indexerConfig);
 
   }
-    // Create a CANrange configurator
+  // Create a CANrange configurator
 
   /**
    * Get the current state of the indexer
@@ -72,7 +67,7 @@ public class Indexer extends SubsystemBase {
   public IndexerState getState() {
     return indexerState;
   }
-  
+
   /**
    * Set the state of the indexer
    * 
@@ -89,15 +84,12 @@ public class Indexer extends SubsystemBase {
    * 
    * @param speed the speed to set the indexer to (-1 to 1)
    */
-  
 
   public void setkickerSpeed(double speed) {
     kicker.set(speed);
   }
 
-  
-
-  /** 
+  /**
    * Check to see whether the intake has either gamepiece
    * 
    * @return true if the intake has either gamepiece, false otherwise
@@ -106,32 +98,26 @@ public class Indexer extends SubsystemBase {
     return hasFuel;
   }
 
-
   public boolean isFuelIn() {
-    return INDEXERCANRANGE.getDistance().getValueAsDouble() < 0.15 ;
+    return INDEXERCANRANGE.getDistance().getValueAsDouble() < 0.15;
   }
 
   /**
    * Check to see if the indexer is aligned with the branch.
    * It does this by checking the distance detected by the branchCANRange.
-   * If it detects an object closer than 0.5 meters, it is likely the branch, and thus we are aligned.
+   * If it detects an object closer than 0.5 meters, it is likely the branch, and
+   * thus we are aligned.
    * 
    * @return true if the indexer is aligned with the branch, false otherwise
    */
-  
-
-
-
 
   @Override
   public void periodic() {
-    // SmartDashboard.putNumber("CanRange Distance Detected", branchCANRange.getDistance().getValueAsDouble());
+    // SmartDashboard.putNumber("CanRange Distance Detected",
+    // branchCANRange.getDistance().getValueAsDouble());
     SmartDashboard.putNumber("Indexer Current", kicker.getSupplyCurrent().getValueAsDouble());
     SmartDashboard.putString("Indexer Status", String.valueOf(kicker.getSupplyCurrent().getValueAsDouble()));
     SmartDashboard.putBoolean("Has Fuel", isFuelIn());
-    
-
-
 
     // Indexer State Machine
     switch (indexerState) {
@@ -139,53 +125,41 @@ public class Indexer extends SubsystemBase {
       // In the idle state, the indexer does not intake, and it isnt deactivated
       case IDLE:
 
-      setkickerSpeed(0);
-      
+        setkickerSpeed(0);
 
-      break;
-
-
-
+        break;
 
       case Intakeing:
-        if (isFuelIn() ) {
+        if (isFuelIn()) {
           setkickerSpeed(0);
-        }
-        else if (!hasGamepiece()) {
+        } else if (!hasGamepiece()) {
           setkickerSpeed(0.3);
         }
         break;
 
-      
       case Shooting:
         setkickerSpeed(0.3);
         break;
 
-      // In the passive state, the indexer will not intake, and will deactivate the intake. 
-      //  This will be used when the indexer has a gamepiece
+      // In the passive state, the indexer will not intake, and will deactivate the
+      // intake.
+      // This will be used when the indexer has a gamepiece
       case PASSIVE:
 
-
-      if(Flywheel.isAtVelocitySetpoint() == true){
-        setkickerSpeed(1);
-      }
-      else {setkickerSpeed (.0);}
+        if (Flywheel.isAtVelocitySetpoint() == true) {
+          setkickerSpeed(1);
+        } else {
+          setkickerSpeed(.0);
+        }
 
         break;
 
-
-        case BackPASSIVE:
+      case BackPASSIVE:
 
         setkickerSpeed(-1);
-      
-      
 
         break;
     }
-  
-
-
-    
 
   }
 }
