@@ -29,12 +29,17 @@ public class StartPassing extends Command {
     RobotContainer.indexer.setState(IndexerState.PASSIVE);
     RobotContainer.hopper.setState(HopperState.PASSIVE);
     RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+        RobotContainer.turret.setState(TurretState.PASSING);
+
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+        RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+
 
     }
 

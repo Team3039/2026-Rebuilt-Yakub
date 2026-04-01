@@ -13,6 +13,8 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -68,7 +70,7 @@ public class Turret extends SubsystemBase {
 		// Soft Limits
 		config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1;
+		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 6;
 		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1.8;
  
 		// Inverted and Neutral Modes
@@ -124,7 +126,7 @@ public class Turret extends SubsystemBase {
         output += Math.copySign(Constants.Turret.Turret_KS, pidOutput);
     }
 
-    output = MathUtil.clamp(output, -0.07, 0.07);
+    output = MathUtil.clamp(output, -0.1, 0.1);
 
     Turret.set(output);
 }
@@ -227,8 +229,15 @@ public class Turret extends SubsystemBase {
 
 			  case PASSING:
 
-			setSetpoint(0);
-			setTurretPosition();
+// 		if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
+// 					setSetpoint(getTargetRotToHub() + Swerve.getPose().getRotation().getDegrees());
+//               } 
+								
+// 		else {
+
+// 	          }
+
+// setTurretPosition();
 
 
 			break;

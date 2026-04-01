@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.5962111111111112,
-        "y": 5.643499406880189
+        "x": 2.4652,
+        "y": 5.798611111111111
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5155888888888884,
-        "y": 7.255943851324651
+        "x": 2.938604507710557,
+        "y": 6.573273032819297
       },
       "isLocked": false,
       "linkedName": "new dpsm 4"
@@ -87,7 +87,7 @@
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -13.166065145595292
+    "rotation": -1.0416266760099282
   },
   "useDefaultConstraints": false
 }

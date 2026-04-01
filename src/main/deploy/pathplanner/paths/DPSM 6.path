@@ -8,36 +8,36 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.481633333333333,
-        "y": 7.280044444444444
+        "x": 9.152253855278769,
+        "y": 7.827615658362989
       },
       "isLocked": false,
       "linkedName": "dpsnm 5"
     },
     {
       "anchor": {
-        "x": 4.410211111111112,
-        "y": 7.421133333333334
+        "x": 4.321376037959669,
+        "y": 7.526358244365362
       },
       "prevControl": {
-        "x": 5.554874340298808,
-        "y": 7.441098389656375
+        "x": 5.466039267147365,
+        "y": 7.546323300688403
       },
       "nextControl": {
-        "x": 2.6768333333333336,
-        "y": 7.3909
+        "x": 2.587998260181891,
+        "y": 7.4961249110320285
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.4652,
-        "y": 5.3048
+        "x": 2.5891459074733105,
+        "y": 6.1814590747330955
       },
       "prevControl": {
-        "x": 2.4954333333333336,
-        "y": 6.584677777777777
+        "x": 2.6193792408066443,
+        "y": 7.461336852510873
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,15 +47,19 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.964824120603012,
-      "rotationDegrees": -178.40827072221302
+      "rotationDegrees": -0.19746428255865311
+    },
+    {
+      "waypointRelativePos": 1.738983050847492,
+      "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -63,7 +67,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -30.92399541457493
+    "rotation": -64.02560603756868
   },
   "reversed": false,
   "folder": "Depo side poke mid",

@@ -21,12 +21,6 @@
                     {
                       "type": "path",
                       "data": {
-                        "pathName": "DPSM 2"
-                      }
-                    },
-                    {
-                      "type": "path",
-                      "data": {
                         "pathName": "DPSM 4"
                       }
                     }

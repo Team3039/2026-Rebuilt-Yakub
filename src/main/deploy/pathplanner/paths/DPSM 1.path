@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.576933333333334,
-        "y": 7.350588888888889
+        "x": 7.242066666666667,
+        "y": 7.834322222222221
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.409869513641757,
-        "y": 5.643499406880189
+        "x": 7.967666666666666,
+        "y": 5.214099999999999
       },
       "prevControl": {
-        "x": 8.459552033156198,
-        "y": 5.888512972330548
+        "x": 8.017349186181107,
+        "y": 5.459113565450358
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.4681295715778446,
+      "minWaypointRelativePos": 0.5015673981191218,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.8,
@@ -56,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 118.81079374297309
+    "rotation": 107.21607358779066
   },
   "reversed": false,
   "folder": "Depo side poke mid",

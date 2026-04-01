@@ -89,7 +89,7 @@ public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKine
     }
 
      public static final class Turret {
-        public static final double Turret_KP = 0.0067; // used to be 67 :(
+        public static final double Turret_KP = 0.0058; // used to be 67 :(
         public static final double Turret_KI = 0;
         public static final double Turret_KD = 0.000;
         public static final double Turret_KS = 0.0007;
