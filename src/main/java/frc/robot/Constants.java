@@ -20,9 +20,7 @@ public class Constants {
     public static final double wheelCircumference = Units.inchesToMeters(4 * Math.PI);
     public static final double turretGearRatio = 43.16627634660422;
 
-
-
-  public static final APConstraints kConstraints = new APConstraints()
+    public static final APConstraints kConstraints = new APConstraints()
             .withAcceleration(5.0)
             .withJerk(5);
 
@@ -33,43 +31,34 @@ public class Constants {
 
     public static final Autopilot kAutopilot = new Autopilot(kProfile);
 
-
-
-public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
+    public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
             new Translation2d(wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(wheelBase / 2.0, -trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
 
-
     public static final class Ports {
-//CLAW
-    public static final int INTAKE = 21;
-    public static final int INTAKEROLLER = 22;
-    public static final int INDEXER = 14;
-    public static final int INDEXERCANRANGE = 20;
-    public static final int TURRET = 17;
-    public static final int FLYWHEEL_LEFT = 15;
-    public static final int FLYWHEEL_RIGHT = 18;
-    public static final int CANdleID = 13;
-    // public static final int INTAKE_ROLLER = 7;
-    public static final int HOOD = 16;
-    public static final int KICKER = 14;
-    public static final int HOPPER = 19;
+        // CLAW
+        public static final int INTAKE = 21;
+        public static final int INTAKEROLLER = 22;
+        public static final int INDEXER = 14;
+        public static final int INDEXERCANRANGE = 20;
+        public static final int TURRET = 17;
+        public static final int FLYWHEEL_LEFT = 18;
+        public static final int FLYWHEEL_RIGHT = 15;
+        public static final int CANdleID = 13;
+        // public static final int INTAKE_ROLLER = 7;
+        public static final int HOOD = 16;
+        public static final int KICKER = 14;
+        public static final int HOPPER = 19;
+        public static final int HOPPER2 = 23;
 
-
-
-    
-    //KICKER
-//INTAKE_ROLLER
-//TURRET
-//INDEXERCANRANGE
-    //dio ports
-    public static final int INTAKE_ENCODER = 9;
-
-
-
-
+        // KICKER
+        // INTAKE_ROLLER
+        // TURRET
+        // INDEXERCANRANGE
+        // dio ports
+        public static final int INTAKE_ENCODER = 9;
 
     }
 
@@ -86,8 +75,8 @@ public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKine
 
     }
 
-     public static final class Turret {
-        public static final double Turret_KP = 0.0067; // used to be 67 :(
+    public static final class Turret {
+        public static final double Turret_KP = 0.0058; // used to be 67 :(
         public static final double Turret_KI = 0;
         public static final double Turret_KD = 0.000;
         public static final double Turret_KS = 0.0007;
@@ -96,9 +85,9 @@ public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKine
         public static final double Turret_MAX_VEL = .0;
         public static final double Turret_MAX_ACCEL = .00;
         public static final double Turret_OFFSET = 0;
-        
 
     }
+
     public static final class Hood {
         public static final double Hood_KP = 0.03;
         public static final double Hood_KI = 0;
@@ -111,16 +100,12 @@ public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKine
         public static final double Hood_OFFSET = 0;
     }
 
-     public static final class Flywheel {
-      public static final double Flywheel_KP = 0.12;
-		public static final double Flywheel_KI = 0.000;
-		public static final double Flywheel_KD = 0.000;
+    public static final class Flywheel {
+        public static final double Flywheel_KP = 0.12;
+        public static final double Flywheel_KI = 0.000;
+        public static final double Flywheel_KD = 0.000;
         public static final double Flywheel_FF = 1.75;
 
-
-    }
-       
-
     }
 
-
+}

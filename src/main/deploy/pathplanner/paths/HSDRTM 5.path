@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3140333333333336,
-        "y": 4.6699
+        "x": 6.788566666666667,
+        "y": 4.4179555555555545
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8202222222222222,
-        "y": 5.637366666666667
+        "x": 7.788566666666667,
+        "y": 4.4179555555555545
       },
       "isLocked": false,
-      "linkedName": "hsdr 1"
+      "linkedName": "hsdrtm 4"
     },
     {
       "anchor": {
-        "x": 0.6612777777777776,
-        "y": 5.758299999999999
+        "x": 8.58241111111111,
+        "y": 4.4179555555555545
       },
       "prevControl": {
-        "x": 0.8225222222222224,
-        "y": 5.133477777777777
+        "x": 8.37816914529492,
+        "y": 4.273784756155891
+      },
+      "nextControl": {
+        "x": 8.7866530769273,
+        "y": 4.562126354955219
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.0125777777777785,
+        "y": 5.385422222222221
+      },
+      "prevControl": {
+        "x": 6.4660777777777785,
+        "y": 4.065233333333333
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "hsdr 2"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -28.495638618245025
+    "rotation": -150.2551187030577
   },
   "reversed": false,
   "folder": "Hub start depo rush",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.5617053325665635
+    "rotation": 179.11859600341776
   },
   "useDefaultConstraints": false
 }

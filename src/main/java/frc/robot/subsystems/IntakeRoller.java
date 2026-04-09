@@ -20,7 +20,6 @@ import frc.robot.Constants;
 
 public class IntakeRoller extends SubsystemBase {
 
-
   // Create the possible states of the claw
   public enum RollerState {
     IDLE,
@@ -31,12 +30,8 @@ public class IntakeRoller extends SubsystemBase {
   // Create a variable to store the current state of the claw
   RollerState clawState = RollerState.IDLE;
 
- 
-
   // Create a talonfx for the claw
   TalonFX claw = new TalonFX(Constants.Ports.INTAKEROLLER);
-
-  
 
   // Claw Constructor
   public IntakeRoller() {
@@ -52,7 +47,7 @@ public class IntakeRoller extends SubsystemBase {
     claw.getConfigurator().apply(clawConfig);
 
   }
-    // Create a CANrange configurator
+  // Create a CANrange configurator
 
   /**
    * Get the current state of the claw
@@ -62,7 +57,7 @@ public class IntakeRoller extends SubsystemBase {
   public RollerState getState() {
     return clawState;
   }
-  
+
   /**
    * Set the state of the claw
    * 
@@ -83,35 +78,23 @@ public class IntakeRoller extends SubsystemBase {
     claw.set(speed);
   }
 
-
-
-  /** 
+  /**
    * Check to see whether the intake has either gamepiece
    * 
    * @return true if the intake has either gamepiece, false otherwise
    */
-  
-
-
-  
 
   /**
    * Check to see if the claw is aligned with the branch.
    * It does this by checking the distance detected by the branchCANRange.
-   * If it detects an object closer than 0.5 meters, it is likely the branch, and thus we are aligned.
+   * If it detects an object closer than 0.5 meters, it is likely the branch, and
+   * thus we are aligned.
    * 
    * @return true if the claw is aligned with the branch, false otherwise
    */
- 
-
-
-
-
 
   @Override
   public void periodic() {
-  
-
 
     // Claw State Machine
     switch (clawState) {
@@ -119,31 +102,20 @@ public class IntakeRoller extends SubsystemBase {
       // In the idle state, the claw does not intake, and it isnt deactivated
       case IDLE:
         setWheelSpeed(0);
-       
+
         break;
 
-
-
-
-
-    
       case Intake:
-       
-          setWheelSpeed(-0.8);
-       
 
-    
-        case OutTake:
+        setWheelSpeed(-1);
+
+      case OutTake:
         // setWheelSpeed(-0.5);
-       
 
-      // In the passive state, the claw will not intake, and will deactivate the intake. 
-      //  This will be used when the claw has a gamepiece
+        // In the passive state, the claw will not intake, and will deactivate the
+        // intake.
+        // This will be used when the claw has a gamepiece
     }
-  
-
-
-    
 
   }
 }

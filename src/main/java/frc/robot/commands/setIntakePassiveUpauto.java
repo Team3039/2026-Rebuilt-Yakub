@@ -6,42 +6,37 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Hood.HoodState;
+import frc.robot.subsystems.Intake.IntakeState;
+import frc.robot.subsystems.IntakeRoller.RollerState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ActuateHoodToSetpoint extends Command {
-
-  double setpoint = 0;
-  double tolerance = 0;
-  public ActuateHoodToSetpoint(double setpoint, double tolerance) {
-    addRequirements(RobotContainer.hood);
-      this.setpoint = setpoint;
-      this.tolerance = tolerance; 
+public class setIntakePassiveUpauto extends Command {
+  /** Creates a new SetIntakeManual. */
+  public setIntakePassiveUpauto() {
+    addRequirements(RobotContainer.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.hood.setSetpoint(setpoint);
-    RobotContainer.hood.setState(HoodState.POSITION);
+    RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.hood.setSetpoint(0);
-    RobotContainer.hood.setState(HoodState.POSITION);
+        RobotContainer.intake.setState(IntakeState.IDLE);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.hood.isAtSetpoint(tolerance);
+    return false;
   }
 }

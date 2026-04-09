@@ -3,37 +3,46 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.6612777777777776,
-        "y": 5.758299999999999
+        "x": 7.76611111111111,
+        "y": 5.949777777777779
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.7217444444444443,
-        "y": 7.80408888888889
+        "x": 7.9472241992882555,
+        "y": 5.191613285883749
       },
       "isLocked": false,
-      "linkedName": "hsdr 2"
+      "linkedName": "bt 1"
     },
     {
       "anchor": {
-        "x": 1.850455555555556,
-        "y": 4.9722333333333335
+        "x": 2.0296678529062877,
+        "y": 5.24540925266904
       },
       "prevControl": {
-        "x": 3.1001,
-        "y": 5.959855555555555
+        "x": 4.007099999999999,
+        "y": 5.405577777777778
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "hsdr 3"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -139.42
+    },
+    {
+      "waypointRelativePos": 0.7889447236180925,
+      "rotationDegrees": -139.27201784628488
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.5,
+    "maxVelocity": 2.0,
     "maxAcceleration": 2.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
@@ -42,13 +51,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.5693548047490316
+    "rotation": -46.7357045889284
   },
   "reversed": false,
-  "folder": "Hub start depo rush",
+  "folder": "Bump test",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -28.495638618245025
+    "rotation": 118.30075576600632
   },
   "useDefaultConstraints": false
 }

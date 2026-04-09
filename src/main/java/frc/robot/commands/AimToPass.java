@@ -6,42 +6,54 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Hood.HoodState;
+import frc.robot.subsystems.Flywheel.FlywheelState;
+import frc.robot.subsystems.Hopper.HopperState;
+import frc.robot.subsystems.Indexer.IndexerState;
+import frc.robot.subsystems.Intake.IntakeState;
+import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Turret.TurretState;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ActuateHoodToSetpoint extends Command {
+public class AimToPass extends Command {
+  /** Creates a new SetTurretManualOverride. */
+  public AimToPass() {
+    addRequirements(RobotContainer.turret);
 
-  double setpoint = 0;
-  double tolerance = 0;
-  public ActuateHoodToSetpoint(double setpoint, double tolerance) {
-    addRequirements(RobotContainer.hood);
-      this.setpoint = setpoint;
-      this.tolerance = tolerance; 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.hood.setSetpoint(setpoint);
-    RobotContainer.hood.setState(HoodState.POSITION);
+       RobotContainer.turret.setState(TurretState.PASSING);
+
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  }
+
+    }
+
+  
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.hood.setSetpoint(0);
-    RobotContainer.hood.setState(HoodState.POSITION);
+    RobotContainer.flywheel.setState(FlywheelState.IDLE);
+    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.indexer.setState(IndexerState.IDLE);
+    RobotContainer.hopper.setState(HopperState.IDLE);
+    RobotContainer.intake.setState(IntakeState.IDLE);
+
+
+
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.hood.isAtSetpoint(tolerance);
+    return false;
   }
 }

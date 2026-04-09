@@ -18,103 +18,104 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Candle;
 
-
 /**
- * The methods in this class are called automatically corresponding to each mode, as described in
- * the TimedRobot documentation. If you change the name of this class or the package after creating
+ * The methods in this class are called automatically corresponding to each
+ * mode, as described in
+ * the TimedRobot documentation. If you change the name of this class or the
+ * package after creating
  * this project, you must also update the Main.java file in the project.
  */
 public class Robot extends TimedRobot {
 
-    
-    private Command m_autonomousCommand;
-    private final RobotContainer m_robotContainer;
-    //  private final boolean kUseLimelight = ;
+  private Command m_autonomousCommand;
+  private final RobotContainer m_robotContainer;
+  // private final boolean kUseLimelight = ;
 
+  /**
+   * This function is run when the robot is first started up and should be used
+   * for any
+   * initialization code.
+   */
+  public Robot() {
 
-    
-    
-    /**
-     * This function is run when the robot is first started up and should be used for any
-     * initialization code.
-     */
-    public Robot() {
-
-
-        m_robotContainer = new RobotContainer();
-   
+    m_robotContainer = new RobotContainer();
 
     Pathfinding.setPathfinder(new LocalADStar());
-    
-        // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-        // autonomous chooser on the dashboard.
-        SmartDashboard.putData(CommandScheduler.getInstance());
-        RobotController.setBrownoutVoltage(Volts.of(6.1));
-    }
 
- @Override
-    public void robotPeriodic() {
-    //   if (kUseLimelight) {
-    //         var driveState = m_robotContainer.drivetrain.getState();
-    //         double headingDeg = driveState.Pose.getRotation().getDegrees();
-    //         double omegaRps = Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
+    // Instantiate our RobotContainer. This will perform all our button bindings,
+    // and put our
+    // autonomous chooser on the dashboard.
+    SmartDashboard.putData(CommandScheduler.getInstance());
+    RobotController.setBrownoutVoltage(Volts.of(6.1));
+  }
 
-    //         LimelightHelpers.SetRobotOrientation("limelight-front", headingDeg, 0, 0, 0, 0, 0);
-    //         var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-front");
-    //         if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
-    //             m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
-           
-    //      }
+  @Override
+  public void robotPeriodic() {
+    // if (kUseLimelight) {
+    // var driveState = m_robotContainer.drivetrain.getState();
+    // double headingDeg = driveState.Pose.getRotation().getDegrees();
+    // double omegaRps =
+    // Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
+
+    // LimelightHelpers.SetRobotOrientation("limelight-front", headingDeg, 0, 0, 0,
+    // 0, 0);
+    // var llMeasurement =
+    // LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-front");
+    // if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps)
+    // < 2.0) {
+    // m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose,
+    // llMeasurement.timestampSeconds);
 
     // }
 
-     CommandScheduler.getInstance().run();
+    // }
 
+    CommandScheduler.getInstance().run();
 
-    }
+  }
 
-       @Override
-    public void disabledInit() {
+  @Override
+  public void disabledInit() {
 
+  }
 
-    }
+  @Override
+  public void disabledPeriodic() {
+  }
 
-    @Override
-    public void disabledPeriodic() {}
+  @Override
+  public void disabledExit() {
+  }
 
-    @Override
-    public void disabledExit() {}
+  @Override
+  public void autonomousInit() {
 
-    @Override
-       public void autonomousInit() {
-
-     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
   }
-    @Override
-    public void autonomousPeriodic() {}
 
-    @Override
-    public void autonomousExit() {}
+  @Override
+  public void autonomousPeriodic() {
+  }
 
-    @Override
-    public void teleopInit() {
+  @Override
+  public void autonomousExit() {
+  }
 
+  @Override
+  public void teleopInit() {
 
-        if (m_autonomousCommand != null) {
-            CommandScheduler.getInstance().cancel(m_autonomousCommand);
-        }
+    if (m_autonomousCommand != null) {
+      CommandScheduler.getInstance().cancel(m_autonomousCommand);
     }
+  }
 
-    @Override
-    public void teleopPeriodic() {
+  @Override
+  public void teleopPeriodic() {
 
+  }
 
-
-    }
-
-    
 }

@@ -8,11 +8,14 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -25,11 +28,10 @@ public class Turret extends SubsystemBase {
 		IDLE,
 		MANUAL,
 		POSITION,
-		TRACKING
+		TRACKING,
+		PASSING
 
 	}
-
-
 
 	// Create a variable to store the current state of the turret
 	public TurretState turretState = TurretState.IDLE;
@@ -47,10 +49,12 @@ public class Turret extends SubsystemBase {
 
 	}
 
-
 	// Create a variable to store the setpoint of the Turret in kraken encoder
 	// ticks
-	public static double setpointTurret  = 0;
+	public static double setpointTurret = 0;
+
+	public static double FaceRed = 0;
+	public static double FaceBlue = 180;
 
 	// Turret Constructor
 	public Turret() {
@@ -67,9 +71,9 @@ public class Turret extends SubsystemBase {
 		// Soft Limits
 		config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1;
-		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2;
- 
+		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 3.0;
+		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -3.0;
+
 		// Inverted and Neutral Modes
 		// config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 		config.MotorOutput.NeutralMode = NeutralModeValue.Brake;
@@ -95,11 +99,10 @@ public class Turret extends SubsystemBase {
 	public void setState(TurretState state) {
 		turretState = state;
 	}
-	
 
 	public double getTargetRotToHub() {
 
-	double target = Swerve.getRotationToHub();
+		double target = Swerve.getRotationToHub();
 
 		return target * -1;
 
@@ -107,27 +110,28 @@ public class Turret extends SubsystemBase {
 
 	public double getTurretPosition() {
 
-	double position = Turret.getPosition().getValueAsDouble() + 0.27001953125 ;
+		double position = Turret.getPosition().getValueAsDouble() + 0.27001953125; // I looooooove magic numbers, what
+																					// does this number mean? I dont
+																					// know, but it makes everything
+																					// work, so im not gonna change it.
 
 		return position * Constants.turretGearRatio;
 	}
 	// Constants.turretGearRatio
 
-
 	public void setTurretPosition() {
-    double pidOutput = controller.calculate(getTurretPosition(), setpointTurret);
+		double pidOutput = controller.calculate(getTurretPosition(), setpointTurret);
 
-    double output = pidOutput;
+		double output = pidOutput;
 
-    if (Math.abs(pidOutput) > 0.001) {
-        output += Math.copySign(Constants.Turret.Turret_KS, pidOutput);
-    }
+		if (Math.abs(pidOutput) > 0.001) {
+			output += Math.copySign(Constants.Turret.Turret_KS, pidOutput);
+		}
 
-    output = MathUtil.clamp(output, -0.05, 0.05);
+		output = MathUtil.clamp(output, -0.1, 0.1);
 
-    Turret.set(output);
-}
-
+		Turret.set(output);
+	}
 
 	/**
 	 * Set the output of the Turret with feedforward
@@ -147,7 +151,6 @@ public class Turret extends SubsystemBase {
 	 * 
 	 * @return the current angle of the turret in kraken ticks
 	 */
-	
 
 	/**
 	 * Get the current setpoint of the Turret
@@ -167,7 +170,6 @@ public class Turret extends SubsystemBase {
 		setpointTurret = setpoint;
 	}
 
-	
 	/**
 	 * Check if the Turret is at the setpoint within a given tolerance
 	 * 
@@ -182,18 +184,18 @@ public class Turret extends SubsystemBase {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("Turret Encoder", getTurretPosition());
-		
+
 		// SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
 
 		SmartDashboard.putNumber("Turret Output", Turret.get());
-		SmartDashboard.putNumber("Turret error", Math.abs((setpointTurret - getTurretPosition() )));
-		
-		SmartDashboard.putNumber("Turret Setpoint", (getSetpoint() ));
+		SmartDashboard.putNumber("Turret error", Math.abs((setpointTurret - getTurretPosition())));
+
+		SmartDashboard.putNumber("Turret Setpoint", (getSetpoint()));
 
 		// SmartDashboard.putNumber("Turret Output Current",
 		// Turret.getSupplyCurrent().getValueAsDouble());
 		SmartDashboard.putString("Turret State", String.valueOf(getState()));
-    SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
+		SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
 		SmartDashboard.putNumber("getTargetRotToHub", getTargetRotToHub());
 
 		// Turret State Machine
@@ -202,6 +204,7 @@ public class Turret extends SubsystemBase {
 			// In the Idle state, the Turret rests at the bottom of the robot
 			case IDLE:
 				stop();
+
 				break;
 
 			// In the Manual state, the Turret is controlled directly by the operator
@@ -215,11 +218,18 @@ public class Turret extends SubsystemBase {
 				break;
 
 			case TRACKING:
-       		 
+
 				setSetpoint(getTargetRotToHub() + Swerve.getPose().getRotation().getDegrees());
 				setTurretPosition();
 
-      		  break;
+				break;
+
+			case PASSING:
+
+				setSetpoint(0);
+				setTurretPosition();
+
+				break;
 		}
 	}
 }

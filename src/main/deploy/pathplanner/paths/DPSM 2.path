@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.927355555555556,
-        "y": 5.586977777777778
+        "x": 8.409869513641757,
+        "y": 5.643499406880189
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.403311111111113,
-        "y": 7.562222222222224
+        "x": 9.156844444444445,
+        "y": 7.985488888888888
       },
       "isLocked": false,
-      "linkedName": "dpsm 1"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 7.461444444444444
       },
       "prevControl": {
-        "x": 6.153666666666667,
-        "y": 7.451366666666667
+        "x": 5.946014234875446,
+        "y": 7.483321470937129
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,14 +31,14 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.7,
-      "rotationDegrees": 177.36718625545998
+      "rotationDegrees": 179.69184259834188
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
+    "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
@@ -47,13 +47,13 @@
   },
   "goalEndState": {
     "velocity": 1.0,
-    "rotation": 179.39690880561946
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 103.2405199151872
+    "rotation": 118.81079374297309
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

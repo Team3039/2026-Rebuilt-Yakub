@@ -29,8 +29,6 @@ public class Hood extends SubsystemBase {
 
   }
 
-
-
   // Create a variable to store the current state of the hood
   public HoodState hoodState = HoodState.IDLE;
 
@@ -47,10 +45,9 @@ public class Hood extends SubsystemBase {
 
   }
 
-
   // Create a variable to store the setpoint of the hood in kraken encoder
   // ticks
-  public static double setpointHood  = 0;
+  public static double setpointHood = 0;
 
   // Hood Constructor
   public Hood() {
@@ -95,32 +92,27 @@ public class Hood extends SubsystemBase {
   public void setState(HoodState state) {
     hoodState = state;
   }
-  
-
-
 
   public double getHoodPosition() {
 
-  double position = hoodMotor.getPosition().getValueAsDouble() - 0.3728125;
+    double position = hoodMotor.getPosition().getValueAsDouble() - 0.3728125;
 
     return position * -1;
   }
 
-
   public void setHoodPosition() {
-  double pidOutput = controller.calculate(getHoodPosition(), setpointHood);
+    double pidOutput = controller.calculate(getHoodPosition(), setpointHood);
 
-  double output = pidOutput;
+    double output = pidOutput;
 
-  if (Math.abs(pidOutput) > 0.001) {
-    output += Math.copySign(Constants.Hood.Hood_KS, pidOutput);
+    if (Math.abs(pidOutput) > 0.001) {
+      output += Math.copySign(Constants.Hood.Hood_KS, pidOutput);
+    }
+
+    output = MathUtil.clamp(output, -0.08, 0.08);
+
+    hoodMotor.set(output);
   }
-
-  output = MathUtil.clamp(output, -0.08, 0.08);
-
-  hoodMotor.set(output);
-}
-
 
   /**
    * Set the output of the hood with feedForward
@@ -153,7 +145,6 @@ public class Hood extends SubsystemBase {
     setpointHood = setpoint;
   }
 
-  
   /**
    * Check if the Hood is at the setpoint within a given tolerance
    * 
@@ -168,15 +159,15 @@ public class Hood extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Hood Encoder", getHoodPosition());
-    
+
     // SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
 
     SmartDashboard.putNumber("Hood Output", hoodMotor.get());
-    SmartDashboard.putNumber("Hood error", Math.abs((setpointHood - getHoodPosition() )));
+    SmartDashboard.putNumber("Hood error", Math.abs((setpointHood - getHoodPosition())));
     // SmartDashboard.putNumber("Hood Output Current",
     // hoodMotor.getSupplyCurrent().getValueAsDouble());
     // SmartDashboard.putString("Hood State", String.valueOf(getState()));
-  SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
+    SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
 
     // Hood State Machine
     switch (hoodState) {
