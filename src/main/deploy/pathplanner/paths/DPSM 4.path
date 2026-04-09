@@ -3,51 +3,71 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.967666666666666,
-        "y": 5.214099999999999
+        "x": 7.828873072354044,
+        "y": 5.417556346380362
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.089819375247131,
-        "y": 7.223522815342033
+        "x": 7.57065243178465,
+        "y": 6.127663107946198
       },
       "isLocked": false,
       "linkedName": "dpsm 1"
     },
     {
       "anchor": {
-        "x": 4.631922222222222,
-        "y": 7.501755555555555
+        "x": 5.451091340451083,
+        "y": 7.494080664286178
       },
       "prevControl": {
-        "x": 6.935860023724794,
-        "y": 7.526358244365362
+        "x": 8.432858323448626,
+        "y": 7.4756465796597436
       },
       "nextControl": {
-        "x": 3.56373867916046,
-        "y": 7.490348916329197
+        "x": 4.382867309811032,
+        "y": 7.500684712252735
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.4652,
-        "y": 5.798611111111111
+        "x": 3.7618979833929576,
+        "y": 7.494080664286178
       },
       "prevControl": {
-        "x": 2.344266666666667,
-        "y": 6.997866666666666
+        "x": 5.063760379596991,
+        "y": 7.472562277572063
+      },
+      "nextControl": {
+        "x": 2.4600355871889237,
+        "y": 7.515599051000294
+      },
+      "isLocked": false,
+      "linkedName": "new dpsm 4"
+    },
+    {
+      "anchor": {
+        "x": 2.747377777777778,
+        "y": 5.6172111111111125
+      },
+      "prevControl": {
+        "x": 2.5375735073151438,
+        "y": 6.3111790826413605
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "new dpsm 4"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.9882747068676676,
-      "rotationDegrees": -0.06686441116166006
+      "waypointRelativePos": 0.9246231155778697,
+      "rotationDegrees": 179.56738424934514
+    },
+    {
+      "waypointRelativePos": 1.9045226130653248,
+      "rotationDegrees": -179.56616937065462
     }
   ],
   "constraintZones": [],
@@ -63,13 +83,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -1.0416266760099282
+    "rotation": -20.806791012711447
   },
   "reversed": false,
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 3.0,
-    "rotation": 107.21607358779066
+    "rotation": 106.46001481204003
   },
   "useDefaultConstraints": true
 }

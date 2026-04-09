@@ -51,7 +51,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.125
+            "waitTime": 0.5
           }
         },
         {
@@ -61,7 +61,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 4.5
                 }
               },
               {
@@ -74,6 +74,12 @@
                 "type": "named",
                 "data": {
                   "name": "FIRE!!!!"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake slow in"
                 }
               }
             ]
@@ -134,22 +140,9 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 1.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Intake slow in"
-                      }
-                    }
-                  ]
+                  "name": "Intake slow in"
                 }
               }
             ]

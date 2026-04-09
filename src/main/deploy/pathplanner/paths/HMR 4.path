@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0117000000000003,
-        "y": 0.13490000000000024
+        "x": 1.9109222222222222,
+        "y": 0.1550555555555555
       },
       "isLocked": false,
       "linkedName": "HMR 3"
@@ -20,8 +20,8 @@
         "y": 0.6488666666666665
       },
       "prevControl": {
-        "x": 4.531144444444445,
-        "y": 0.6186333333333335
+        "x": 4.138111111111112,
+        "y": 0.5581666666666659
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -48,7 +48,7 @@
   "folder": "Human side mid run",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 3.945186229037507
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

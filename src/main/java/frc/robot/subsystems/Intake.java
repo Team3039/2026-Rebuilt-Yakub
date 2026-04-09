@@ -195,7 +195,7 @@ public class Intake extends SubsystemBase {
 
       // In the Manual state, the Intake is controlled directly by the operator
       case MANUAL:
-        setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.1);
+        setIntakePercent(RobotContainer.driverPad.getLeftY() * 0.175);
         break;
 
       case PASSIVE_UP:

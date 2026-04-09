@@ -123,7 +123,7 @@ public class Flywheel extends SubsystemBase {
 
             case IDLE:
 
-                setShooterVelocity(.25);
+                setShooterVelocity(.75);
 
                 break;
 

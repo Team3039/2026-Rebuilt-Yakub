@@ -34,6 +34,7 @@ import frc.robot.commands.setFlyWheels;
 // import frc.robot.commands.setHoodManual;
 // import frc.robot.commands.setIntakeManual;
 import frc.robot.commands.setIntakePassiveUp;
+import frc.robot.commands.setIntakePassiveUpauto;
 // import frc.robot.commands.setIntakeStop;
 import frc.robot.commands.setIntakerollersIntake;
 // import frc.robot.commands.setIntakerollersStop;
@@ -74,7 +75,7 @@ public class RobotContainer {
 
                 NamedCommands.registerCommand("Start Intake", new IntakeIntakeing());
                 NamedCommands.registerCommand("Intake back in", new IntakeIdle());
-                NamedCommands.registerCommand("Intake slow in", new setIntakePassiveUp());
+                NamedCommands.registerCommand("Intake slow in", new setIntakePassiveUpauto());
                 NamedCommands.registerCommand("AIM", new setTurretTracking());
                 NamedCommands.registerCommand("FIRE!!!!", new setFlyWheels());
                 NamedCommands.registerCommand("fix auto for red stuff",

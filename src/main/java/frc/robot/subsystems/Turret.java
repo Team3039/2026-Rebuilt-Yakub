@@ -71,8 +71,8 @@ public class Turret extends SubsystemBase {
 		// Soft Limits
 		config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 		config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 6;
-		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1.8;
+		config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 3.0;
+		config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -3.0;
 
 		// Inverted and Neutral Modes
 		// config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -226,15 +226,7 @@ public class Turret extends SubsystemBase {
 
 			case PASSING:
 
-				if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue) {
-					setSetpoint(FaceBlue + Swerve.getPose().getRotation().getDegrees());
-					setTurretPosition();
-				} else {
-					setSetpoint(FaceRed + Swerve.getPose().getRotation().getDegrees());
-					setTurretPosition();
-				}
-
-				setSetpoint(FaceBlue + Swerve.getPose().getRotation().getDegrees());
+				setSetpoint(0);
 				setTurretPosition();
 
 				break;
