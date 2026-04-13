@@ -330,21 +330,24 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         return Math.toDegrees(targetYaw);
     }
 
+
     public static double getRotationToHub() {
         Pose2d hub = getHubPoseForAlliance();
 
         targetYaw = Math.atan2(
-                hub.getY() - getPose().getY(),
-                hub.getX() - getPose().getX());
+                hub.getY() - Constants.turretYOffset,
+                hub.getX() - Constants.turretXOffset);
         return Math.toDegrees(targetYaw);
     }
 
     public static double getDistanceToHub() {
         Pose2d hub = getHubPoseForAlliance();
         return Math.hypot(
-                hub.getX() - getPose().getX(),
-                hub.getY() - getPose().getY());
+                hub.getX() - Constants.turretXOffset,
+                hub.getY() -  Constants.turretYOffset);
     }
+
+
 
     @Override
     public void periodic() {
@@ -414,30 +417,8 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         return Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360.0);
     }
 
-    // public Command pointAtHubCommand(Supplier<Double> vxSupplier,
-    // Supplier<Double> vySupplier) {
-    // var pid = new edu.wpi.first.math.controller.PIDController(4.0, 0.0, 0.0);
-    // pid.enableContinuousInput(-Math.PI, Math.PI);
-    // pid.setTolerance(Math.toRadians(.10));
-
-    // return new edu.wpi.first.wpilibj2.command.PIDCommand(
-    // pid,
-    // () -> getState().Pose.getRotation().getDegrees(),
-    // this::getRotationToHub,
-    // output -> {
-    // final double kMaxOmega = 6.0;
-    // double omega = Math.max(-kMaxOmega, Math.min(kMaxOmega, output));
-    // double vx = vxSupplier.get();
-    // double vy = vySupplier.get();
-    // setControl(m_pathApplyRobotSpeeds.withSpeeds(new ChassisSpeeds(vx, vy,
-    // omega)));
-    // },
-    // this
-    // )
-    // .until(() -> pid.atSetpoint())
-    // .andThen(() -> setControl(m_pathApplyRobotSpeeds.withSpeeds(new
-    // ChassisSpeeds(0.0, 0.0, 0.0))), this);
-    // }
+    
+    
 
     public Rotation2d getGyroRotation2D() {
         return Rotation2d.fromDegrees(getCompassHeading());// gyro.getYaw().getValueAsDouble());
