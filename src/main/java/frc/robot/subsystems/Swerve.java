@@ -56,7 +56,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
     public static final Pose2d RedDownPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
 
 
-     public static Transform2d shooterOffset = new Transform2d(new Translation2d(0, -0.1525), new Rotation2d());
+     public static Transform2d shooterOffset = new Transform2d(new Translation2d(0, 0.1525), new Rotation2d());
      
        
     
@@ -117,18 +117,19 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             getModule(2).getDriveMotor().setPosition(0);
             getModule(3).getDriveMotor().setPosition(0);
     
+
+
+
             m_poseEstimator = new SwerveDrivePoseEstimator(Constants.swerveKinematics, getGyroRotation2D(),
-                    getModulePositions(), getPose(), VecBuilder.fill(0.1, 0.1, Units.degreesToRadians(0.5)),
-                    VecBuilder.fill(0.5, 0.5, Units.degreesToRadians(1.0)));
+                    getModulePositions(), getPose(), VecBuilder.fill(0.1, 0.1, Units.degreesToRadians(.1)),
+                    VecBuilder.fill(0.2, 0.2, Units.degreesToRadians(.5)));
     
+
+
+
             configureAutoBuilder();
-    
-            // mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left");
-            /**
-             * Sets the operator perspective forward direction.
-             *
-             * @param rotation The rotation to set as the forward direction.
-             */
+
+            
         }
     
         /*
@@ -302,64 +303,84 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             return BlueHubPose;
         }
     
-        private static Pose2d getUpPassingPoseForAlliance() {
-            var allianceOpt = DriverStation.getAlliance();
-            if (allianceOpt.isPresent()) {
-                return allianceOpt.get() == Alliance.Red ? RedUpPassingPose : BlueUpPassingPose;
-            }
+        // private static Pose2d getUpPassingPoseForAlliance() {
+        //     var allianceOpt = DriverStation.getAlliance();
+        //     if (allianceOpt.isPresent()) {
+        //         return allianceOpt.get() == Alliance.Red ? RedUpPassingPose : BlueUpPassingPose;
+        //     }
     
-            return BlueUpPassingPose;
-        }
+        //     return BlueUpPassingPose;
+        // }
     
-        private static Pose2d getDownPassingPoseForAlliance() {
-            var allianceOpt = DriverStation.getAlliance();
-            if (allianceOpt.isPresent()) {
-                return allianceOpt.get() == Alliance.Red ? RedDownPassingPose : BlueDownPassingPose;
-            }
+        // private static Pose2d getDownPassingPoseForAlliance() {
+        //     var allianceOpt = DriverStation.getAlliance();
+        //     if (allianceOpt.isPresent()) {
+        //         return allianceOpt.get() == Alliance.Red ? RedDownPassingPose : BlueDownPassingPose;
+        //     }
     
-            return BlueDownPassingPose;
-        }
+        //     return BlueDownPassingPose;
+        // }
     
-        public static double getRotUpPassingArea() {
-            Pose2d BlueUpPassingPose = getUpPassingPoseForAlliance();
+        // public static double getRotUpPassingArea() {
+        //     Pose2d BlueUpPassingPose = getUpPassingPoseForAlliance();
     
-            targetYaw = Math.atan2(
-                    BlueUpPassingPose.getY() - getPose().getY(),
-                    BlueUpPassingPose.getX() - getPose().getX());
-            return Math.toDegrees(targetYaw);
-        }
+        //     targetYaw = Math.atan2(
+        //             BlueUpPassingPose.getY() - getPose().getY(),
+        //             BlueUpPassingPose.getX() - getPose().getX());
+        //     return Math.toDegrees(targetYaw);
+        // }
     
-        public static double getRotDownPassingArea() {
-            Pose2d BlueDownPassingPose = getDownPassingPoseForAlliance();
+        // public static double getRotDownPassingArea() {
+        //     Pose2d BlueDownPassingPose = getDownPassingPoseForAlliance();
     
-            targetYaw = Math.atan2(
-                    BlueDownPassingPose.getY() - getPose().getY(),
-                    BlueDownPassingPose.getX() - getPose().getX());
-            return Math.toDegrees(targetYaw);
-        }
-    
-    
-        public static double getRotationToHub() {
-            Pose2d hub = getHubPoseForAlliance();
-    
-            targetYaw = Math.atan2(
-                    hub.getY() - Swerve.getPose().getY() + shooterOffset.getTranslation().getY(),
-                    hub.getX() - Swerve.getPose().getX() + shooterOffset.getTranslation().getX());
+        //     targetYaw = Math.atan2(
+        //             BlueDownPassingPose.getY() - getPose().getY(),
+        //             BlueDownPassingPose.getX() - getPose().getX());
+        //     return Math.toDegrees(targetYaw);
+        // }
+
+        
+        
+
+             public  double getRotationToHub() {
+
+                         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+                    Pose2d hub = getHubPoseForAlliance();
+            
+                    targetYaw = Math.atan2(
+                    hub.getY() - shooterPositionPose.getY() ,
+                    hub.getX() - shooterPositionPose.getX());
 
         return Math.toDegrees(targetYaw);
     }
 
-    public static double getDistanceToHub() {
+    public double getDistanceToHub() {
+
+         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+
         Pose2d hub = getHubPoseForAlliance();
         return Math.hypot(
-                hub.getX() - Swerve.getPose().getY() + shooterOffset.getTranslation().getY(),
-                hub.getY() -   Swerve.getPose().getX() + shooterOffset.getTranslation().getX());
+                hub.getX() -   shooterPositionPose.getY() ,
+                hub.getY() -   shooterPositionPose.getX() );
     }
+            
+              
 
 
 
     @Override
     public void periodic() {
+
+
+
+                  Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+
+
+        SmartDashboard.putNumberArray("Turret Pose",
+                new double[] {  shooterPositionPose.getX(), shooterPositionPose.getY(), getPose().getRotation().getRadians() });
 
         m_poseEstimator.update(getGyroRotation2D(), getModulePositions());
         botPose2d = m_poseEstimator.getEstimatedPosition();
@@ -372,8 +393,8 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         // cameraPoses[bestCamera].pose.getTranslation().getY(),
         // cameraPoses[bestCamera].pose.getRotation().getRadians() });
         SmartDashboard.putNumberArray("bot Pose",
-                new double[] { getPose().getX(), getPose().getY(), Math.IEEEremainder(gyro.getYaw().getValueAsDouble(), 360.0) });
-        SmartDashboard.putNumber("yaw", gyro.getRotation2d().getDegrees());
+                new double[] { getPose().getX(), getPose().getY(), getPose().getRotation().getRadians() });
+        SmartDashboard.putNumber("yaw", gyro.getRotation2d().getRadians());
         SmartDashboard.putNumber("getDistanceToHub", getDistanceToHub());
 
     }
@@ -401,13 +422,12 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
     }
 
     public static Pose2d getPose() {
-        // m_poseEstimator.getEstimatedPosition();
-        // return swerveOdometry.getPoseMeters();
         return botPose2d;
     }
+    
 
-    public Pose3d getPose3d() {
-        return new Pose3d(getPose());
+    public Pose2d getPose2d() {
+        return new Pose2d(getPose().getTranslation(), getPose().getRotation());
     }
 
     public Rotation2d getHeading() {
@@ -441,6 +461,9 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
         return mt2;
 
     }
+
+
+     
 
     /**
      * Adds a vision measurement to the Kalman Filter. This will correct the

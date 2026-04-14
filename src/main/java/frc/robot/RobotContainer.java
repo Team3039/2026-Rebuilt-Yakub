@@ -95,7 +95,7 @@ public class RobotContainer {
         public final static CommandXboxController driverPad = new CommandXboxController(0);
         public final static CommandXboxController guitar = new CommandXboxController(1);
 
-        public final Swerve drivetrain = TunerConstants.createDrivetrain();
+        public final static Swerve drivetrain = TunerConstants.createDrivetrain();
         public static final Turret turret = new Turret();
         public static final Hood hood = new Hood();
         public static final Flywheel flywheel = new Flywheel();

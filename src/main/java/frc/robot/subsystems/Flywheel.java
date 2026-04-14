@@ -79,7 +79,7 @@ public class Flywheel extends SubsystemBase {
     }
 
     public double getDistanceFromHub() {
-        return Swerve.getDistanceToHub();
+        return RobotContainer.drivetrain.getDistanceToHub();
     }
 
     // private final InterpolatingDoubleTreeMap dissierdShooterSpeed = new
