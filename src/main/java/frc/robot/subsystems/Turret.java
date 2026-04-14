@@ -224,7 +224,7 @@ public class Turret extends SubsystemBase {
 
 				break;
 
-			case PASSING:
+				case PASSING:
 
 				setSetpoint(0);
 				setTurretPosition();
