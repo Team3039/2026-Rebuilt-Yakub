@@ -89,7 +89,7 @@
   "folder": "Depo side poke mid",
   "idealStartingState": {
     "velocity": 3.0,
-    "rotation": 106.46001481204003
+    "rotation": 93.32312044461673
   },
   "useDefaultConstraints": true
 }

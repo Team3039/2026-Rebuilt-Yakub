@@ -4,9 +4,12 @@ import com.therekrab.autopilot.APConstraints;
 import com.therekrab.autopilot.APProfile;
 import com.therekrab.autopilot.Autopilot;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import frc.robot.subsystems.Swerve;
 
 import static edu.wpi.first.units.Units.Centimeters;
 import static edu.wpi.first.units.Units.Degrees;
@@ -19,6 +22,12 @@ public class Constants {
     public static final double kDriveGearRatio = 5.357142857142857;
     public static final double wheelCircumference = Units.inchesToMeters(4 * Math.PI);
     public static final double turretGearRatio = 43.16627634660422;
+
+
+   public static final Transform2d shooterOffset =
+        new Transform2d(new Translation2d( .1525 , 0), new Rotation2d());
+
+
 
     public static final APConstraints kConstraints = new APConstraints()
             .withAcceleration(5.0)

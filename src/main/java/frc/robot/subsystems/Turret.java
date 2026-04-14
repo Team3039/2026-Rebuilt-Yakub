@@ -102,7 +102,10 @@ public class Turret extends SubsystemBase {
 
 	public double getTargetRotToHub() {
 
-		double target = Swerve.getRotationToHub();
+
+		
+
+		double target = RobotContainer.drivetrain.getRotationToHub();
 
 		return target * -1;
 
@@ -224,7 +227,7 @@ public class Turret extends SubsystemBase {
 
 				break;
 
-			case PASSING:
+				case PASSING:
 
 				setSetpoint(0);
 				setTurretPosition();
