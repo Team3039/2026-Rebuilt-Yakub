@@ -1,13 +1,12 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
-import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.ShooterRpsTable;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -91,31 +90,17 @@ public class Flywheel extends SubsystemBase {
     // dissierdShooterSpeed.put(4.1, 4.7);
     // }
 
-    private final InterpolatingDoubleTreeMap dissierdShooterSpeedv2 = new InterpolatingDoubleTreeMap();
-    {
-        dissierdShooterSpeedv2.put(1.80, 4.44);
-        dissierdShooterSpeedv2.put(1.70, 4.43);
-        dissierdShooterSpeedv2.put(1.60, 4.31);
-
-        dissierdShooterSpeedv2.put(2.9, 4.4);
-        dissierdShooterSpeedv2.put(3.1, 5.0);
-        dissierdShooterSpeedv2.put(4.0, 5.2);
-        dissierdShooterSpeedv2.put(5.6, 5.7);
-        dissierdShooterSpeedv2.put(5.9, 6.3);
-
-    }
-
     @Override
     public void periodic() {
 
         double Distance = getDistanceFromHub();
 
-        double result = dissierdShooterSpeedv2.get(Distance);
+        double result = ShooterRpsTable.lookupRps(Distance);
 
         double currentVelocity = shooterLeft.getRotorVelocity().getValueAsDouble();
 
         SmartDashboard.putNumber("Shooter RPS", currentVelocity);
-        SmartDashboard.putNumber("dissierdShooterSpeed RPS", dissierdShooterSpeedv2.get(Distance));
+        SmartDashboard.putNumber("dissierdShooterSpeed RPS", ShooterRpsTable.lookupRps(Distance));
         SmartDashboard.putBoolean("Shooter At Setpoint", isAtVelocitySetpoint());
         SmartDashboard.putString("Flywheel State", flywheelState.name());
 

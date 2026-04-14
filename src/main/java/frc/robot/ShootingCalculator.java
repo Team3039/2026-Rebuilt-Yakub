@@ -25,11 +25,18 @@ public final class ShootingCalculator {
     double dx = hub.getX() - robotPose.getX();
     double dy = hub.getY() - robotPose.getY();
     double fieldAimDeg = Math.toDegrees(Math.atan2(dy, dx));
-
-    double flywheelRps = 0.0;
+    double distanceM = Math.hypot(dx, dy);
+    double flywheelRps = ShooterRpsTable.lookupRps(distanceM);
     double hoodSetpoint = 0.0;
     boolean readyToFire = false;
-    
+
     return new ShootingSolution(fieldAimDeg, flywheelRps, hoodSetpoint, readyToFire);
+  }
+
+  /**
+   * exposes table lookup for tests and for callers that already know distance
+   */
+  public static double flywheelRpsForDistanceMeters(double distanceMeters) {
+    return ShooterRpsTable.lookupRps(distanceMeters);
   }
 }

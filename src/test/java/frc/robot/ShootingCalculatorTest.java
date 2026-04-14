@@ -1,6 +1,7 @@
 package frc.robot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,9 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
  * wrong headings here poison everything above it.
  *
  * currently ChassisSpeeds is zero in all cases
+ *
+ * distance→RPS uses {@link ShooterRpsTable} (same data the flywheel subsystem uses)
+ * Tests below lock exact keys, interpolate — still pure math, no hardware.
  */
 class ShootingCalculatorTest {
 
@@ -76,5 +80,42 @@ class ShootingCalculatorTest {
         MathUtil.inputModulus(
             s.fieldAimToHubDeg() - robot.getRotation().getDegrees(), -180.0, 180.0);
     assertEquals(0.0, relativeToHeading, 1.0);
+  }
+
+  @Test
+  void flywheelRPS_atExactKey_1point60m() {
+    assertEquals(4.31, ShootingCalculator.flywheelRpsForDistanceMeters(1.60), 1e-9);
+  }
+
+  @Test
+  void flywheelRPS_atExactKey_5point90m() {
+    assertEquals(6.3, ShootingCalculator.flywheelRpsForDistanceMeters(5.90), 1e-9);
+  }
+
+  @Test
+  void flywheelRPS_interpolated_3point05m() {
+    double rps = ShootingCalculator.flywheelRpsForDistanceMeters(3.05);
+    assertTrue(rps > 4.40 && rps < 5.00);
+  }
+
+  @Test
+  void flywheelRPS_belowMinKey_doesNotThrow() {
+    double rps = ShootingCalculator.flywheelRpsForDistanceMeters(0.5);
+    assertTrue(Double.isFinite(rps));
+  }
+
+  @Test
+  void flywheelRPS_aboveMaxKey_doesNotThrow() {
+    double rps = ShootingCalculator.flywheelRpsForDistanceMeters(8.0);
+    assertTrue(Double.isFinite(rps));
+  }
+
+  @Test
+  void calculate_includesFlywheelRpsFromRobotToHubDistance() {
+    var calc = new ShootingCalculator(HUB_BLUE);
+    // On +X axis from hub: distance = 3.05 m (between 2.9 and 3.1 keys).
+    var robot = new Pose2d(4.633 - 3.05, 4.030, Rotation2d.fromDegrees(0));
+    ShootingSolution s = calc.calculate(robot, ZERO_FIELD_VEL);
+    assertTrue(s.flywheelRps() > 4.40 && s.flywheelRps() < 5.00);
   }
 }
