@@ -3,11 +3,13 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
+    "Bump test",
     "Depo side mid run",
     "Depo side poke mid",
     "Hub start depo rush",
     "Human side mid run",
-    "Bump test",
+    "New Gen Depo Side safe",
+    "New Gen depo side greed",
     "testing "
   ],
   "autoFolders": [],

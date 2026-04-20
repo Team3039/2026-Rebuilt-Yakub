@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 4.510988888888889,
+        "y": 7.451366666666667
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.486233333333334,
+        "y": 7.330433333333333
+      },
+      "isLocked": false,
+      "linkedName": "ngds 3"
+    },
+    {
+      "anchor": {
+        "x": 7.443622222222222,
+        "y": 6.463744444444444
+      },
+      "prevControl": {
+        "x": 6.828877777777778,
+        "y": 7.269966666666667
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 125.78897345918334
+  },
+  "reversed": false,
+  "folder": "New Gen depo side greed",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -179.4791436254981
+  },
+  "useDefaultConstraints": true
+}

@@ -9,22 +9,9 @@
           "data": {
             "commands": [
               {
-                "type": "sequential",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "DPSM 1"
-                      }
-                    },
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "DPSM 4"
-                      }
-                    }
-                  ]
+                  "pathName": "NGDS 1"
                 }
               },
               {
@@ -34,7 +21,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.25
+                        "waitTime": 0.2
                       }
                     },
                     {
@@ -50,15 +37,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "fix auto for red stuff"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.1
+            "pathName": "NGDS 2"
           }
         },
         {
@@ -68,19 +49,32 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 5.0
+                  "waitTime": 3.0
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "AIM"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "FIRE!!!!"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "AIM"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.25
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "FIRE!!!!"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -97,22 +91,9 @@
           "data": {
             "commands": [
               {
-                "type": "sequential",
+                "type": "path",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "DPSMTDG 1"
-                      }
-                    },
-                    {
-                      "type": "path",
-                      "data": {
-                        "pathName": "DPSMTDG 2"
-                      }
-                    }
-                  ]
+                  "pathName": "NGDS 3"
                 }
               },
               {
@@ -125,9 +106,15 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "race",
           "data": {
             "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 4.0
+                }
+              },
               {
                 "type": "named",
                 "data": {
@@ -139,14 +126,14 @@
                 "data": {
                   "name": "FIRE!!!!"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake slow in"
-                }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "NGDS 4"
           }
         }
       ]

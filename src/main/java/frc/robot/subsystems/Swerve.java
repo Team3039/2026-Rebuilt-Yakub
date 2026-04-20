@@ -33,6 +33,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
+import frc.robot.RobotContainer;
 import frc.robot.LimelightHelpers.PoseEstimate;
 import frc.robot.TunerConstants.TunerSwerveDrivetrain;
 // import frc.robot.Utilitys;
@@ -47,16 +48,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
     public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d BlueDownPassingPose = new Pose2d(2.717, 1.586, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d RedUpPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
-
-    public static final Pose2d BlueUpPassingPose = new Pose2d(2.999, 6.655, Rotation2d.fromDegrees(0));
-
-    public static final Pose2d RedDownPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
-
-
-     public static Transform2d shooterOffset = new Transform2d(new Translation2d(0, 0.1525), new Rotation2d());
      
        
     
@@ -303,43 +295,6 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             return BlueHubPose;
         }
     
-        // private static Pose2d getUpPassingPoseForAlliance() {
-        //     var allianceOpt = DriverStation.getAlliance();
-        //     if (allianceOpt.isPresent()) {
-        //         return allianceOpt.get() == Alliance.Red ? RedUpPassingPose : BlueUpPassingPose;
-        //     }
-    
-        //     return BlueUpPassingPose;
-        // }
-    
-        // private static Pose2d getDownPassingPoseForAlliance() {
-        //     var allianceOpt = DriverStation.getAlliance();
-        //     if (allianceOpt.isPresent()) {
-        //         return allianceOpt.get() == Alliance.Red ? RedDownPassingPose : BlueDownPassingPose;
-        //     }
-    
-        //     return BlueDownPassingPose;
-        // }
-    
-        // public static double getRotUpPassingArea() {
-        //     Pose2d BlueUpPassingPose = getUpPassingPoseForAlliance();
-    
-        //     targetYaw = Math.atan2(
-        //             BlueUpPassingPose.getY() - getPose().getY(),
-        //             BlueUpPassingPose.getX() - getPose().getX());
-        //     return Math.toDegrees(targetYaw);
-        // }
-    
-        // public static double getRotDownPassingArea() {
-        //     Pose2d BlueDownPassingPose = getDownPassingPoseForAlliance();
-    
-        //     targetYaw = Math.atan2(
-        //             BlueDownPassingPose.getY() - getPose().getY(),
-        //             BlueDownPassingPose.getX() - getPose().getX());
-        //     return Math.toDegrees(targetYaw);
-        // }
-
-        
         
 
              public  double getRotationToHub() {
@@ -379,8 +334,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
 
 
-        SmartDashboard.putNumberArray("Turret Pose",
-                new double[] {  shooterPositionPose.getX(), shooterPositionPose.getY(), getPose().getRotation().getRadians() });
+       
 
         m_poseEstimator.update(getGyroRotation2D(), getModulePositions());
         botPose2d = m_poseEstimator.getEstimatedPosition();
@@ -388,14 +342,18 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
         updateCameraPose();
 
-        // SmartDashboard.putNumberArray("CameraPose", new double[] {
-        // cameraPoses[bestCamera].pose.getTranslation().getX(),
-        // cameraPoses[bestCamera].pose.getTranslation().getY(),
-        // cameraPoses[bestCamera].pose.getRotation().getRadians() });
+        
+        
         SmartDashboard.putNumberArray("bot Pose",
+        
                 new double[] { getPose().getX(), getPose().getY(), getPose().getRotation().getRadians() });
+
         SmartDashboard.putNumber("yaw", gyro.getRotation2d().getRadians());
+
         SmartDashboard.putNumber("getDistanceToHub", getDistanceToHub());
+
+ SmartDashboard.putNumberArray("Turret Pose", 
+        new double[] {  shooterPositionPose.getX(), shooterPositionPose.getY(), RobotContainer.turret.getTurretPosition()*-1 });
 
     }
 

@@ -9,11 +9,11 @@ import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
-import frc.robot.subsystems.Swerve;
+// import frc.robot.subsystems.Swerve;
 
 import static edu.wpi.first.units.Units.Centimeters;
 import static edu.wpi.first.units.Units.Degrees;
-import static edu.wpi.first.units.Units.Inches;
+// import static edu.wpi.first.units.Units.Inches;
 
 public class Constants {
 
@@ -47,7 +47,7 @@ public class Constants {
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
 
     public static final class Ports {
-        // CLAW
+
         public static final int INTAKE = 21;
         public static final int INTAKEROLLER = 22;
         public static final int INDEXER = 14;

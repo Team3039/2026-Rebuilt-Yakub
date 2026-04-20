@@ -14,7 +14,7 @@ import frc.robot.RobotContainer;
 
 public class Flywheel extends SubsystemBase {
 
-    public static double targetVelocity = 10; // RPS
+    public static double targetVelocity = 12; // RPS
 
     public enum FlywheelState {
         IDLE,
