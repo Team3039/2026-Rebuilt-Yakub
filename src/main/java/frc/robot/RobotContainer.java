@@ -111,7 +111,7 @@ public class RobotContainer {
 
         /* Setting up bindings for necessary control of the swerve drive platform */
         private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
-                        .withDeadband(MaxSpeed * 0.2).withRotationalDeadband(MaxAngularRate * 0.2) // Add a 10% deadband
+                        .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
                         .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive
                                                                                  // motors
         private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
@@ -132,15 +132,11 @@ public class RobotContainer {
 
                 drivetrain.setDefaultCommand(
                                 // Drivetrain will execute this command periodically
-                                drivetrain.applyRequest(() -> drive.withVelocityX(-driverPad.getLeftY() * MaxSpeed) // Drive
-                                                                                                                    // forward
-                                                                                                                    // with
-                                                                                                                    // negative
-                                                                                                                    // Y
-                                                                                                                    // (forward)
-                                                .withVelocityY(-driverPad.getLeftX() * MaxSpeed) // Drive left with
+                                drivetrain.applyRequest(() -> drive.withVelocityX(-driverPad.getRightY() * MaxSpeed) // Drive
+                                                                                                                                                           // (forward)
+                        .withVelocityY(-driverPad.getRightX() * MaxSpeed) // Drive left with
                                                                                                  // negative X (left)
-                                                .withRotationalRate(-driverPad.getRightX() * MaxAngularRate) // Drive
+                                                .withRotationalRate(-driverPad.getLeftX() * MaxAngularRate) // Drive
                                                                                                              // counterclockwise
                                                                                                              // with
                                                                                                              // negative
@@ -158,7 +154,9 @@ public class RobotContainer {
 
                 driverPad.a().whileTrue(drivetrain.applyRequest(() -> brake));
                 driverPad.leftBumper().onTrue(new setIntakerollersIntake());
-                driverPad.rightTrigger().whileTrue(new StartPassing());
+
+                driverPad.rightTrigger().whileTrue(new setFlyWheels());
+                // driverPad.rightTrigger().whileTrue(new StartPassing());
                 driverPad.leftTrigger().whileTrue(new AimToPass());
 
                 // AimToPass
@@ -213,10 +211,10 @@ public class RobotContainer {
                 // guitar.povDown().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setIntakeStop());
 
-                guitar.a().onTrue(new IntakeIntakeing()); // the green button
-                guitar.y().onTrue(new IntakeIdle()); // the yellow button
-                guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
-                guitar.x().onTrue(new setIntakerollersIntake()); // the blue button
+                guitar.y().onTrue(new IntakeIntakeing()); // the green button
+                guitar.a().onTrue(new IntakeIdle()); // the yellow button
+                guitar.x().whileTrue(new setIntakePassiveUp()); // the red button
+                guitar.b().onTrue(new setIntakerollersIntake()); // the blue button
                 guitar.leftBumper().onTrue(new setTurretTracking()); // orange one
 
                 guitar.povDown().whileTrue(new setFlyWheels()); // down on the strum bar

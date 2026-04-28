@@ -44,7 +44,7 @@ import frc.robot.TunerConstants.TunerSwerveDrivetrain;
  */
 public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
-    public static final Pose2d BlueHubPose = new Pose2d(4.633, 4.030, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueHubPose = new Pose2d(-0.337, 2.599, Rotation2d.fromDegrees(0));
 
     public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
 
@@ -333,7 +333,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                   Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
 
 
-
+System.out.println("Mr young is a chud");
        
 
         m_poseEstimator.update(getGyroRotation2D(), getModulePositions());

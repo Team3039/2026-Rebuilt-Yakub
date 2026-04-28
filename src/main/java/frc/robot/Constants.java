@@ -85,7 +85,7 @@ public class Constants {
     }
 
     public static final class Turret {
-        public static final double Turret_KP = 0.0058; // used to be 67 :(
+        public static final double Turret_KP = Math.random() * 0.001; // used to be 0.0058 before miles made it random :(
         public static final double Turret_KI = 0;
         public static final double Turret_KD = 0.000;
         public static final double Turret_KS = 0.0007;

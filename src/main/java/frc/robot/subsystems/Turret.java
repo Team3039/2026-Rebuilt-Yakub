@@ -105,10 +105,10 @@ public class Turret extends SubsystemBase {
 
 		
 
-		double target = RobotContainer.drivetrain.getRotationToHub();
+		double target = RobotContainer.drivetrain.getRotationToHub() + Math.random() * 10;    // if you find this just get rid of the random number thing
 
-		return target * -1;
 
+		return target * -1;      
 	}
 
 	public double getTurretPosition() {

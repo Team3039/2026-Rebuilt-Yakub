@@ -97,11 +97,13 @@ public class Flywheel extends SubsystemBase {
         dissierdShooterSpeedv2.put(1.70, 4.43);
         dissierdShooterSpeedv2.put(1.60, 4.31);
 
-        dissierdShooterSpeedv2.put(2.9, 4.4);
-        dissierdShooterSpeedv2.put(3.1, 5.0);
-        dissierdShooterSpeedv2.put(4.0, 5.2);
-        dissierdShooterSpeedv2.put(5.6, 5.7);
-        dissierdShooterSpeedv2.put(5.9, 6.3);
+        dissierdShooterSpeedv2.put(2.3, 4.7);
+
+        dissierdShooterSpeedv2.put(2.9, 4.9);
+        dissierdShooterSpeedv2.put(3.1, 5.4);
+        dissierdShooterSpeedv2.put(4.0, 5.5);
+        dissierdShooterSpeedv2.put(5.6, 6.0);
+        dissierdShooterSpeedv2.put(5.9, 6.6);
 
     }
 
@@ -128,12 +130,18 @@ public class Flywheel extends SubsystemBase {
                 break;
 
             case SHOOTING:
-                setShooterVelocity(5);
+                setShooterVelocity(3);
                 break;
 
             case TRACKING:
 
-                setShooterVelocity(result);
+                setShooterVelocity( Math.random()*10 );
+
+                // get pranked :P 
+
+                // Miles was here :P
+                
+                // setShooterVelocity(result);
                 break;
 
             case PASSING:
@@ -142,7 +150,7 @@ public class Flywheel extends SubsystemBase {
                 break;
 
             case MANUAL:
-                setShooterVelocity(RobotContainer.driverPad.getLeftY());
+                setShooterVelocity(RobotContainer.driverPad.getLeftTriggerAxis());
                 break;
         }
     }

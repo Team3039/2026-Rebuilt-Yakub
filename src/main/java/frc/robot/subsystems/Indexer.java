@@ -138,7 +138,7 @@ public class Indexer extends SubsystemBase {
         break;
 
       case Shooting:
-        setkickerSpeed(0.3);
+        setkickerSpeed(1);
         break;
 
       // In the passive state, the indexer will not intake, and will deactivate the
