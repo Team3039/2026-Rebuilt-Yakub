@@ -17,6 +17,12 @@ import static edu.wpi.first.units.Units.Degrees;
 
 public class Constants {
 
+
+
+    private static double randomValue() {
+        return Math.random() * 0.0001;
+    }
+
     private static final double wheelBase = 0.5; // Define the wheelBase (example value)
     private static final double trackWidth = 0.5; // Define the trackWidth (example value)
     public static final double kDriveGearRatio = 5.357142857142857;
@@ -85,7 +91,7 @@ public class Constants {
     }
 
     public static final class Turret {
-        public static final double Turret_KP = Math.random() * 0.001; // used to be 0.0058 before miles made it random :(
+        public static final double Turret_KP = randomValue(); // used to be 0.0058 before miles made it random :(
         public static final double Turret_KI = 0;
         public static final double Turret_KD = 0.000;
         public static final double Turret_KS = 0.0007;
