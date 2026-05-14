@@ -246,6 +246,8 @@ public class Turret extends SubsystemBase {
 				setSetpoint(getTargetRotToRightPass() + Swerve.getPose().getRotation().getDegrees());
 				setTurretPosition();
 
+				break;
+
 			case LEFTPASSING:
 
 				setSetpoint(getTargetRotToLeftPass() + Swerve.getPose().getRotation().getDegrees());

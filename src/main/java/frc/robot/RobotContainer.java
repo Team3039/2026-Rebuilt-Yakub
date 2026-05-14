@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Turret;
 // import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.AimToPass;
+import frc.robot.commands.StartLeftPassing;
 import frc.robot.commands.StartRightPassing;
 import frc.robot.commands.setFlyWheels;
 // import frc.robot.commands.setHoodManual;
@@ -159,7 +160,7 @@ public class RobotContainer {
                 driverPad.a().whileTrue(drivetrain.applyRequest(() -> brake));
                 driverPad.rightBumper().onTrue(new setIntakerollersIntake());
                 driverPad.rightTrigger().whileTrue(new StartRightPassing());
-                driverPad.leftTrigger().whileTrue(new AimToPass());
+                driverPad.leftTrigger().whileTrue(new StartLeftPassing());
 
                 // AimToPass
 
