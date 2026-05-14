@@ -9,14 +9,15 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Flywheel.FlywheelState;
 import frc.robot.subsystems.Hopper.HopperState;
 import frc.robot.subsystems.Indexer.IndexerState;
+// import frc.robot.subsystems.Indexer.IndexerState;
 import frc.robot.subsystems.Intake.IntakeState;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Turret.TurretState;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class StartPassing extends Command {
+public class StartRightPassing extends Command {
   /** Creates a new SetTurretManualOverride. */
-  public StartPassing() {
+  public StartRightPassing() {
     addRequirements(RobotContainer.flywheel);
     addRequirements(RobotContainer.turret);
 
@@ -26,10 +27,10 @@ public class StartPassing extends Command {
   @Override
   public void initialize() {
     RobotContainer.flywheel.setState(FlywheelState.PASSING);
-    RobotContainer.indexer.setState(IndexerState.PASSIVE);
+    RobotContainer.indexer.setState(IndexerState.PASSING);
     RobotContainer.hopper.setState(HopperState.PASSIVE);
     RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
-        RobotContainer.turret.setState(TurretState.PASSING);
+    RobotContainer.turret.setState(TurretState.RIGHTPASSING);
 
 
   }
@@ -49,7 +50,7 @@ public class StartPassing extends Command {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.flywheel.setState(FlywheelState.IDLE);
-    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.turret.setState(TurretState.HUBTRACKING);
     RobotContainer.indexer.setState(IndexerState.IDLE);
     RobotContainer.hopper.setState(HopperState.IDLE);
     RobotContainer.intake.setState(IntakeState.IDLE);

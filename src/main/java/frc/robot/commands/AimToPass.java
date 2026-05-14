@@ -41,7 +41,7 @@ public class AimToPass extends Command {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.flywheel.setState(FlywheelState.IDLE);
-    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.turret.setState(TurretState.HUBTRACKING);
     RobotContainer.indexer.setState(IndexerState.IDLE);
     RobotContainer.hopper.setState(HopperState.IDLE);
     RobotContainer.intake.setState(IntakeState.IDLE);

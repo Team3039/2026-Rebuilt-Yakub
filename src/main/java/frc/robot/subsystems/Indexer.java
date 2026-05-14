@@ -28,6 +28,7 @@ public class Indexer extends SubsystemBase {
     Intakeing,
     Shooting,
     BackPASSIVE,
+    PASSING
   }
 
   // Create a variable to store the current state of the indexer
@@ -152,8 +153,18 @@ public class Indexer extends SubsystemBase {
           setkickerSpeed(.0);
         }
 
-        break;
 
+        
+      case PASSING:
+
+        if (Turret.isAtSetpoint(.1) == true) {
+          setkickerSpeed(1);
+        } else {
+          setkickerSpeed(.0);
+        }
+
+        break;
+//isAtSetpoint
       case BackPASSIVE:
 
         setkickerSpeed(-1);

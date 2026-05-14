@@ -18,7 +18,7 @@ public class setTurretTracking extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.turret.setState(TurretState.HUBTRACKING);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,7 +28,7 @@ public class setTurretTracking extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.turret.setState(TurretState.TRACKING);
+    RobotContainer.turret.setState(TurretState.HUBTRACKING);
   }
 
   // Returns true when the command should end.

@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Turret;
 // import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.AimToPass;
-import frc.robot.commands.StartPassing;
+import frc.robot.commands.StartRightPassing;
 import frc.robot.commands.setFlyWheels;
 // import frc.robot.commands.setHoodManual;
 // import frc.robot.commands.setIntakeManual;
@@ -157,8 +157,8 @@ public class RobotContainer {
                 // Pose2d(1.911, 4.030, Rotation2d.fromDegrees(0)))));
 
                 driverPad.a().whileTrue(drivetrain.applyRequest(() -> brake));
-                driverPad.leftBumper().onTrue(new setIntakerollersIntake());
-                driverPad.rightTrigger().whileTrue(new StartPassing());
+                driverPad.rightBumper().onTrue(new setIntakerollersIntake());
+                driverPad.rightTrigger().whileTrue(new StartRightPassing());
                 driverPad.leftTrigger().whileTrue(new AimToPass());
 
                 // AimToPass
@@ -213,14 +213,14 @@ public class RobotContainer {
                 // guitar.povDown().whileTrue(new setFlyWheels());
                 // driverPad.a().onFalse(new setIntakeStop());
 
-                guitar.a().onTrue(new IntakeIntakeing()); // the green button
-                guitar.y().onTrue(new IntakeIdle()); // the yellow button
+                guitar.x().onTrue(new IntakeIntakeing()); // the green button
+                guitar.a().whileTrue((new IntakeIdle())); // the yellow button
                 guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
-                guitar.x().onTrue(new setIntakerollersIntake()); // the blue button
-                guitar.leftBumper().onTrue(new setTurretTracking());
+                guitar.povDown().onTrue(new setIntakerollersIntake()); // the blue button
+                guitar.rightBumper().onTrue(new setTurretTracking());
 
-                guitar.povDown().whileTrue(new setFlyWheels()); // down on the strum bar
-                guitar.povUp().whileTrue(new setKickerBackPassive()); // up on the strum bar
+                guitar.rightTrigger().whileTrue(new setFlyWheels()); // down on the strum bar
+                guitar.leftTrigger().whileTrue(new setKickerBackPassive()); // up on the strum bar
 
                 // driverPad.b().whileTrue(drivetrain.pointAtHubCommand(() ->
                 // -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));

@@ -47,13 +47,13 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
     public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d BlueDownPassingPose = new Pose2d(2.717, 1.586, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueRightPassingPose = new Pose2d(2.717, 1.586, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d RedUpPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
+    public static final Pose2d RedRightPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d BlueUpPassingPose = new Pose2d(2.999, 6.655, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueLeftPassingPose = new Pose2d(2.999, 6.655, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d RedDownPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
+    public static final Pose2d RedLeftPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
 
 
      public static Transform2d shooterOffset = new Transform2d(new Translation2d(0, 0.1525), new Rotation2d());
@@ -303,6 +303,24 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
             return BlueHubPose;
         }
     
+          private static Pose2d getRightPassingPoseForAlliance() {
+            var allianceOpt = DriverStation.getAlliance();
+            if (allianceOpt.isPresent()) {
+                return allianceOpt.get() == Alliance.Red ? RedRightPassingPose : BlueRightPassingPose;
+            }
+    
+            return BlueHubPose;
+        }
+    
+          private static Pose2d getLeftPassingPoseForAlliance() {
+            var allianceOpt = DriverStation.getAlliance();
+            if (allianceOpt.isPresent()) {
+                return allianceOpt.get() == Alliance.Red ? RedLeftPassingPose : BlueLeftPassingPose;
+            }
+    
+            return BlueHubPose;
+        }
+    
         // private static Pose2d getUpPassingPoseForAlliance() {
         //     var allianceOpt = DriverStation.getAlliance();
         //     if (allianceOpt.isPresent()) {
@@ -365,9 +383,64 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
                 hub.getX() -   shooterPositionPose.getY() ,
                 hub.getY() -   shooterPositionPose.getX() );
     }
-            
-              
 
+
+
+
+
+            
+              public  double getRotationToRightPassing() {
+
+                         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+                    Pose2d hub = getRightPassingPoseForAlliance();
+            
+                    targetYaw = Math.atan2(
+                    hub.getY() - shooterPositionPose.getY() ,
+                    hub.getX() - shooterPositionPose.getX());
+
+        return Math.toDegrees(targetYaw);
+    }
+
+    public double getDistanceToRightPassing() {
+
+         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+
+        Pose2d hub = getRightPassingPoseForAlliance();
+        return Math.hypot(
+                hub.getX() -   shooterPositionPose.getY() ,
+                hub.getY() -   shooterPositionPose.getX() );
+    }
+
+
+
+
+
+  public  double getRotationToLeftPassing() {
+
+                         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+                    Pose2d hub = getLeftPassingPoseForAlliance();
+            
+                    targetYaw = Math.atan2(
+                    hub.getY() - shooterPositionPose.getY() ,
+                    hub.getX() - shooterPositionPose.getX());
+
+        return Math.toDegrees(targetYaw);
+    }
+
+    public double getDistanceToLeftPassing() {
+
+         Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
+
+
+        Pose2d hub = getLeftPassingPoseForAlliance();
+        return Math.hypot(
+                hub.getX() -   shooterPositionPose.getY() ,
+                hub.getY() -   shooterPositionPose.getX() );
+    }
+    
 
 
     @Override
