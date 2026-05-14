@@ -153,7 +153,7 @@ public class Indexer extends SubsystemBase {
           setkickerSpeed(.0);
         }
 
-
+        break;
         
       case PASSING:
 
