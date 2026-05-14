@@ -157,7 +157,7 @@ public class Indexer extends SubsystemBase {
         
       case PASSING:
 
-        if (Turret.isAtSetpoint(.1) == true) {
+        if (Turret.isAtSetpoint(5) == true) {
           setkickerSpeed(1);
         } else {
           setkickerSpeed(.0);
