@@ -30,7 +30,7 @@ public class StartLeftPassing extends Command {
     RobotContainer.indexer.setState(IndexerState.PASSING);
     RobotContainer.hopper.setState(HopperState.PASSIVE);
     RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
-    RobotContainer.turret.setState(TurretState.RIGHTPASSING);
+    RobotContainer.turret.setState(TurretState.LEFTPASSING);
 
 
   }

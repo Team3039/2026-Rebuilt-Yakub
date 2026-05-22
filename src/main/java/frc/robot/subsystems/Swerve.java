@@ -47,13 +47,13 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
     public static final Pose2d RedHubPose = new Pose2d(11.918, 4.030, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d BlueRightPassingPose = new Pose2d(2.717, 1.586, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueLeftPassingPose = new Pose2d(3.000, 6.100, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d RedRightPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
+    public static final Pose2d RedLeftPassingPose = new Pose2d(13.571, 6.484, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d BlueLeftPassingPose = new Pose2d(2.999, 6.655, Rotation2d.fromDegrees(0));
+    public static final Pose2d BlueRightPassingPose = new Pose2d(3.000, 2.000, Rotation2d.fromDegrees(0));
 
-    public static final Pose2d RedLeftPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
+    public static final Pose2d RedRightPassingPose = new Pose2d(13.349, 1.586, Rotation2d.fromDegrees(0));
 
 
      public static Transform2d shooterOffset = new Transform2d(new Translation2d(0, 0.1525), new Rotation2d());
@@ -377,6 +377,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
          Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
 
+System.out.println("austin is a chud");
 
         Pose2d hub = getHubPoseForAlliance();
         return Math.hypot(
