@@ -45,6 +45,7 @@ import frc.robot.commands.setKickerBackPassive;
 import frc.robot.commands.setTurretTracking;
 import frc.robot.commands.movementCommands.IntakeIdle;
 import frc.robot.commands.movementCommands.IntakeIntakeing;
+import frc.robot.commands.setHoodManual;
 // import frc.robot.commands.movementCommands.IntakeZero;
 // import frc.robot.commands.movementCommands.turretToZero;
 // import frc.robot.commands.movementCommands.TestShoot;
@@ -219,10 +220,10 @@ public class RobotContainer {
                 guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
                 guitar.povDown().onTrue(new setIntakerollersIntake()); // the blue button
                 guitar.rightBumper().onTrue(new setTurretTracking());
-
+                guitar.y().onTrue(new setHoodManual());
                 guitar.rightTrigger().whileTrue(new setFlyWheels()); // down on the strum bar
                 guitar.leftTrigger().whileTrue(new setKickerBackPassive()); // up on the strum bar
-
+            
                 // driverPad.b().whileTrue(drivetrain.pointAtHubCommand(() ->
                 // -driverPad.getLeftY() * MaxSpeed, () -> -driverPad.getLeftX() * MaxSpeed));
                 // driverPad.b().onFalse(new setTurretIdle());

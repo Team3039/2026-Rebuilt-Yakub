@@ -13,6 +13,8 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
+import edu.wpi.first.math.interpolation.InterpolatingTreeMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -49,6 +51,10 @@ public class Hood extends SubsystemBase {
   // ticks
   public static double setpointHood = 0;
 
+  public double getDistanceFromHub() {
+        return RobotContainer.drivetrain.getDistanceToHub();
+   // }
+
   // Hood Constructor
   public Hood() {
 
@@ -64,8 +70,8 @@ public class Hood extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 2;
-    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = -1;
+    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -0.25;
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -73,6 +79,21 @@ public class Hood extends SubsystemBase {
 
     // Apply the configurator to the Hood motor
     hoodMotor.getConfigurator().apply(config);
+
+    final InterpolatingDoubleTreeMap dissierdHoodPosition = new InterpolatingDoubleTreeMap();
+    {
+        dissierdHoodPosition.put(1.80, 4.09);
+        dissierdHoodPosition.put(1.70, 4.08);
+        dissierdHoodPosition.put(1.60, 4.2);
+
+        dissierdHoodPosition.put(2.9, 4.29);
+        dissierdHoodPosition.put(3.1, 4.89);
+        dissierdHoodPosition.put(4.0, 5.09);
+        dissierdHoodPosition.put(5.6, 5.59);
+        dissierdHoodPosition.put(5.9, 6.19);
+
+    }
+
   }
 
   /**
@@ -158,6 +179,11 @@ public class Hood extends SubsystemBase {
 
   @Override
   public void periodic() {
+
+    double Distance = getDistanceFromHub();
+
+        double result = dissierdHoodPosition.get(Distance);
+
     SmartDashboard.putNumber("Hood Encoder", getHoodPosition());
 
     // SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
@@ -168,6 +194,7 @@ public class Hood extends SubsystemBase {
     // hoodMotor.getSupplyCurrent().getValueAsDouble());
     // SmartDashboard.putString("Hood State", String.valueOf(getState()));
     SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
+    SmartDashboard.putNumber("dissierdHoodPosition", dissierdHoodPosition.get(Distance));
 
     // Hood State Machine
     switch (hoodState) {
@@ -179,7 +206,7 @@ public class Hood extends SubsystemBase {
 
       // In the Manual state, the Hood is controlled directly by the operator
       case MANUAL:
-        setHoodPercent(RobotContainer.driverPad.getLeftY() * 1.5);
+        setHoodPercent(RobotContainer.guitar.getLeftY());
         break;
 
       // In the Position state, the Hood is controlled by the setpoint
