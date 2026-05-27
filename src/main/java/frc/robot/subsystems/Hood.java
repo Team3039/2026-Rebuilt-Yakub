@@ -6,15 +6,16 @@
 
 package frc.robot.subsystems;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
-import edu.wpi.first.math.interpolation.InterpolatingTreeMap;
+// imported InterpolatingTreeMap not required; removed to fix unused import
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -50,10 +51,12 @@ public class Hood extends SubsystemBase {
   // Create a variable to store the setpoint of the hood in kraken encoder
   // ticks
   public static double setpointHood = 0;
-
   public double getDistanceFromHub() {
-        return RobotContainer.drivetrain.getDistanceToHub();
-   // }
+    return RobotContainer.drivetrain.getDistanceToHub();
+  }
+
+  // Interpolating map for desired hood positions by distance
+  private final InterpolatingDoubleTreeMap dissierdHoodPosition = new InterpolatingDoubleTreeMap();
 
   // Hood Constructor
   public Hood() {
@@ -70,8 +73,8 @@ public class Hood extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = -1;
-    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -0.25;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1.6;
+    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -0.4;
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -80,17 +83,16 @@ public class Hood extends SubsystemBase {
     // Apply the configurator to the Hood motor
     hoodMotor.getConfigurator().apply(config);
 
-    final InterpolatingDoubleTreeMap dissierdHoodPosition = new InterpolatingDoubleTreeMap();
     {
-        dissierdHoodPosition.put(1.80, 4.09);
-        dissierdHoodPosition.put(1.70, 4.08);
-        dissierdHoodPosition.put(1.60, 4.2);
+      dissierdHoodPosition.put(1.80, 1.5);
+      dissierdHoodPosition.put(1.70, 1.4);
+      dissierdHoodPosition.put(1.60, 1.3);
 
-        dissierdHoodPosition.put(2.9, 4.29);
-        dissierdHoodPosition.put(3.1, 4.89);
-        dissierdHoodPosition.put(4.0, 5.09);
-        dissierdHoodPosition.put(5.6, 5.59);
-        dissierdHoodPosition.put(5.9, 6.19);
+      dissierdHoodPosition.put(2.9, 1.2);
+      dissierdHoodPosition.put(3.1, 1.1);
+      dissierdHoodPosition.put(4.0, 1.0);
+      dissierdHoodPosition.put(5.6, 0.9);
+      dissierdHoodPosition.put(5.9, 0.8);
 
     }
 
@@ -180,21 +182,22 @@ public class Hood extends SubsystemBase {
   @Override
   public void periodic() {
 
-    double Distance = getDistanceFromHub();
+  double Distance = getDistanceFromHub();
+  // lookup desired hood position for current distance (may be null if out of range)
+  // we don't use the value here directly, but we display it on the dashboard below
+  Double result = dissierdHoodPosition.get(Distance);
 
-        double result = dissierdHoodPosition.get(Distance);
-
-    SmartDashboard.putNumber("Hood Encoder", getHoodPosition());
+  SmartDashboard.putNumber("Hood Encoder", getHoodPosition());
 
     // SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
 
-    SmartDashboard.putNumber("Hood Output", hoodMotor.get());
+  SmartDashboard.putNumber("Hood Output", hoodMotor.get());
     SmartDashboard.putNumber("Hood error", Math.abs((setpointHood - getHoodPosition())));
     // SmartDashboard.putNumber("Hood Output Current",
     // hoodMotor.getSupplyCurrent().getValueAsDouble());
     // SmartDashboard.putString("Hood State", String.valueOf(getState()));
-    SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
-    SmartDashboard.putNumber("dissierdHoodPosition", dissierdHoodPosition.get(Distance));
+  SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
+  SmartDashboard.putNumber("dissierdHoodPosition", result);
 
     // Hood State Machine
     switch (hoodState) {
@@ -212,6 +215,11 @@ public class Hood extends SubsystemBase {
       // In the Position state, the Hood is controlled by the setpoint
       case POSITION:
         setHoodPosition();
+        break;
+
+      // TRACKING: update the setpoint from the interpolation table if available
+      case TRACKING:
+        setSetpoint(result);
         break;
 
     }

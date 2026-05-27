@@ -32,6 +32,7 @@ import frc.robot.commands.AimToPass;
 import frc.robot.commands.StartLeftPassing;
 import frc.robot.commands.StartRightPassing;
 import frc.robot.commands.setFlyWheels;
+import frc.robot.commands.setHood;
 // import frc.robot.commands.setHoodManual;
 // import frc.robot.commands.setIntakeManual;
 import frc.robot.commands.setIntakePassiveUp;
@@ -220,7 +221,7 @@ public class RobotContainer {
                 guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
                 guitar.povDown().onTrue(new setIntakerollersIntake()); // the blue button
                 guitar.rightBumper().onTrue(new setTurretTracking());
-                guitar.y().onTrue(new setHoodManual());
+                guitar.y().onTrue(new setHood());
                 guitar.rightTrigger().whileTrue(new setFlyWheels()); // down on the strum bar
                 guitar.leftTrigger().whileTrue(new setKickerBackPassive()); // up on the strum bar
             
