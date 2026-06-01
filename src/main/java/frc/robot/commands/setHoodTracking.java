@@ -9,9 +9,9 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Hood.HoodState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class setHood extends Command {
+public class setHoodTracking extends Command {
   /** Creates a new SetTurretManualOverride. */
-  public setHood() {
+  public setHoodTracking() {
     addRequirements(RobotContainer.hood);
   }
 

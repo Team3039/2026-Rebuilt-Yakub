@@ -27,12 +27,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Turret;
+import frc.robot.commands.ActuateHoodToSetpoint;
 // import frc.robot.commands.ActuateHoodToSetpoint;
 import frc.robot.commands.AimToPass;
 import frc.robot.commands.StartLeftPassing;
 import frc.robot.commands.StartRightPassing;
 import frc.robot.commands.setFlyWheels;
-import frc.robot.commands.setHood;
+import frc.robot.commands.setHoodManual;
+import frc.robot.commands.setHoodTracking;
 // import frc.robot.commands.setHoodManual;
 // import frc.robot.commands.setIntakeManual;
 import frc.robot.commands.setIntakePassiveUp;
@@ -46,7 +48,8 @@ import frc.robot.commands.setKickerBackPassive;
 import frc.robot.commands.setTurretTracking;
 import frc.robot.commands.movementCommands.IntakeIdle;
 import frc.robot.commands.movementCommands.IntakeIntakeing;
-import frc.robot.commands.setHoodManual;
+import frc.robot.commands.movementCommands.hoodToPoint;
+import frc.robot.commands.ActuateHoodToSetpoint;
 // import frc.robot.commands.movementCommands.IntakeZero;
 // import frc.robot.commands.movementCommands.turretToZero;
 // import frc.robot.commands.movementCommands.TestShoot;
@@ -163,6 +166,9 @@ public class RobotContainer {
                 driverPad.rightBumper().onTrue(new setIntakerollersIntake());
                 driverPad.rightTrigger().whileTrue(new StartRightPassing());
                 driverPad.leftTrigger().whileTrue(new StartLeftPassing());
+                driverPad.povUp().onTrue(new setHoodTracking());
+                driverPad.povDown().onTrue(new setTurretTracking());
+                driverPad.povLeft().onTrue(new hoodToPoint());
 
                 // AimToPass
 
@@ -221,7 +227,8 @@ public class RobotContainer {
                 guitar.b().whileTrue(new setIntakePassiveUp()); // the red button
                 guitar.povDown().onTrue(new setIntakerollersIntake()); // the blue button
                 guitar.rightBumper().onTrue(new setTurretTracking());
-                guitar.y().onTrue(new setHood());
+                guitar.leftBumper().onTrue(new setHoodTracking());
+                guitar.y().onTrue(new setHoodManual());
                 guitar.rightTrigger().whileTrue(new setFlyWheels()); // down on the strum bar
                 guitar.leftTrigger().whileTrue(new setKickerBackPassive()); // up on the strum bar
             

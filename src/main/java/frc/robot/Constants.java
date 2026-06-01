@@ -98,9 +98,9 @@ public class Constants {
     }
 
     public static final class Hood {
-        public static final double Hood_KP = 0.03;
+        public static final double Hood_KP = 0.01;
         public static final double Hood_KI = 0;
-        public static final double Hood_KD = 0.0000;
+        public static final double Hood_KD = 0.0001;
         public static final double Hood_KS = 0.05;
         public static final double Hood_KG = 0;
         public static final double Hood_KV = 0;

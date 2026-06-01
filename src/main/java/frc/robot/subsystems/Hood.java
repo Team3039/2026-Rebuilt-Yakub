@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-
+ 
 public class Hood extends SubsystemBase {
 
   // Create the possible states of the Hood
@@ -51,6 +51,7 @@ public class Hood extends SubsystemBase {
   // Create a variable to store the setpoint of the hood in kraken encoder
   // ticks
   public static double setpointHood = 0;
+
   public double getDistanceFromHub() {
     return RobotContainer.drivetrain.getDistanceToHub();
   }
@@ -73,8 +74,8 @@ public class Hood extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 1.6;
-    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -0.4;
+   // config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 2;
+   // config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2;
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -120,7 +121,7 @@ public class Hood extends SubsystemBase {
 
     double position = hoodMotor.getPosition().getValueAsDouble() - 0.3728125;
 
-    return position * -1;
+    return position;
   }
 
   public void setHoodPosition() {
@@ -183,8 +184,7 @@ public class Hood extends SubsystemBase {
   public void periodic() {
 
   double Distance = getDistanceFromHub();
-  // lookup desired hood position for current distance (may be null if out of range)
-  // we don't use the value here directly, but we display it on the dashboard below
+
   Double result = dissierdHoodPosition.get(Distance);
 
   SmartDashboard.putNumber("Hood Encoder", getHoodPosition());
@@ -198,6 +198,7 @@ public class Hood extends SubsystemBase {
     // SmartDashboard.putString("Hood State", String.valueOf(getState()));
   SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
   SmartDashboard.putNumber("dissierdHoodPosition", result);
+  SmartDashboard.putNumber("hoodSetpoint", setpointHood);
 
     // Hood State Machine
     switch (hoodState) {
