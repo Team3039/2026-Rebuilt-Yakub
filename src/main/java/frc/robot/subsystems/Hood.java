@@ -74,8 +74,8 @@ public class Hood extends SubsystemBase {
     // Soft Limits
     config.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     config.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-   // config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 2;
-   // config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -2;
+    config.SoftwareLimitSwitch.ForwardSoftLimitThreshold = 0;
+    config.SoftwareLimitSwitch.ReverseSoftLimitThreshold = -1.7;
 
     // Inverted and Neutral Modes
     // config.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -85,15 +85,27 @@ public class Hood extends SubsystemBase {
     hoodMotor.getConfigurator().apply(config);
 
     {
-      dissierdHoodPosition.put(1.80, 1.5);
-      dissierdHoodPosition.put(1.70, 1.4);
-      dissierdHoodPosition.put(1.60, 1.3);
 
-      dissierdHoodPosition.put(2.9, 1.2);
-      dissierdHoodPosition.put(3.1, 1.1);
-      dissierdHoodPosition.put(4.0, 1.0);
-      dissierdHoodPosition.put(5.6, 0.9);
-      dissierdHoodPosition.put(5.9, 0.8);
+     
+      
+      dissierdHoodPosition.put(1.60, -0.0);
+      dissierdHoodPosition.put(1.70, -0.25);
+      dissierdHoodPosition.put(1.80, -0.35);
+      dissierdHoodPosition.put(1.9, -0.45);
+      dissierdHoodPosition.put(2.0, -0.65);
+      dissierdHoodPosition.put(2.1, -0.75);
+      dissierdHoodPosition.put(2.2, -0.85);
+      dissierdHoodPosition.put(2.3, -0.95);
+      dissierdHoodPosition.put(2.4, -1.05);      
+      dissierdHoodPosition.put(2.5, -1.15);
+      dissierdHoodPosition.put(2.5, -1.15);
+      dissierdHoodPosition.put(2.6, -1.25);
+      dissierdHoodPosition.put(2.7, -1.35);
+      dissierdHoodPosition.put(2.8, -1.45);
+      dissierdHoodPosition.put(2.9, -1.55);
+      dissierdHoodPosition.put(3.0, -1.65);
+      dissierdHoodPosition.put(3.1, -1.55);
+      
 
     }
 
@@ -119,7 +131,7 @@ public class Hood extends SubsystemBase {
 
   public double getHoodPosition() {
 
-    double position = hoodMotor.getPosition().getValueAsDouble() - 0.3728125;
+    double position = hoodMotor.getPosition().getValueAsDouble() - 0.2255859375;
 
     return position;
   }
@@ -129,13 +141,22 @@ public class Hood extends SubsystemBase {
 
     double output = pidOutput;
 
+    // Add feedforward (static friction / gravity compensation)
     if (Math.abs(pidOutput) > 0.001) {
       output += Math.copySign(Constants.Hood.Hood_KS, pidOutput);
     }
 
-    output = MathUtil.clamp(output, -0.08, 0.08);
+    // Telemetry before clamping
+    SmartDashboard.putNumber("Hood pidOutput", pidOutput);
+    SmartDashboard.putNumber("Hood outputBeforeClamp", output);
 
-    hoodMotor.set(output);
+    // Clamp final output to safe range
+    double finalOutput = MathUtil.clamp(output, -0.32, 0.32);
+
+    // Telemetry after clamping
+    SmartDashboard.putNumber("Hood finalOutput", finalOutput);
+
+    hoodMotor.set(finalOutput);
   }
 
   /**
@@ -192,10 +213,9 @@ public class Hood extends SubsystemBase {
     // SmartDashboard.putNumber("Target Rot to hub", getTargetRotToHub());
 
   SmartDashboard.putNumber("Hood Output", hoodMotor.get());
-    SmartDashboard.putNumber("Hood error", Math.abs((setpointHood - getHoodPosition())));
-    // SmartDashboard.putNumber("Hood Output Current",
-    // hoodMotor.getSupplyCurrent().getValueAsDouble());
-    // SmartDashboard.putString("Hood State", String.valueOf(getState()));
+  SmartDashboard.putNumber("Hood error", Math.abs((setpointHood - getHoodPosition())));
+    SmartDashboard.putNumber("Hood Output Current",hoodMotor.getSupplyCurrent().getValueAsDouble());
+  SmartDashboard.putString("Hood State", String.valueOf(getState()));
   SmartDashboard.putBoolean("isAtSetpoint?", controller.atSetpoint());
   SmartDashboard.putNumber("dissierdHoodPosition", result);
   SmartDashboard.putNumber("hoodSetpoint", setpointHood);
@@ -221,6 +241,7 @@ public class Hood extends SubsystemBase {
       // TRACKING: update the setpoint from the interpolation table if available
       case TRACKING:
         setSetpoint(result);
+        setHoodPosition();
         break;
 
     }

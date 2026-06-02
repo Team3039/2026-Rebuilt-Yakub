@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Flywheel.FlywheelState;
 import frc.robot.subsystems.Hopper.HopperState;
-import frc.robot.subsystems.Indexer.IndexerState;;
+import frc.robot.subsystems.Indexer.IndexerState;
+import frc.robot.subsystems.Hood.HoodState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class setFlyWheels extends Command {
@@ -20,9 +21,10 @@ public class setFlyWheels extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.flywheel.setState(FlywheelState.SHOOTING);
+    RobotContainer.flywheel.setState(FlywheelState.TRACKING);
     RobotContainer.indexer.setState(IndexerState.PASSIVE);
     RobotContainer.hopper.setState(HopperState.PASSIVE);
+    RobotContainer.hood.setState(HoodState.TRACKING);
 
 
   }
@@ -37,6 +39,7 @@ public class setFlyWheels extends Command {
     RobotContainer.flywheel.setState(FlywheelState.IDLE);
     RobotContainer.indexer.setState(IndexerState.IDLE);
     RobotContainer.hopper.setState(HopperState.IDLE);
+    RobotContainer.hood.setState(HoodState.IDLE);
 
 
 
