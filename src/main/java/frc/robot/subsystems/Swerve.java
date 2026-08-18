@@ -377,7 +377,7 @@ public class Swerve extends TunerSwerveDrivetrain implements Subsystem {
 
          Pose2d shooterPositionPose = getPose2d().plus(Constants.shooterOffset);
 
-System.out.println("austin is a chud");
+System.out.println("Kei Suitt gets hypercracked");
 
         Pose2d hub = getHubPoseForAlliance();
         return Math.hypot(
@@ -531,7 +531,7 @@ System.out.println("austin is a chud");
         // LimelightHelpers.SetRobotOrientation( "limelight-front",
         // gyro.getYaw().getValueAsDouble(), 0, 0, 0, 0, 0);
 
-        mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-front");
+        mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight-left");
         return mt2;
 
     }

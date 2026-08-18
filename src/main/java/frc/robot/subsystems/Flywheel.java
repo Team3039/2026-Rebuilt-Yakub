@@ -97,8 +97,9 @@ public class Flywheel extends SubsystemBase {
         dissierdShooterSpeedv2.put(1.70, 4.08);
         dissierdShooterSpeedv2.put(1.60, 4.2);
 
-        dissierdShooterSpeedv2.put(2.9, 4.29);
-        dissierdShooterSpeedv2.put(3.1, 4.89);
+        dissierdShooterSpeedv2.put(2.9, 4.52);
+        dissierdShooterSpeedv2.put(3.0, 4.6);
+        dissierdShooterSpeedv2.put(3.1, 4.65);
         dissierdShooterSpeedv2.put(4.0, 5.09);
         dissierdShooterSpeedv2.put(5.6, 5.59);
         dissierdShooterSpeedv2.put(5.9, 6.19);
@@ -138,7 +139,7 @@ public class Flywheel extends SubsystemBase {
 
             case PASSING:
 
-                setShooterVelocity(result + 1.60);
+                setShooterVelocity(result);
 
                 
                 break;

@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Flywheel.FlywheelState;
+import frc.robot.subsystems.Hood.HoodState;
 import frc.robot.subsystems.Hopper.HopperState;
 import frc.robot.subsystems.Indexer.IndexerState;
 // import frc.robot.subsystems.Indexer.IndexerState;
@@ -31,6 +32,7 @@ public class StartLeftPassing extends Command {
     RobotContainer.hopper.setState(HopperState.PASSIVE);
     RobotContainer.intake.setState(IntakeState.PASSIVE_UP);
     RobotContainer.turret.setState(TurretState.LEFTPASSING);
+    RobotContainer.hood.setState(HoodState.POSITION);
 
 
   }

@@ -168,7 +168,8 @@ public class RobotContainer {
                 driverPad.rightTrigger().whileTrue(new StartRightPassing());
                 driverPad.leftTrigger().whileTrue(new StartLeftPassing());
                 driverPad.povUp().onTrue(new hoodToZero());
-                driverPad.povLeft().onTrue(new hoodToPoint());
+                driverPad.rightTrigger().onTrue(new hoodToPoint());
+                driverPad.leftTrigger().onTrue(new hoodToPoint());
                 driverPad.povDown().whileTrue(new setHoodTracking());
 
                 // AimToPass

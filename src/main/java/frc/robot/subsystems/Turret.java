@@ -128,7 +128,7 @@ public class Turret extends SubsystemBase {
 	
 		public static double getTurretPosition() {
 		
-				double position = Turret.getPosition().getValueAsDouble() + 0.27001953125; // I looooooove magic numbers, what
+				double position = Turret.getPosition().getValueAsDouble() - 0.390214392756; // I looooooove magic numbers, what
 																						// does this number mean? I dont
 																						// know, but it makes everything
 																						// work, so im not gonna change it.

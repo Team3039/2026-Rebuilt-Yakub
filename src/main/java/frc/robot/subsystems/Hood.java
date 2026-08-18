@@ -88,24 +88,31 @@ public class Hood extends SubsystemBase {
 
      
       
-      dissierdHoodPosition.put(1.60, -0.0);
-      dissierdHoodPosition.put(1.70, -0.25);
-      dissierdHoodPosition.put(1.80, -0.35);
-      dissierdHoodPosition.put(1.9, -0.45);
-      dissierdHoodPosition.put(2.0, -0.65);
-      dissierdHoodPosition.put(2.1, -0.75);
-      dissierdHoodPosition.put(2.2, -0.85);
-      dissierdHoodPosition.put(2.3, -0.95);
-      dissierdHoodPosition.put(2.4, -1.05);      
-      dissierdHoodPosition.put(2.5, -1.15);
-      dissierdHoodPosition.put(2.5, -1.15);
-      dissierdHoodPosition.put(2.6, -1.25);
-      dissierdHoodPosition.put(2.7, -1.35);
-      dissierdHoodPosition.put(2.8, -1.45);
-      dissierdHoodPosition.put(2.9, -1.55);
-      dissierdHoodPosition.put(3.0, -1.65);
-      dissierdHoodPosition.put(3.1, -1.55);
-      
+
+      dissierdHoodPosition.put(1.9, -0.00);
+      dissierdHoodPosition.put(2.0, -0.05);
+      dissierdHoodPosition.put(2.1, -0.15);
+      dissierdHoodPosition.put(2.2, -0.25);
+      dissierdHoodPosition.put(2.3, -0.35);
+      dissierdHoodPosition.put(2.4, -0.40);      
+      dissierdHoodPosition.put(2.5, -0.45);
+      dissierdHoodPosition.put(2.6, -0.475);
+      dissierdHoodPosition.put(2.7, -0.50);
+      dissierdHoodPosition.put(2.75, -0.53);
+      dissierdHoodPosition.put(2.81, -0.63);
+      dissierdHoodPosition.put(2.91, -0.65);
+      dissierdHoodPosition.put(3.0, -0.65);
+      dissierdHoodPosition.put(3.1, -0.65);
+      dissierdHoodPosition.put(3.2, -0.65);
+      dissierdHoodPosition.put(3.3, -0.75);
+      dissierdHoodPosition.put(3.4, -0.8);
+      dissierdHoodPosition.put(3.5, -0.8);
+      dissierdHoodPosition.put(3.6, -0.8);
+      dissierdHoodPosition.put(3.7, -0.8);
+      dissierdHoodPosition.put(3.8, -0.85);
+
+                  
+
 
     }
 

@@ -15,7 +15,7 @@ public class hoodToPoint extends SequentialCommandGroup {
   public hoodToPoint() {
     
     addCommands(
-    new ActuateHoodToSetpoint(-1.0, .1)          
+    new ActuateHoodToSetpoint(-1.7, .1)          
     );
   }
 }
